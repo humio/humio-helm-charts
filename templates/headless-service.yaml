@@ -11,6 +11,8 @@ spec:
   ports:
     - port: 8080
       name: humiointernalhttp
+    - port: 80
+      name: humiointernalhttpeighty
   clusterIP: None
   selector:
     app: {{ template "humio.name" . }}

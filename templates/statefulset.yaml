@@ -13,6 +13,7 @@ metadata:
     # app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  # podManagementPolicy: Parallel
   selector:
     matchLabels:
       app: {{ include "humio.name" . }}
@@ -38,18 +39,18 @@ spec:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 30
+            initialDelaySeconds: 15 
             timeoutSeconds: 25
-            periodSeconds: 30
+            periodSeconds: 5
             successThreshold: 1
             failureThreshold: 10
           readinessProbe:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 30
+            initialDelaySeconds: 15 
             timeoutSeconds: 25
-            periodSeconds: 30
+            periodSeconds: 5 
             successThreshold: 1
             failureThreshold: 10
           volumeMounts:
@@ -68,20 +69,28 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
+            - name: INGEST_QUEUE_INITIAL_PARTITIONS
+              value: "72"
+            - name: DEFAULT_PARTITION_COUNT
+              value: "72"
             - name: HUMIO_PORT
               value: "8080"
             - name: ELASTIC_PORT
               value: "9200"
             - name: KAFKA_SERVERS
-              value: "humio-kafka-cp-kafka-0.humio-kafka-cp-kafka-headless:9092,humio-kafka-cp-kafka-1.humio-kafka-cp-kafka-headless:9092,humio-kafka-cp-kafka-2.humio-kafka-cp-kafka-headless:9092"
+              value: "kafka-cp-kafka-0.kafka-cp-kafka-headless:9092,kafka-cp-kafka-1.kafka-cp-kafka-headless:9092,kafka-cp-kafka-2.kafka-cp-kafka-headless:9092,kafka-cp-kafka-3.kafka-cp-kafka-headless:9092,kafka-cp-kafka-4.kafka-cp-kafka-headless:9092,kafka-cp-kafka-5.kafka-cp-kafka-headless:9092,kafka-cp-kafka-6.kafka-cp-kafka-headless:9092,kafka-cp-kafka-7.kafka-cp-kafka-headless:9092,kafka-cp-kafka-8.kafka-cp-kafka-headless:9092"
             - name: HUMIO_JVM_ARGS
-              value: {{ .Values.jvm_args }}
+              value: "-Xss2M -Xms4G -Xmx64G -server -XX:+UseParallelOldGC "
             - name: ZOOKEEPER_URL
-              value: "humio-kafka-cp-zookeeper-0.humio-kafka-cp-zookeeper-headless:2181,humio-kafka-cp-zookeeper-1.humio-kafka-cp-zookeeper-headless:2181,humio-kafka-oss-cp-zookeeper-2.humio-kafka-oss-cp-zookeeper-headless:2181"
+              value: "kafka-cp-zookeeper-0.kafka-cp-zookeeper-headless:2181,kafka-cp-zookeeper-1.kafka-cp-zookeeper-headless:2181,kafka-cp-zookeeper-2.kafka-cp-zookeeper-headless:2181,kafka-cp-zookeeper-3.kafka-cp-zookeeper-headless:2181,kafka-cp-zookeeper-4.kafka-cp-zookeeper-headless:2181"
             - name: KAFKA_MANAGED_BY_HUMIO
               value: "true"
             - name: EXTERNAL_URL
               value: "http://$(THIS_POD_IP):8080"
+            - name: GITHUB_USER_SETTING
+              value: "hello8675309:hello8675309humio"
+            - name: GITHUB_USER
+              value: "hello8675309:hello8675309humio"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -104,5 +113,5 @@ spec:
         - ReadWriteOnce
       resources:
         requests:
-          storage: 48Gi
-      storageClassName: local-storage
+          storage: 500Gi
+      # storageClassName: faster
