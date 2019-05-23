@@ -12,13 +12,15 @@ metadata:
     # app.kubernetes.io/instance: {{ .Release.Name }}
     # app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
+  serviceName: {{ template "humio.fullname" . }}-headless
   replicas: {{ .Values.replicaCount }}
-  # podManagementPolicy: Parallel
+  podManagementPolicy: Parallel
   selector:
     matchLabels:
       app: {{ include "humio.name" . }}
       release: {{ .Release.Name }}
   template:
+
     metadata:
       labels:
         app: {{ include "humio.name" . }}
@@ -26,7 +28,8 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "humio/humio-core:1.5.9"
+          #image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -57,11 +60,11 @@ spec:
           - mountPath: /data/humio-data
             name: humio-data-vol 
           env:
-            - name: MY_POD_NAME
+            - name: POD_NAME
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
-            - name: MY_POD_NAMESPACE
+            - name: POD_NAMESPACE
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
@@ -70,9 +73,9 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: INGEST_QUEUE_INITIAL_PARTITIONS
-              value: "72"
+              value: "50"
             - name: DEFAULT_PARTITION_COUNT
-              value: "72"
+              value: "50"
             - name: HUMIO_PORT
               value: "8080"
             - name: ELASTIC_PORT
@@ -80,19 +83,33 @@ spec:
             - name: KAFKA_SERVERS
               value: "kafka-cp-kafka-0.kafka-cp-kafka-headless:9092,kafka-cp-kafka-1.kafka-cp-kafka-headless:9092,kafka-cp-kafka-2.kafka-cp-kafka-headless:9092,kafka-cp-kafka-3.kafka-cp-kafka-headless:9092,kafka-cp-kafka-4.kafka-cp-kafka-headless:9092,kafka-cp-kafka-5.kafka-cp-kafka-headless:9092,kafka-cp-kafka-6.kafka-cp-kafka-headless:9092,kafka-cp-kafka-7.kafka-cp-kafka-headless:9092,kafka-cp-kafka-8.kafka-cp-kafka-headless:9092"
             - name: HUMIO_JVM_ARGS
-              value: "-Xss2M -Xms4G -Xmx64G -server -XX:+UseParallelOldGC "
+              value: "-Xss2M -Xms24G -Xmx32G -server -XX:+UseParallelOldGC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC"
             - name: ZOOKEEPER_URL
               value: "kafka-cp-zookeeper-0.kafka-cp-zookeeper-headless:2181,kafka-cp-zookeeper-1.kafka-cp-zookeeper-headless:2181,kafka-cp-zookeeper-2.kafka-cp-zookeeper-headless:2181,kafka-cp-zookeeper-3.kafka-cp-zookeeper-headless:2181,kafka-cp-zookeeper-4.kafka-cp-zookeeper-headless:2181"
             - name: KAFKA_MANAGED_BY_HUMIO
               value: "true"
+            - name:  DEFAULT_USER_INPUT_REGEX_ENGINE
+              value: "HUMIO"
+            # - name: DUMP_THREADS_SECONDS
+            #   value: "10"
+            - name: BLOOMFILTER_BACKFILLING_ENABLED
+              value: "false"
+            - name: BLOOMFILTER_ENABLED
+              value: "false"
             - name: EXTERNAL_URL
-              value: "http://$(THIS_POD_IP):8080"
-            - name: GITHUB_USER_SETTING
-              value: "hello8675309:hello8675309humio"
-            - name: GITHUB_USER
-              value: "hello8675309:hello8675309humio"
+              value: "http://$(POD_NAME).humio-headless.default.svc.cluster.local:8080"
+
+            # - name: GITHUB_USER_SETTING
+            #   value: "hello8675309:hello8675309humio"
+            # - name: GITHUB_USER
+            #   value: "hello8675309:hello8675309humio"
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            limits: 
+              cpu: 32 
+              memory: 80Gi
+            requests:
+              cpu: 32
+              memory: 80G
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -113,5 +130,5 @@ spec:
         - ReadWriteOnce
       resources:
         requests:
-          storage: 500Gi
+          storage: 1000Gi
       # storageClassName: faster

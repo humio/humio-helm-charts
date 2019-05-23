@@ -10,10 +10,10 @@
 # spec:
 #   type: {{ .Values.service.type }}
 #   ports:
-#     - port: {{ .Values.service.http_port }}
-#       targetPort: http
+#     - port: 30080
+#       targetPort: 8080
 #       name: httpnodeport
-#       nodeport: 338080
+#       nodeport: 30080
 #   selector:
 #     app: {{ include "humio.name" . }}
 #     release: {{ .Release.Name }}
