@@ -103,13 +103,14 @@ spec:
             #   value: "hello8675309:hello8675309humio"
             # - name: GITHUB_USER
             #   value: "hello8675309:hello8675309humio"
+            #this was a weird thing i had to do in heat of the moment, sorry.
           resources:
             limits: 
               cpu: 32 
               memory: 80Gi
             requests:
               cpu: 32
-              memory: 80G
+              memory: 80Gi
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
