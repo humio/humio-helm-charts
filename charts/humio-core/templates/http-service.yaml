@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "humio.fullname" . }}-http
+  name: {{ include "humio-core.fullname" . }}-http
   labels:
-    app: {{ template "humio.name" . }}
-    chart: {{ template "humio.chart" . }}
+    app: {{ template "humio-core.name" . }}
+    chart: {{ template "humio-core.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    # app.kubernetes.io/name: {{ include "humio.name" . }}
-    # helm.sh/chart: {{ include "humio.chart" . }}
+    # app.kubernetes.io/name: {{ include "humio-core.name" . }}
+    # helm.sh/chart: {{ include "humio-core.chart" . }}
     # app.kubernetes.io/instance: {{ .Release.Name }}
     # app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
@@ -19,5 +19,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ include "humio.name" . }}
+    app: {{ include "humio-core.name" . }}
     release: {{ .Release.Name }}

@@ -1,0 +1,5 @@
+dependencies:
+  - name: humio-core
+    version: 0.1.2
+    repository: file://./charts/humio-core
+    condition: humio-core.enabled

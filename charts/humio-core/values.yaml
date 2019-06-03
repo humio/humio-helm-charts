@@ -1,0 +1,70 @@
+---
+
+# Humio Defaults
+replicas: 3
+image: humio/humio-core:1.5.9
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: LoadBalancer
+  http_port: 8080
+  es_type: ClusterIP
+  es_port: 9200
+
+resources:
+  limits:
+   cpu: 1
+   memory: 2Gi
+  requests:
+   cpu: 1
+   memory: 2Gi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+livenessProbe: {}
+readinessProbe: {}
+storageVolume: {}
+
+# Dependencies
+cp-helm-charts:
+  cp-zookeeper:
+    servers: 3
+    image: confluentinc/cp-zookeeper
+    imageTag: 5.2.1
+    imagePullSecrets:
+    heapOptions: "-Xms512M -Xmx512M"
+    persistence:
+      enabled: true
+      dataDirSize: 10Gi
+      dataLogDirSize: 10Gi
+    resources: {}
+  cp-kafka:
+    brokers: 3
+    image: confluentinc/cp-enterprise-kafka
+    imageTag: 5.2.1
+    heapOptions: "-Xms512M -Xmx512M"
+    persistence:
+      enabled: true
+      size: 5Gi
+      disksPerBroker: 1
+    resources: {}
+
+# Ensure essential services are enabled
+cp-zookeeper:
+  enabled: true
+cp-kafka:
+  enabled: true
+# Disable non-essential services
+cp-schema-registry:
+  enabled: false
+cp-kafka-rest:
+  enabled: false
+cp-kafka-connect:
+  enabled: false
+cp-ksql-server:
+  enabled: false
+cp-control-center:
+  enabled: false
