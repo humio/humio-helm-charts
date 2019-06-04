@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  humio-helm-chart:
+  - apiVersion: v1
+    appVersion: "1.1"
+    created: "2019-06-04T12:46:03.592235-07:00"
+    description: A Helm chart for Humio Components
+    digest: 04f32a56b8917cbd23c094c55b47f73ecbe7320a3c2e3ec77f36f906103ff86b
+    name: humio-helm-chart
+    urls:
+    - docs/humio-helm-chart-0.1.2.tgz
+    version: 0.1.2
+generated: "2019-06-04T12:46:03.586442-07:00"

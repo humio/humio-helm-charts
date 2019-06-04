@@ -1,13 +1,50 @@
-# This is a work in progress and requires some manual configuration
+# Humio Helm Chart
 
-This chart requires the Confluent open source charts, this will be a dependency in the future.
+This repo contains the Helm charts for running Humio on Kubernetes. Currently the Humio Core installation is supported,
+which includes the [Confluent Helm Chart](https://github.com/confluentinc/cp-helm-charts) as a dependency for running
+Kafka and Zookeeper.
 
-https://github.com/confluentinc/cp-helm-charts
+The Humio collector Helm chart will be added soon.
 
-If you don't use the default cp-helm hostnames you need to update the statefulset config, in particular the Kafka and Zookeper env variables.
-humio-kafka-cp-kafka-X.humio-kafka-cp-kafka-headless:9092
-humio-kafka-cp-zookeeper-X.humio-kafka-cp-zookeeper-headless:2181
+## Installing
 
-This repo is limited to current Humio users, don't spread it around quite yet as it needs to be cleaned up A LOT. 
+### Using Helm Repo
 
-This is currently missing a proper nodeport and ingress setup, I'll push that soon after I fix some minor problems.
+Add the repo:
+```
+helm repo add humio http://127.0.0.1:8879
+helm repo update
+```
+
+And then install. We recommend installing Humio into its own namespace, in this example we're using the "logging"
+namespace:
+```
+helm install humio/humio-helm-chart --name humio --namespace logging
+```
+
+### Using git
+
+First, clone this repo:
+```
+git clone git@github.com:humio/humio-helm-chart.git
+cd humio-helm-chart
+```
+
+This helm chart contains nested dependencies. Currently there is no way to build helm chart dependencies recursively
+(https://github.com/helm/helm/issues/2247), so until that issue is fixed, run this:
+```
+pushd charts/humio-core && helm dep up; popd
+```
+
+And then install. We recommend installing Humio into its own namespace, in this example we're using the "logging"
+namespace:
+```
+helm install . --name humio --namespace logging
+```
+
+## Packaging
+
+The chart must be packaged before it can be served. Run the package helper to do this:
+```
+./bin/package.sh
+```

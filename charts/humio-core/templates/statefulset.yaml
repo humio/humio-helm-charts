@@ -1,36 +1,34 @@
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
-  name: {{ include "humio.fullname" . }}
+  name: {{ include "humio-core.fullname" . }}
   labels:
-    app: {{ template "humio.name" . }}
-    chart: {{ template "humio.chart" . }}
+    app: {{ template "humio-core.name" . }}
+    chart: {{ template "humio-core.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    # app.kubernetes.io/name: {{ include "humio.name" . }}
-    # helm.sh/chart: {{ include "humio.chart" . }}
+    # app.kubernetes.io/name: {{ include "humio-core.name" . }}
+    # helm.sh/chart: {{ include "humio-core.chart" . }}
     # app.kubernetes.io/instance: {{ .Release.Name }}
     # app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
-  serviceName: {{ template "humio.fullname" . }}-headless
-  replicas: {{ .Values.replicaCount }}
+  serviceName: {{ template "humio-core.fullname" . }}-headless
+  replicas: {{ .Values.replicas }}
   podManagementPolicy: Parallel
   selector:
     matchLabels:
-      app: {{ include "humio.name" . }}
+      app: {{ include "humio-core.name" . }}
       release: {{ .Release.Name }}
   template:
-
     metadata:
       labels:
-        app: {{ include "humio.name" . }}
+        app: {{ include "humio-core.name" . }}
         release: {{ .Release.Name }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "humio/humio-core:1.5.9"
-          #image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: {{ default "humio/humio-core:1.5.9" .Values.image }}
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8080
@@ -42,7 +40,7 @@ spec:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 15 
+            initialDelaySeconds: {{ default 300 .Values.livenessProbe.initialDelaySeconds }}
             timeoutSeconds: 25
             periodSeconds: 5
             successThreshold: 1
@@ -51,14 +49,14 @@ spec:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 15 
+            initialDelaySeconds: {{ default 300 .Values.readinessProbe.initialDelaySeconds }}
             timeoutSeconds: 25
-            periodSeconds: 5 
+            periodSeconds: 5
             successThreshold: 1
             failureThreshold: 10
           volumeMounts:
           - mountPath: /data/humio-data
-            name: humio-data-vol 
+            name: humio-data-vol
           env:
             - name: POD_NAME
               valueFrom:
@@ -81,11 +79,11 @@ spec:
             - name: ELASTIC_PORT
               value: "9200"
             - name: KAFKA_SERVERS
-              value: "kafka-cp-kafka-0.kafka-cp-kafka-headless:9092,kafka-cp-kafka-1.kafka-cp-kafka-headless:9092,kafka-cp-kafka-2.kafka-cp-kafka-headless:9092,kafka-cp-kafka-3.kafka-cp-kafka-headless:9092,kafka-cp-kafka-4.kafka-cp-kafka-headless:9092,kafka-cp-kafka-5.kafka-cp-kafka-headless:9092,kafka-cp-kafka-6.kafka-cp-kafka-headless:9092,kafka-cp-kafka-7.kafka-cp-kafka-headless:9092,kafka-cp-kafka-8.kafka-cp-kafka-headless:9092"
+              value: {{ include "humio-core.kafka.brokers" . | quote }}
             - name: HUMIO_JVM_ARGS
-              value: "-Xss2M -Xms24G -Xmx32G -server -XX:+UseParallelOldGC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC"
+              value: "-Xss2M -Xms256m -Xmx1536m -server -XX:+UseParallelOldGC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC"
             - name: ZOOKEEPER_URL
-              value: "kafka-cp-zookeeper-0.kafka-cp-zookeeper-headless:2181,kafka-cp-zookeeper-1.kafka-cp-zookeeper-headless:2181,kafka-cp-zookeeper-2.kafka-cp-zookeeper-headless:2181,kafka-cp-zookeeper-3.kafka-cp-zookeeper-headless:2181,kafka-cp-zookeeper-4.kafka-cp-zookeeper-headless:2181"
+              value: {{ include "humio-core.zookeeper.servers" . | quote }}
             - name: KAFKA_MANAGED_BY_HUMIO
               value: "true"
             - name:  DEFAULT_USER_INPUT_REGEX_ENGINE
@@ -97,20 +95,11 @@ spec:
             - name: BLOOMFILTER_ENABLED
               value: "false"
             - name: EXTERNAL_URL
-              value: "http://$(POD_NAME).humio-headless.default.svc.cluster.local:8080"
-
-            # - name: GITHUB_USER_SETTING
-            #   value: "hello8675309:hello8675309humio"
-            # - name: GITHUB_USER
-            #   value: "hello8675309:hello8675309humio"
-            #this was a weird thing i had to do in heat of the moment, sorry.
+              value: "http://$(POD_NAME).{{ .Release.Name }}-humio-core-headless.$(POD_NAMESPACE).svc.cluster.local:8080"
+          {{- with .Values.resources }}
           resources:
-            limits: 
-              cpu: 32 
-              memory: 80Gi
-            requests:
-              cpu: 32
-              memory: 80Gi
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -131,5 +120,4 @@ spec:
         - ReadWriteOnce
       resources:
         requests:
-          storage: 1000Gi
-      # storageClassName: faster
+          storage: {{ .Values.storageVolume.size | default "10Gi" }}
