@@ -8,6 +8,6 @@ entries:
     digest: b71ed064c0f10f5004d8a0b81fa3071422c00690190056669e1318f280e90486
     name: humio-helm-charts
     urls:
-    - humio-helm-charts-0.1.2.tgz
+    - /humio-helm-charts-0.1.2.tgz
     version: 0.1.2
 generated: "2019-06-04T12:59:36.079036-07:00"
