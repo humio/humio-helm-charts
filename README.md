@@ -22,28 +22,6 @@ namespace:
 helm install humio/humio-helm-charts --name humio --namespace logging
 ```
 
-### Using git
-
-First, clone this repo:
-```
-git clone git@github.com:humio/humio-helm-charts.git
-cd humio-helm-charts
-```
-
-This helm chart contains nested dependencies. Currently there is no way to build helm chart dependencies recursively
-(https://github.com/helm/helm/issues/2247), so until that issue is fixed, run this:
-```
-helm repo add confluentinc https://confluentinc.github.io/cp-helm-charts/
-helm repo update
-pushd charts/humio-core && helm dep up; popd
-```
-
-And then install. We recommend installing Humio into its own namespace, in this example we're using the "logging"
-namespace:
-```
-helm install . --name humio --namespace logging
-```
-
 ## Packaging
 
 The chart must be packaged before it can be served. Run the package helper to do this:
