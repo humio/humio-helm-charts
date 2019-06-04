@@ -12,22 +12,22 @@ The Humio collector Helm chart will be added soon.
 
 Add the repo:
 ```
-helm repo add humio http://127.0.0.1:8879
+helm repo add humio https://humio.github.io/humio-helm-charts
 helm repo update
 ```
 
 And then install. We recommend installing Humio into its own namespace, in this example we're using the "logging"
 namespace:
 ```
-helm install humio/humio-helm-chart --name humio --namespace logging
+helm install humio/humio-helm-charts --name humio --namespace logging
 ```
 
 ### Using git
 
 First, clone this repo:
 ```
-git clone git@github.com:humio/humio-helm-chart.git
-cd humio-helm-chart
+git clone git@github.com:humio/humio-helm-charts.git
+cd humio-helm-charts
 ```
 
 This helm chart contains nested dependencies. Currently there is no way to build helm chart dependencies recursively
