@@ -1,4 +1,4 @@
-# Humio Helm Chart
+# Humio Helm Charts
 
 This repo contains the Helm charts for running Humio on Kubernetes. Currently the Humio Core installation is supported,
 which includes the [Confluent Helm Chart](https://github.com/confluentinc/cp-helm-charts) as a dependency for running
