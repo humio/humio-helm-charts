@@ -33,6 +33,8 @@ cd humio-helm-charts
 This helm chart contains nested dependencies. Currently there is no way to build helm chart dependencies recursively
 (https://github.com/helm/helm/issues/2247), so until that issue is fixed, run this:
 ```
+helm repo add confluentinc https://confluentinc.github.io/cp-helm-charts/
+helm repo update
 pushd charts/humio-core && helm dep up; popd
 ```
 
