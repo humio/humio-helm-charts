@@ -13,10 +13,13 @@ pushd charts/humio-core && helm dep up; popd
 find . -iname index.yaml | grep -v docs | xargs rm
 
 # Move existing releases to the charts directory so they can be re-indexed with proper URLs
-find docs/ -name '*.tgz' -maxdepth 1 -exec mv {} ./ \;
+rm -rf /tmp/docs.save && mkdir /tmp/docs.save
+find docs/ -name '*.tgz' -maxdepth 1 -exec mv {} /tmp/docs.save/ \;
 
+mv /tmp/docs.save/*.tgz ./ && rmdir /tmp/docs.save
 helm package .
-helm repo index . && mv index.yaml docs/
+
+helm repo index . && mv index.yaml ./docs
 
 # Move all the charts to the docs so they can be served by github pages
 find . -name '*.tgz' -mindepth 1 -maxdepth 1 -exec mv {} docs/ \;
