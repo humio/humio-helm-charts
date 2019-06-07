@@ -83,7 +83,7 @@ spec:
             - name: KAFKA_SERVERS
               value: {{ include "humio-core.kafka.brokers" . | quote }}
             - name: HUMIO_JVM_ARGS
-              value: "-Xss2M -Xms256m -Xmx1536m -server -XX:+UseParallelOldGC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC"
+              value: "-Xss{{ default "2m" .Values.jvm.xss }} -Xms{{ default "256m" .Values.jvm.xms }} -Xmx{{ default "1536m" .Values.jvm.xmx }} -server -XX:+UseParallelOldGC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC"
             - name: ZOOKEEPER_URL
               value: {{ include "humio-core.zookeeper.servers" . | quote }}
             - name: KAFKA_MANAGED_BY_HUMIO

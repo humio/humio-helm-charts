@@ -21,6 +21,11 @@ resources:
    cpu: 1
    memory: 2Gi
 
+jvm:
+  xss: 2m
+  xms: 256m
+  xmx: 1536m
+
 nodeSelector: {}
 tolerations: []
 affinity: {}
