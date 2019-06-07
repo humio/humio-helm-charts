@@ -25,23 +25,11 @@ spec:
         app: {{ include "humio-core.name" . }}
         release: {{ .Release.Name }}
     spec:
-      initContainers:
-        - name: cluster-id
-          image: {{ default "humio/humio-core:1.5.9" .Values.image }}
-          command: ["/bin/sh", "-c", "echo \"export BOOTSTRAP_HOST_ID=$((${POD_NAME##*-} + 1))\" > /cluster-init/bashrc"]
-          env:
-            - name: POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-          volumeMounts:
-          - name: cluster-init
-            mountPath: "/cluster-init"
       containers:
         - name: {{ .Chart.Name }}
           image: {{ default "humio/humio-core:1.5.9" .Values.image }}
           command: ["/bin/sh"]
-          args: ["-c", ". /cluster-init/bashrc && bash /app/humio/run.sh"]
+          args: ["-c", "export BOOTSTRAP_HOST_ID=$((${POD_NAME##*-} + 1)) && bash /app/humio/run.sh"]
           imagePullPolicy: Always
           ports:
             - name: http
@@ -114,9 +102,6 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          volumeMounts:
-          - name: cluster-init
-            mountPath: "/cluster-init"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -129,9 +114,6 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      volumes:
-        - name: cluster-init
-          emptyDir: {}
   volumeClaimTemplates:
   - metadata:
       name: humio-data-vol
