@@ -3,11 +3,11 @@ entries:
   humio-helm-charts:
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-06-07T13:36:28.11908-07:00"
+    created: "2019-06-07T14:22:11.301263-07:00"
     description: A Helm chart for Humio Components
-    digest: 957445bed7f2f9fd84187c3fe4ba3a7a35f476be59b40fe23881aa33435d893c
+    digest: 4e45fea380f3a96a5533bfdae767811b20382026d55fd5c97e06cc5f11c485e5
     name: humio-helm-charts
     urls:
     - humio-helm-charts-0.1.3.tgz
     version: 0.1.3
-generated: "2019-06-07T13:36:28.111948-07:00"
+generated: "2019-06-07T14:22:11.298371-07:00"
