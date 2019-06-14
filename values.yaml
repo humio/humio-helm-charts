@@ -7,9 +7,9 @@ humio-core:
       servers: 3
     cp-kafka:
       brokers: 3
-humio-perf:
+humio-strix:
   enabled: true
-  replicas: 0
+  replicas: 1
 
 global:
   sharedTokens:

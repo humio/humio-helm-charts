@@ -3,7 +3,7 @@ dependencies:
     version: 0.1.2
     repository: file://./charts/humio-core
     condition: humio-core.enabled
-  - name: humio-perf
+  - name: humio-strix
     version: 0.1.0
-    repository: file://./charts/humio-perf
-    condition: humio-perf.enabled
+    repository: file://./charts/humio-strix
+    condition: humio-strix.enabled
