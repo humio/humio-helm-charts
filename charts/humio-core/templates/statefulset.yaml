@@ -7,14 +7,12 @@ metadata:
     chart: {{ template "humio-core.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    # app.kubernetes.io/name: {{ include "humio-core.name" . }}
-    # helm.sh/chart: {{ include "humio-core.chart" . }}
-    # app.kubernetes.io/instance: {{ .Release.Name }}
-    # app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   serviceName: {{ template "humio-core.fullname" . }}-headless
   replicas: {{ .Values.replicas }}
   podManagementPolicy: Parallel
+  updateStrategy:
+    type: RollingUpdate
   selector:
     matchLabels:
       app: {{ include "humio-core.name" . }}
@@ -25,7 +23,36 @@ spec:
         app: {{ include "humio-core.name" . }}
         release: {{ .Release.Name }}
     spec:
+      serviceAccountName: {{ .Release.Name }}
       containers:
+    {{- if .Values.global -}}
+      {{- if .Values.global.sharedTokens }}
+        - name: humio-init
+          image: humio/strix
+          imagePullPolicy: Never
+          command: ["/humio-init.sh"]
+          env:
+            - name: HUMIO_TOKEN_FILE
+              value: "/data/humio-data/local-admin-token.txt"
+            - name: HUMIO_ADDRESS
+              value: "http://localhost:8080/"
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: SHARED_TOKENS
+              value: "
+              {{- range $index, $tokenData := .Values.global.sharedTokens -}}
+                {{- range $repo, $token := $tokenData -}}
+                  {{- $index -}}-shared-token:{{- $repo }}:{{- $token -}},
+                {{- end }}
+              {{- end -}}
+              "
+      {{- end }}
+    {{- end }}
+          volumeMounts:
+          - mountPath: /data/humio-data
+            name: humio-data-vol
         - name: {{ .Chart.Name }}
           image: {{ default "humio/humio-core:1.5.9" .Values.image }}
           command: ["/bin/sh"]
@@ -90,8 +117,6 @@ spec:
               value: "true"
             - name:  DEFAULT_USER_INPUT_REGEX_ENGINE
               value: "HUMIO"
-            # - name: DUMP_THREADS_SECONDS
-            #   value: "10"
             - name: BLOOMFILTER_BACKFILLING_ENABLED
               value: "false"
             - name: BLOOMFILTER_ENABLED
