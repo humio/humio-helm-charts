@@ -1,8 +1,16 @@
 ---
 humio-core:
+  enabled: true
   replicas: 3
   cp-helm-charts:
     cp-zookeeper:
       servers: 3
     cp-kafka:
       brokers: 3
+humio-perf:
+  enabled: true
+  replicas: 0
+
+global:
+  sharedTokens:
+    perf: {performance_tests: default}
