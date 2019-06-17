@@ -15,6 +15,7 @@ token: ""
 baseUrl: ""
 
 image: humio/humio-ingest-load-test:latest
+imagePullPolicy: Always
 
 nameOverride: "strix"
 fullnameOverride: "strix"

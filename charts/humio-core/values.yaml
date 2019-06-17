@@ -4,6 +4,9 @@
 replicas: 3
 image: humio/humio-core:1.5.9
 
+initImage: humio/strix:latest
+initImagePullPolicy: Always
+
 nameOverride: ""
 fullnameOverride: ""
 

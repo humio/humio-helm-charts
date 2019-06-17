@@ -28,8 +28,8 @@ spec:
     {{- if .Values.global -}}
       {{- if .Values.global.sharedTokens }}
         - name: humio-init
-          image: humio/strix
-          imagePullPolicy: Never
+          image: "{{ .Values.initImage }}"
+          imagePullPolicy: {{ .Values.initImagePullPolicy }}
           command: ["/humio-init.sh"]
           env:
             - name: HUMIO_TOKEN_FILE

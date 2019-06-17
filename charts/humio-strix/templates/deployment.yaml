@@ -23,7 +23,7 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image }}"
-          imagePullPolicy: Never
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
           env:
             - name: PERF_USERS
               value: {{ default "10" .Values.testOptions.users | quote }}
