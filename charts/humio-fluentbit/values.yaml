@@ -1,0 +1,22 @@
+image: "fluent/fluent-bit:0.13.2"
+imagePullPolicy: Always
+
+es:
+  port: 9200
+  tls: true
+  autodiscovery: false
+
+nameOverride: ""
+fullnameOverride: ""
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

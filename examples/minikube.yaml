@@ -2,6 +2,7 @@
 humio-core:
   enabled: true
   replicas: 3
+  initImagePullPolicy: Never
   cp-helm-charts:
     cp-zookeeper:
       servers: 3
@@ -9,13 +10,14 @@ humio-core:
       brokers: 3
 
 humio-strix:
-  enabled: false
-  replicas: 10
+  enabled: true
+  replicas: 0
+  imagePullPolicy: Never
   testOptions:
-    users: 5
-    gbPerDay: 200
-    datasources: 5
-    bulkSize: 5
+    users: 1
+    gbPerDay: 20
+    datasources: 3
+    bulkSize: 2
     simulation: FixedRateIngestSimulation
 
 humio-fluentbit:

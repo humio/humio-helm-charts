@@ -1,0 +1,86 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ default "default" .Release.Namespace }}
+  labels:
+    k8s-app: {{ .Release.Name }}
+    version: v1
+    kubernetes.io/cluster-service: "true"
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: {{ .Release.Name }}
+        version: v1
+        kubernetes.io/cluster-service: "true"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "2020"
+        prometheus.io/path: /api/v1/metrics/prometheus
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ default "fluent/fluent-bit:0.13.2" .Values.image }}
+        imagePullPolicy: {{ default "Always" .Values.imagePullPolicy }}
+        ports:
+          - containerPort: 2020
+        env:
+        - name: FLUENT_ELASTICSEARCH_HOST
+          {{- if .Values.es.autodiscovery }}
+          value: "{{ .Release.Name }}-humio-core-es-lb.{{ .Release.Namespace }}"
+          {{- else }}
+          value: {{ default "cloud.humio.com" .Values.humioHostname | quote }}
+          {{- end }}
+        - name: FLUENT_ELASTICSEARCH_PORT
+          value: {{ default "9200" .Values.es.port | quote }}
+        - name: FLUENT_ELASTICSEARCH_TLS
+          {{- if .Values.es.tls }}
+          value: "On"
+          {{- else }}
+          value: "Off"
+          {{- end }}
+        {{- if .Values.token }}
+        - name: HUMIO_INGEST_TOKEN
+          value: {{ .Values.token }}
+        {{- else -}}
+          {{- if .Values.global -}}
+            {{- if .Values.global.sharedTokens }}
+              {{- if .Values.global.sharedTokens.fluentbit }}
+        - name: HUMIO_INGEST_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: fluentbit-shared-token
+              key: token
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end  }}
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+        - name: {{ .Release.Name }}-config
+          mountPath: /fluent-bit/etc/
+        {{- with .Values.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: {{ .Release.Name }}-config
+        configMap:
+          name: {{ .Release.Name }}-config
+      serviceAccountName: {{ .Release.Name }}-fluentbit-read
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
