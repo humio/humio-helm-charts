@@ -3,6 +3,7 @@ humio-core:
   enabled: true
   replicas: 3
   initImagePullPolicy: Never
+  imagePullSecrets: []
   cp-helm-charts:
     cp-zookeeper:
       servers: 3
@@ -13,6 +14,7 @@ humio-strix:
   enabled: true
   replicas: 0
   imagePullPolicy: Never
+  imagePullSecrets: []
   testOptions:
     users: 1
     gbPerDay: 20

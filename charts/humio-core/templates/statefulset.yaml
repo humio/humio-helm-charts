@@ -23,6 +23,10 @@ spec:
         app: {{ include "humio-core.name" . }}
         release: {{ .Release.Name }}
     spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
       serviceAccountName: {{ .Release.Name }}
       containers:
     {{- if .Values.global -}}

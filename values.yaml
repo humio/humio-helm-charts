@@ -2,6 +2,8 @@
 humio-core:
   enabled: true
   replicas: 3
+  imagePullSecrets:
+    - name: regcred
   cp-helm-charts:
     cp-zookeeper:
       servers: 3
@@ -9,8 +11,10 @@ humio-core:
       brokers: 3
 
 humio-strix:
-  enabled: false
+  enabled: true
   replicas: 10
+  imagePullSecrets:
+    - name: regcred
   testOptions:
     users: 5
     gbPerDay: 200
