@@ -26,5 +26,6 @@ humio-fluentbit:
 
 global:
   sharedTokens:
-    perf: {performance_tests: default}
+    perf: {performance-tests: default}
     fluentbit: {kubernetes: in-cluster}
+    admin: {humio: default}

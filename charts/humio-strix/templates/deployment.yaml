@@ -54,7 +54,11 @@ spec:
               {{- end -}}
             {{- end  }}
             - name: HUMIO_BASE_URL
-              value: {{ default "http://humio-humio-core-http:8080/api/v1/ingest/elastic-bulk" .Values.baseUrl }}
+            {{- if .Values.baseUrl }}
+              value: "{{ .Values.baseUrl }}/api/v1/ingest/elastic-bulk"
+            {{- else }}
+              value: "http://{{ .Release.Name }}-humio-core-headless:8080/api/v1/ingest/elastic-bulk"
+            {{- end}}
             - name: PERF_SIMULATION
               value: {{ default "FixedRateIngestSimulation" .Values.testOptions.simulation }}
           resources:
