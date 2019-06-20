@@ -24,6 +24,18 @@ spec:
       affinity:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+      serviceAccountName: {{ .Release.Name }}-strix
+      initContainers:
+        - name: wait-for-humio
+          image: humio/strix
+          command:
+          - kubectl
+          - wait
+          - "--for=condition=Ready"
+          - "pod/{{ .Release.Name }}-humio-core-0"
+          - "-n"
+          - {{ .Release.Namespace }}
+          - "--timeout=1500s"
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image }}"

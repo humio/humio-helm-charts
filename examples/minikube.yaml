@@ -2,7 +2,6 @@
 humio-core:
   enabled: true
   replicas: 3
-  initImagePullPolicy: Never
   imagePullSecrets: []
   cp-helm-charts:
     cp-zookeeper:
@@ -12,8 +11,7 @@ humio-core:
 
 humio-strix:
   enabled: true
-  replicas: 0
-  imagePullPolicy: Never
+  replicas: 1
   imagePullSecrets: []
   testOptions:
     users: 1
@@ -30,5 +28,6 @@ humio-fluentbit:
 
 global:
   sharedTokens:
-    perf: {performance_tests: default}
+    perf: {performance-tests: default}
     fluentbit: {kubernetes: in-cluster}
+    admin: {humio: default}

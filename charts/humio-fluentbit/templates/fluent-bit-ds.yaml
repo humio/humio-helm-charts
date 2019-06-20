@@ -19,6 +19,17 @@ spec:
         prometheus.io/port: "2020"
         prometheus.io/path: /api/v1/metrics/prometheus
     spec:
+      initContainers:
+        - name: wait-for-humio
+          image: humio/strix
+          command:
+          - kubectl
+          - wait
+          - "--for=condition=Ready"
+          - "pod/{{ .Release.Name }}-humio-core-0"
+          - "-n"
+          - {{ .Release.Namespace }}
+          - "--timeout=1500s"
       containers:
       - name: {{ .Release.Name }}
         image: {{ default "fluent/fluent-bit:0.13.2" .Values.image }}

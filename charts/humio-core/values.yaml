@@ -7,6 +7,18 @@ image: humio/humio-core:1.5.9
 initImage: humio/strix:latest
 initImagePullPolicy: Always
 
+ingest:
+  initialPartitionsPerNode: 4
+
+storage:
+  initialPartitionsPerNode: 4
+
+bloomfilter:
+  enabled: false
+  backfillingEnabled: false
+
+defaultUserInputRegexEngine: HUMIO
+
 nameOverride: ""
 fullnameOverride: ""
 
