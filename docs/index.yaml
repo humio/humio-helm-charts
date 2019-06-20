@@ -3,7 +3,16 @@ entries:
   humio-helm-charts:
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-06-20T09:23:55.974815-07:00"
+    created: "2019-06-20T13:29:25.89248-07:00"
+    description: A Helm chart for Humio Components
+    digest: 604e67013a1f6973122142e33a917a436ade6678ddf89431dd781f7e4a87111b
+    name: humio-helm-charts
+    urls:
+    - humio-helm-charts-0.1.9.tgz
+    version: 0.1.9
+  - apiVersion: v1
+    appVersion: "1.1"
+    created: "2019-06-20T13:29:25.890189-07:00"
     description: A Helm chart for Humio Components
     digest: f1ea3dc74afb2703d9b6db33c75ebb465cedafc90406b940f6316225737b9bb8
     name: humio-helm-charts
@@ -12,7 +21,16 @@ entries:
     version: 0.1.8
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-06-20T09:23:55.966677-07:00"
+    created: "2019-06-20T13:29:25.879584-07:00"
+    description: A Helm chart for Humio Components
+    digest: 746813e02f9c23645bd8f70aa42aaccc9b6976898f40ce6f56d833df78d245da
+    name: humio-helm-charts
+    urls:
+    - humio-helm-charts-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v1
+    appVersion: "1.1"
+    created: "2019-06-20T13:29:25.873035-07:00"
     description: A Helm chart for Humio Components
     digest: 920186ce3fcd4759c0fa8b09d0ae50803e88406232f3d4777c2615e916297e38
     name: humio-helm-charts
@@ -21,7 +39,7 @@ entries:
     version: 0.1.6
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-06-20T09:23:55.962391-07:00"
+    created: "2019-06-20T13:29:25.867626-07:00"
     description: A Helm chart for Humio Components
     digest: 24bb80fd2e7cc2ce455e073cb42f650988ba69f56f81b68344a30eb79c4bd277
     name: humio-helm-charts
@@ -30,11 +48,11 @@ entries:
     version: 0.1.5
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-06-20T09:23:55.9593-07:00"
+    created: "2019-06-20T13:29:25.863674-07:00"
     description: A Helm chart for Humio Components
     digest: 8b70bd268fe1666cffde71569ca60e71c119c8a0e5654fe5b0ca43b98b31cc45
     name: humio-helm-charts
     urls:
     - humio-helm-charts-0.1.4.tgz
     version: 0.1.4
-generated: "2019-06-20T09:23:55.956227-07:00"
+generated: "2019-06-20T13:29:25.859909-07:00"
