@@ -1,0 +1,14 @@
+---
+humio-core:
+  enabled: false
+
+humio-fluentbit:
+  enabled: true
+  humioHostname: HUMIO_HOSTNAME
+  es:
+    tls: true
+    autodiscovery: false
+
+global:
+  sharedTokens:
+    fluentbit: {kubernetes: in-cluster}

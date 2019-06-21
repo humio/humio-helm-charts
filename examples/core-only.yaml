@@ -1,0 +1,16 @@
+---
+humio-core:
+  enabled: true
+  replicas: 3
+  imagePullSecrets: []
+  cp-helm-charts:
+    cp-zookeeper:
+      servers: 3
+    cp-kafka:
+      brokers: 3
+
+humio-strix:
+  enabled: false
+
+humio-fluentbit:
+  enabled: false

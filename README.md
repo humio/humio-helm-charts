@@ -1,10 +1,6 @@
 # Humio Helm Charts
 
-This repo contains the Helm charts for running Humio on Kubernetes. Currently the Humio Core installation is supported,
-which includes the [Confluent Helm Chart](https://github.com/confluentinc/cp-helm-charts) as a dependency for running
-Kafka and Zookeeper.
-
-The Humio collector Helm chart will be added soon.
+This repo contains the Helm charts for running Humio on Kubernetes.
 
 ## Installing
 
@@ -21,6 +17,37 @@ namespace:
 ```
 helm install humio/humio-helm-charts --name humio --namespace logging
 ```
+
+## Subcharts
+
+### Humo Core
+
+Humio Core includes the [Confluent Helm Chart](https://github.com/confluentinc/cp-helm-charts) as a dependency for
+running Kafka and Zookeeper. It will start Zookeeper, Kafka, and Humio Core pods.
+
+See the file `examples/core-only.yaml`.
+
+### Humo Fluentbit
+
+Fluentbit is the recommended way to collect logs from a Kubernetes cluster. This chart can be installed standalone, but
+if it's installed along with the Humio Core chart, it will automatically discover the right endpoint and token.
+
+If running Fluentbit by itself, you'll need to create a Kubernetes secret with the token to access the Humio server,
+where `my-namespace` is the namespace where you are installing the chart:
+
+```
+kubectl create secret generic fluentbit-shared-token --from-literal=token=my-token -n my-namespace
+```
+
+You will also need to configure the endpoint if running in standalone. For example:
+
+```
+sed -i 's/HUMIO_HOSTNAME/my-humio-hostname/' examples/fluentbit-only.yaml
+```
+
+### Humio Strix
+
+Strix is a performance testing tool for Humio. See https://github.com/humio/strix for more information.
 
 ## Packaging
 
