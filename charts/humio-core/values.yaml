@@ -4,6 +4,9 @@
 replicas: 3
 image: humio/humio-core:1.5.9
 
+# Warning: changing this from single-user mode will disable authentication.
+authenticationMethod: single-user
+
 initImage: humio/strix:latest
 initImagePullPolicy: Always
 

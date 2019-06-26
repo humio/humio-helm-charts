@@ -16,8 +16,9 @@ find . -iname index.yaml | grep -v docs | xargs rm
 rm -rf /tmp/docs.save && mkdir /tmp/docs.save
 find docs/ -name '*.tgz' -maxdepth 1 -exec mv {} /tmp/docs.save/ \;
 
-mv /tmp/docs.save/*.tgz ./ && rmdir /tmp/docs.save
 helm package .
+
+mv /tmp/docs.save/*.tgz ./ && rmdir /tmp/docs.save
 
 helm repo index . && mv index.yaml ./docs
 

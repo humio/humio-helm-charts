@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ .Release.Name }}-fluentbit
   namespace: {{ default "default" .Release.Namespace }}
   labels:
     k8s-app: {{ .Release.Name }}
@@ -30,6 +30,22 @@ spec:
           - "-n"
           - {{ .Release.Namespace }}
           - "--timeout=1500s"
+  {{- if .Values.global -}}
+    {{- if .Values.global.sharedTokens }}
+      {{- if .Values.global.sharedTokens.fluentbit }}
+        - name: wait-for-shared-tokens
+          image: humio/strix
+          command:
+          - kubectl
+          - wait
+          - "--for=condition=Complete"
+          - "job/{{ .Release.Name }}-create-shared-tokens"
+          - "-n"
+          - {{ .Release.Namespace }}
+          - "--timeout=1500s"
+      {{- end -}}
+    {{- end -}}
+  {{- end  }}
       containers:
       - name: {{ .Release.Name }}
         image: {{ default "fluent/fluent-bit:0.13.2" .Values.image }}

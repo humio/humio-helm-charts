@@ -33,34 +33,6 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       containers:
-    {{- if .Values.global -}}
-      {{- if .Values.global.sharedTokens }}
-        - name: humio-init
-          image: "{{ .Values.initImage }}"
-          imagePullPolicy: {{ .Values.initImagePullPolicy }}
-          command: ["/humio-init.sh"]
-          env:
-            - name: HUMIO_TOKEN_FILE
-              value: "/data/humio-data/local-admin-token.txt"
-            - name: HUMIO_ADDRESS
-              value: "http://localhost:8080/"
-            - name: POD_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace
-            - name: SHARED_TOKENS
-              value: "
-              {{- range $index, $tokenData := .Values.global.sharedTokens -}}
-                {{- range $repo, $token := $tokenData -}}
-                  {{- $index -}}-shared-token:{{- $repo }}:{{- $token -}},
-                {{- end }}
-              {{- end -}}
-              "
-      {{- end }}
-    {{- end }}
-          volumeMounts:
-          - mountPath: /data/humio-data
-            name: humio-data-vol
         - name: {{ .Chart.Name }}
           image: {{ default "humio/humio-core:1.5.9" .Values.image }}
           command: ["/bin/sh"]
@@ -131,6 +103,15 @@ spec:
               value: {{ .Values.bloomfilter.enabled | quote }}
             - name: EXTERNAL_URL
               value: "http://$(POD_NAME).{{ .Release.Name }}-humio-core-headless.$(POD_NAMESPACE).svc.cluster.local:8080"
+            {{- if ne .Values.authenticationMethod "" }}
+            - name: AUTHENTICATION_METHOD
+              value: {{ default "single-user" .Values.authenticationMethod | quote }}
+            {{- end }}
+            - name: SINGLE_USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: developer-user-password
+                  key: password
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}

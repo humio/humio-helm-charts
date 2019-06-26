@@ -1,17 +1,15 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ .Release.Name }}-post-install"
+  name: "{{ .Release.Name }}-balance"
   namespace: "{{ .Release.Namespace }}"
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
     helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
   annotations:
-    "helm.sh/hook": post-install
-    "helm.sh/hook-weight": "-5"
-    #"helm.sh/hook-delete-policy": hook-succeeded
 spec:
+  ttlSecondsAfterFinished: 600
   template:
     metadata:
       name: "{{.Release.Name}}"
@@ -33,6 +31,16 @@ spec:
           - "-n"
           - {{ .Release.Namespace }}
           - "--timeout=1500s"
+        - name: wait-for-single-user-token
+          image: humio/strix
+          command:
+          - kubectl
+          - wait
+          - "--for=condition=Complete"
+          - "job/{{ .Release.Name }}-create-single-user-token"
+          - "-n"
+          - {{ .Release.Namespace }}
+          - "--timeout=1500s"
       containers:
       - name: set-default-partitions
         image: "humio/strix"
@@ -44,19 +52,8 @@ spec:
           {{- else }}
             value: "http://{{ .Release.Name }}-humio-core-headless:8080"
           {{- end}}
-          {{- if .Values.token }}
-          - name: HUMIO_TOKEN
-            value: {{ .Values.token }}
-          {{- else -}}
-            {{- if .Values.global -}}
-              {{- if .Values.global.sharedTokens }}
-                {{- if .Values.global.sharedTokens.admin }}
           - name: HUMIO_TOKEN
             valueFrom:
               secretKeyRef:
-                name: admin-shared-token
+                name: developer-user-token
                 key: token
-                {{- end -}}
-              {{- end -}}
-            {{- end -}}
-          {{- end  }}

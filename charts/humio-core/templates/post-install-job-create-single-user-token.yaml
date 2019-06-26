@@ -1,0 +1,58 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-create-single-user-token"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+  annotations:
+spec:
+  ttlSecondsAfterFinished: 600
+  template:
+    metadata:
+      name: "{{.Release.Name}}"
+      labels:
+        app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+        app.kubernetes.io/instance: {{ .Release.Name | quote }}
+        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    spec:
+      restartPolicy: OnFailure
+      serviceAccountName: {{ .Release.Name }}-post-install
+      initContainers:
+        - name: wait-for-humio
+          image: humio/strix
+          command:
+          - kubectl
+          - wait
+          - "--for=condition=Ready"
+          - "pod/{{ .Release.Name }}-humio-core-0"
+          - "-n"
+          - {{ .Release.Namespace }}
+          - "--timeout=1500s"
+      containers:
+        - name: humio-init
+          image: "{{ .Values.initImage }}"
+          imagePullPolicy: {{ .Values.initImagePullPolicy }}
+          command: ["/humio-store-developer-token.sh"]
+          env:
+            - name: SINGLE_USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: developer-user-password
+                  key: password
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: HUMIO_ADDRESS
+            {{- if .Values.baseUrl }}
+              value: "{{ .Values.baseUrl }}"
+            {{- else }}
+              value: "http://{{ .Release.Name }}-humio-core-headless:8080"
+            {{- end}}
