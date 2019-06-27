@@ -36,6 +36,23 @@ spec:
           - "-n"
           - {{ .Release.Namespace }}
           - "--timeout=1500s"
+  {{- if .Values.global -}}
+    {{- if .Values.global.sharedTokens }}
+      {{- if .Values.global.sharedTokens.perf }}
+      initContainers:
+        - name: wait-for-shared-tokens
+          image: humio/strix
+          command:
+          - kubectl
+          - wait
+          - "--for=condition=Complete"
+          - "job/{{ .Release.Name }}-create-shared-tokens"
+          - "-n"
+          - {{ .Release.Namespace }}
+          - "--timeout=1500s"
+      {{- end -}}
+    {{- end -}}
+  {{- end  }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image }}"

@@ -7,3 +7,11 @@ rules:
   resources:
   - pods
   verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources:
+   - secrets
+  verbs: ["get", "list", "create"]
+- apiGroups: ["batch"]
+  resources:
+  - jobs
+  verbs: ["get", "list", "watch"]
