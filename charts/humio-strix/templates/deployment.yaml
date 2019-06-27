@@ -58,14 +58,8 @@ spec:
           image: "{{ .Values.image }}"
           imagePullPolicy: {{ .Values.imagePullPolicy }}
           env:
-            - name: PERF_USERS
-              value: {{ default "10" .Values.testOptions.users | quote }}
-            - name: PERF_GB_DAY
-              value: {{ default "2000" .Values.testOptions.gbPerDay | quote }}
-            - name: PERF_DATASOURCES
-              value: {{ default "5" .Values.testOptions.datasources | quote }}
-            - name: PERF_BULK_SIZE
-              value: {{ default "5" .Values.testOptions.bulkSize | quote }}
+            - name: PERF_TIME
+              value: {{ default "" .Values.perfTime | quote }}
             {{- if .Values.token }}
             - name: HUMIO_TOKEN
               value: {{ .Values.token }}
@@ -83,13 +77,47 @@ spec:
               {{- end -}}
             {{- end  }}
             - name: HUMIO_BASE_URL
-            {{- if .Values.baseUrl }}
-              value: "{{ .Values.baseUrl }}/api/v1/ingest/elastic-bulk"
-            {{- else }}
-              value: "http://{{ .Release.Name }}-humio-core-headless:8080/api/v1/ingest/elastic-bulk"
-            {{- end}}
+              value: {{ include "humio-strix.humioUrl" . }}
             - name: PERF_SIMULATION
-              value: {{ default "FixedRateIngestSimulation" .Values.testOptions.simulation }}
+              value: {{ default "HECSimulation" .Values.simulation }}
+            {{- if eq .Values.simulation "FixedRateIngestSimulation" }}
+            - name: PERF_TENS_GB_PER_DAY
+              value: {{ default "10" .Values.simulationOptions.fixedRateIngestSimulation.tensDbPerDay | quote }}
+            {{- end }}
+            {{- if eq .Values.simulation "HECSimulation" }}
+            - name: PERF_BULK_SIZE
+              value: {{ default "100" .Values.simulationOptions.hecSimulation.bulkSize | quote }}
+            - name: PERF_DATASPACES
+              value: {{ default "1" .Values.simulationOptions.hecSimulation.dataspaces | quote }}
+            - name: PERF_EVENT_SIZE
+              value: {{ default "500" .Values.simulationOptions.hecSimulation.eventSize | quote }}
+            - name: PERF_DATASOURCES
+              value: {{ default "20" .Values.simulationOptions.hecSimulation.datasources | quote }}
+            - name: PERF_FIELDS
+              value: {{ default "10" .Values.simulationOptions.hecSimulation.fields | quote }}
+            - name: PERF_USERS
+              value: {{ default "3" .Values.simulationOptions.hecSimulation.users | quote }}
+            {{- end }}
+            {{- if eq .Values.simulation "FilebeatSimulation" }}
+            - name: PERF_BULK_SIZE
+              value: {{ default "100" .Values.simulationOptions.filebeatSimulation.bulkSize | quote }}
+            - name: PERF_DATASPACES
+              value: {{ default "1" .Values.simulationOptions.filebeatSimulation.dataspaces | quote }}
+            - name: PERF_EVENT_SIZE
+              value: {{ default "500" .Values.simulationOptions.filebeatSimulation.eventSize | quote }}
+            - name: PERF_DATASOURCES
+              value: {{ default "20" .Values.simulationOptions.filebeatSimulation.datasources | quote }}
+            - name: PERF_FIELDS
+              value: {{ default "10" .Values.simulationOptions.filebeatSimulation.fields | quote }}
+            - name: PERF_USERS
+              value: {{ default "3" .Values.simulationOptions.filebeatSimulation.users | quote }}
+            {{- end }}
+            {{- if eq .Values.simulation "QuerySimulation" }}
+            - name: PERF_SEARCH_QUERY
+              value: {{ default "count()" .Values.simulationOptions.querySimulation.searchQuery | quote }}
+            - name: PERF_SEARCH_DURATION
+              value: {{ default "24hours" .Values.simulationOptions.querySimulation.searchDuration | quote }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
