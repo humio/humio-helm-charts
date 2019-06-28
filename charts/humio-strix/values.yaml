@@ -1,18 +1,34 @@
 # Default values for humio-strix.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
 replicas: 64
 
-testOptions:
-  users: 10
-  gbPerDay: 2000
-  datasources: 5
-  bulkSize: 5
-  simulation: FixedRateIngestSimulation
+# Simulation options are HECSimulation, FilebeatSimulation, FixedRateIngestSimulation or QuerySimulation
+simulation: HECSimulation
+
+simulationOptions:
+  fixedRateIngestSimulation:
+    tensDbPerDay: 10
+  hecSimulation:
+    bulkSize: 100
+    dataspaces: 1
+    eventSize: 500
+    datasources: 20
+    fields: 10
+    users: 3
+  filebeatSimulation:
+    bulkSize: 100
+    dataspaces: 1
+    eventSize: 500
+    datasources: 20
+    fields: 10
+    users: 3
+  querySimulation:
+    searchQuery: "count()"
+    searchDuration: "24hours"
 
 token: ""
 baseUrl: ""
+perfTime: ""
 
 image: humio/humio-ingest-load-test:latest
 imagePullPolicy: Always

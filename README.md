@@ -18,6 +18,15 @@ namespace:
 helm install humio/humio-helm-charts --name humio --namespace logging
 ```
 
+### Logging in
+
+If `humio-core.authenticationMethod` is set to `single-user` (default), then you need to supply a username and password
+when logging in. The default username is `developer` and the password can be retrieved from the command:
+```
+kubectl get secret developer-user-password -n logging -o=template --template={{.data.password}} | base64 -D
+```
+_Note: the base64 command may vary depending on OS and distribution._
+
 ## Subcharts
 
 ### Humo Core

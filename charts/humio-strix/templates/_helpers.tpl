@@ -43,3 +43,15 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
+
+{{- define "humio-strix.humioUrl" -}}
+{{- if .Values.baseUrl -}}
+{{- .Values.baseUrl -}}
+{{- else -}}
+{{- if eq .Values.simulation "HECSimulation" -}}
+{{- printf "http://%s-humio-core-headless:8080/api/v1/ingest/hec" .Release.Name -}}
+{{- else -}}
+{{- printf "http://%s-humio-core-headless:8080/api/v1/ingest/elastic-bulk" .Release.Name -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
