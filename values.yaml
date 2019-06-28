@@ -10,18 +10,10 @@ humio-core:
 
 humio-strix:
   enabled: true
-  replicas: 1
+  replicas: 10
   simulationOptions:
-    fixedRateIngestSimulation:
-      tensDbPerDay: 1
     hecSimulation:
-      bulkSize: 10
-      dataspaces: 2
-      eventSize: 50
-      datasources: 2
-      fields: 10
-      users: 1
-  imagePullPolicy: Never
+      users: 5
 
 humio-fluentbit:
   enabled: true
