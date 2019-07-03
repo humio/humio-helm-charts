@@ -1,6 +1,6 @@
 ---
 humio-core:
-  enabled: true
+  enabled: false
   replicas: 3
   imagePullPolicy: Always
   cp-helm-charts:
@@ -10,7 +10,7 @@ humio-core:
       brokers: 3
 
 humio-strix:
-  enabled: true
+  enabled: false
   replicas: 10
   imagePullPolicy: Always
   simulationOptions:
@@ -18,13 +18,10 @@ humio-strix:
       users: 5
 
 humio-fluentbit:
-  enabled: true
+  enabled: false
   es:
     tls: false
-    autodiscovery: true
+    autodiscovery: false
 
 global:
-  sharedTokens:
-    perf: {performance-tests: default}
-    fluentbit: {kubernetes: in-cluster}
-    admin: {humio: default}
+  sharedTokens: {}

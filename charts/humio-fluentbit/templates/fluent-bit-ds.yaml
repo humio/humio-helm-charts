@@ -19,6 +19,7 @@ spec:
         prometheus.io/port: "2020"
         prometheus.io/path: /api/v1/metrics/prometheus
     spec:
+{{- if .Values.es.autodiscovery }}
       initContainers:
         - name: wait-for-humio
           image: humio/strix
@@ -46,6 +47,7 @@ spec:
       {{- end -}}
     {{- end -}}
   {{- end  }}
+{{- end }}
       containers:
       - name: {{ .Release.Name }}
         image: {{ default "fluent/fluent-bit:0.13.2" .Values.image }}
@@ -69,7 +71,10 @@ spec:
           {{- end }}
         {{- if .Values.token }}
         - name: HUMIO_INGEST_TOKEN
-          value: {{ .Values.token }}
+          valueFrom:
+            secretKeyRef:
+              name: fluentbit-custom-token
+              key: token
         {{- else -}}
           {{- if .Values.global -}}
             {{- if .Values.global.sharedTokens }}
@@ -106,7 +111,9 @@ spec:
       - name: {{ .Release.Name }}-config
         configMap:
           name: {{ .Release.Name }}-config
+    {{- if .Values.es.autodiscovery }}
       serviceAccountName: {{ .Release.Name }}-fluentbit-read
+    {{- end }}
       tolerations:
       - key: node-role.kubernetes.io/master
         operator: Exists
