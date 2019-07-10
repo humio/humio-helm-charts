@@ -23,5 +23,8 @@ humio-fluentbit:
     tls: false
     autodiscovery: false
 
+humio-metrics:
+  enabled: false
+
 global:
   sharedTokens: {}
