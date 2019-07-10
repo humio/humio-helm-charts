@@ -1,0 +1,23 @@
+# Default values for humio-metrics.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+es:
+  autodiscovery: true
+
+initImage: humio/strix:latest
+initImagePullPolicy: Always
+
+image: "docker.elastic.co/beats/metricbeat-oss:7.2.0"
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 200Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

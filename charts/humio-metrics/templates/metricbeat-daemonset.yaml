@@ -1,0 +1,115 @@
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: metricbeat
+  namespace: {{ default "kube-system" .Release.Namespace }}
+  labels:
+    k8s-app: metricbeat
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: metricbeat
+    spec:
+      serviceAccountName: metricbeat
+      terminationGracePeriodSeconds: 30
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+{{- if .Values.global -}}
+  {{- if .Values.global.sharedTokens }}
+    {{- if .Values.global.sharedTokens.metricbeat }}
+      initContainers:
+        - name: wait-for-shared-tokens
+          image: {{ .Values.initImage }}
+          imagePullPolicy: {{ .Values.initImagePullPolicy }}
+          command:
+          - kubectl
+          - wait
+          - "--for=condition=Complete"
+          - "job/{{ .Release.Name }}-create-shared-tokens"
+          - "-n"
+          - {{ .Release.Namespace }}
+          - "--timeout=1500s"
+    {{- end -}}
+  {{- end -}}
+{{- end  }}
+      containers:
+      - name: metricbeat
+        image: {{ .Values.image }}
+        args: [
+          "-c", "/etc/metricbeat.yml",
+          "-e",
+          "-system.hostfs=/hostfs",
+        ]
+        env:
+        - name: ELASTICSEARCH_HOST
+          value: "{{ .Release.Name }}-humio-core-es-lb.{{ .Release.Namespace }}"
+        - name: ELASTICSEARCH_PORT
+          value: {{ default "9200" .Values.es.port | quote }}
+        - name: ELASTICSEARCH_USERNAME
+          value: none
+        {{- if .Values.token }}
+        - name: ELASTICSEARCH_PASSWORD
+          value: {{ .Values.token }}
+        {{- else }}
+          {{- if .Values.global -}}
+            {{- if .Values.global.sharedTokens }}
+              {{- if .Values.global.sharedTokens.metricbeat }}
+        - name: ELASTICSEARCH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: metricbeat-shared-token
+              key: token
+              {{- end -}}
+            {{- end -}}
+          {{- end  }}
+        {{- end  }}
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        securityContext:
+          runAsUser: 0
+        {{- with .Values.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        volumeMounts:
+        - name: config
+          mountPath: /etc/metricbeat.yml
+          readOnly: true
+          subPath: metricbeat.yml
+        - name: modules
+          mountPath: /usr/share/metricbeat/modules.d
+          readOnly: true
+        - name: dockersock
+          mountPath: /var/run/docker.sock
+        - name: proc
+          mountPath: /hostfs/proc
+          readOnly: true
+        - name: cgroup
+          mountPath: /hostfs/sys/fs/cgroup
+          readOnly: true
+      volumes:
+      - name: proc
+        hostPath:
+          path: /proc
+      - name: cgroup
+        hostPath:
+          path: /sys/fs/cgroup
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock
+      - name: config
+        configMap:
+          defaultMode: 0600
+          name: metricbeat-daemonset-config
+      - name: modules
+        configMap:
+          defaultMode: 0600
+          name: metricbeat-daemonset-modules
+      - name: data
+        hostPath:
+          path: /var/lib/metricbeat-data
+          type: DirectoryOrCreate

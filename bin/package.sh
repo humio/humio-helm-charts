@@ -8,6 +8,7 @@ rm charts/humio-core/charts/*.tgz
 helm repo add confluentinc https://confluentinc.github.io/cp-helm-charts/
 helm repo update
 pushd charts/humio-core && helm dep up; popd
+pushd charts/humio-metrics && helm dep up; popd
 
 # Remove any existing indexes
 find . -iname index.yaml | grep -v docs | xargs rm

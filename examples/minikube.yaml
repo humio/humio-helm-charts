@@ -11,14 +11,28 @@ humio-core:
 
 humio-strix:
   enabled: true
-  replicas: 1
-  imagePullSecrets: []
-  testOptions:
-    users: 1
-    gbPerDay: 20
-    datasources: 3
-    bulkSize: 2
-    simulation: FixedRateIngestSimulation
+  replicas: 0
+  simulation: HECSimulation
+  simulationOptions:
+    fixedRateIngestSimulation:
+      tensDbPerDay: 1
+    hecSimulation:
+      bulkSize: 10
+      dataspaces: 1
+      eventSize: 50
+      datasources: 2
+      fields: 10
+      users: 1
+    filebeatSimulation:
+      bulkSize: 100
+      dataspaces: 1
+      eventSize: 500
+      datasources: 20
+      fields: 10
+      users: 3
+    querySimulation:
+      searchQuery: "count()"
+      searchDuration: "24hours"
 
 humio-fluentbit:
   enabled: true
@@ -26,8 +40,11 @@ humio-fluentbit:
     tls: false
     autodiscovery: true
 
+humio-metrics:
+  enabled: true
+
 global:
   sharedTokens:
     perf: {performance-tests: default}
     fluentbit: {kubernetes: in-cluster}
-    admin: {humio: default}
+    metricbeat: {kubernetes-metrics: default}
