@@ -1,14 +1,22 @@
-# Default values for humio-metrics.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
+---
 es:
   autodiscovery: true
 
 initImage: humio/strix:latest
 initImagePullPolicy: Always
 
+jobImage: humio/strix:latest
+jobImagePullPolicy: Always
+
 image: "docker.elastic.co/beats/metricbeat-oss:7.2.0"
+
+publish:
+  enabled: true
+  gcs:
+    bucket: ""
+    serviceAccountSecretName: google-application-credentials
+
+queries: {}
 
 resources:
   limits:

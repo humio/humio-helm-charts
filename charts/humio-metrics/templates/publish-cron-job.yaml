@@ -1,0 +1,79 @@
+{{- if .Values.publish.enabled -}}
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: publish-metrics
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 120
+      template:
+        spec:
+          serviceAccountName: {{ .Release.Name }}-post-install
+          initContainers:
+            - name: wait-for-humio
+              image: humio/strix
+              command:
+              - kubectl
+              - wait
+              - "--for=condition=Ready"
+              - "pod/{{ .Release.Name }}-humio-core-0"
+              - "-n"
+              - {{ .Release.Namespace }}
+              - "--timeout=1500s"
+            - name: wait-for-repo-to-exist
+              image: humio/strix
+              command:
+              - kubectl
+              - wait
+              - "--for=condition=Complete"
+              - "job/{{ .Release.Name }}-create-shared-tokens"
+              - "-n"
+              - {{ .Release.Namespace }}
+              - "--timeout=1500s"
+          containers:
+          - name: collect-metrics
+            image: {{ .Values.jobImage }}
+            imagePullPolicy: {{ .Values.jobImagePullPolicy }}
+            command: ["/humio-run-queries.sh"]
+            env:
+            - name: SINGLE_USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: developer-user-password
+                  key: password
+            - name: QUERY_DIRECTORY
+              value: /mnt/queries
+            - name: HUMIO_ADDRESS
+            {{- if .Values.baseUrl }}
+              value: "{{ .Values.baseUrl }}"
+            {{- else }}
+              value: "http://{{ .Release.Name }}-humio-core-headless:8080"
+            {{- end}}
+            - name: PUBLISH
+              value: "{{ .Values.publish.enabled }}"
+            {{- if .Values.publish.gcs.bucket }}
+            - name: PUBLISH_GCS_BUCKET
+              value: "{{ .Values.publish.gcs.bucket }}"
+            - name: "GOOGLE_APPLICATION_CREDENTIALS"
+              value: "/var/run/secret/cloud.google.com/service-account.json"
+            {{- end}}
+            volumeMounts:
+            - name: query-volume
+              mountPath: /mnt/queries
+          {{- if .Values.publish.gcs.bucket }}
+            - name: "service-account"
+              mountPath: "/var/run/secret/cloud.google.com"
+          {{- end}}
+          volumes:
+          - name: query-volume
+            configMap:
+              name: metrics-queries
+          {{- if .Values.publish.gcs.bucket }}
+          - name: "service-account"
+            secret:
+              secretName: "{{ .Values.publish.gcs.serviceAccountSecretName }}"
+          {{- end}}
+          restartPolicy: OnFailure
+{{- end -}}

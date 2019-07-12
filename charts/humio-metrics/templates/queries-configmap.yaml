@@ -1,0 +1,10 @@
+{{- if .Values.publish.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: metrics-queries
+data:
+{{- range $filename, $query := .Values.queries }}
+  {{ $filename }}: '{{ $query }}'
+{{- end }}
+{{- end -}}
