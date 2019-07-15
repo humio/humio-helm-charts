@@ -7,7 +7,9 @@ spec:
   schedule: "*/1 * * * *"
   jobTemplate:
     spec:
-      ttlSecondsAfterFinished: 120
+    {{- if .Values.ttlSecondsAfterFinished }}
+      ttlSecondsAfterFinished: {{ .Values.ttlSecondsAfterFinished }}
+    {{- end }}
       template:
         spec:
           serviceAccountName: {{ .Release.Name }}-post-install
@@ -45,6 +47,8 @@ spec:
                   key: password
             - name: QUERY_DIRECTORY
               value: /mnt/queries
+            - name: PUBLISH_GCS_BUCKET_DIRECTORY
+              value: {{ .Values.publish.gcs.directory }}
             - name: HUMIO_ADDRESS
             {{- if .Values.baseUrl }}
               value: "{{ .Values.baseUrl }}"

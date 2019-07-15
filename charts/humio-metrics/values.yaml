@@ -14,7 +14,10 @@ publish:
   enabled: true
   gcs:
     bucket: ""
+    directory: results
     serviceAccountSecretName: google-application-credentials
+
+ttlSecondsAfterFinished: ""
 
 queries: {}
 
