@@ -7,7 +7,7 @@ simulation: HECSimulation
 
 simulationOptions:
   fixedRateIngestSimulation:
-    tensDbPerDay: 10
+    tensGbPerDay: 10
   hecSimulation:
     bulkSize: 100
     dataspaces: 1

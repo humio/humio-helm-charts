@@ -82,7 +82,7 @@ spec:
               value: {{ default "HECSimulation" .Values.simulation }}
             {{- if eq .Values.simulation "FixedRateIngestSimulation" }}
             - name: PERF_TENS_GB_PER_DAY
-              value: {{ default "10" .Values.simulationOptions.fixedRateIngestSimulation.tensDbPerDay | quote }}
+              value: {{ default "10" .Values.simulationOptions.fixedRateIngestSimulation.tensGbPerDay | quote }}
             {{- end }}
             {{- if eq .Values.simulation "HECSimulation" }}
             - name: PERF_BULK_SIZE

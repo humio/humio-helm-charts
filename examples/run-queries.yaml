@@ -15,7 +15,7 @@ humio-strix:
   simulation: HECSimulation
   simulationOptions:
     fixedRateIngestSimulation:
-      tensDbPerDay: 1
+      tensGbPerDay: 1
     hecSimulation:
       bulkSize: 10
       dataspaces: 1
