@@ -47,8 +47,95 @@ humio-metrics:
     gcs:
       bucket: humio-nebulosa-v2-performance-tests
   queries:
-    sys-metrics: '#repo = kubernetes-metrics #type = beat kubernetes.pod.name = /humio|cp-/ | groupby(kubernetes.pod.name, function=[avg(kubernetes.pod.cpu.usage.limit.pct, as=cpu_usage_avg), avg(kubernetes.pod.memory.usage.limit.pct, as=mem_usage_avg), sum(kubernetes.pod.network.rx.bytes, as=rx_bytes_sum), sum(kubernetes.pod.network.rx.errors, as=rx_errors_sum), sum(kubernetes.pod.network.tx.bytes, as=tx_bytes_sum), sum(kubernetes.pod.network.tx.errors, as=tx_errors_sum)])'
-    pod-restarts: '#repo = kubernetes-metrics #type = beat docker.container.labels.io_kubernetes_pod_name = /humio|cp-/ | docker.container.labels.annotation_io_kubernetes_container_restartCount = * | groupby(docker.container.labels.io_kubernetes_pod_name, function=max(docker.container.labels.annotation_io_kubernetes_container_restartCount)) | sort(docker.container.labels.io_kubernetes_pod_name, reverse=false)'
+    sys-metrics: >-
+      #repo = kubernetes-metrics #type = beat kubernetes.pod.name = /humio|cp-/ |
+      groupby(kubernetes.pod.name, function=[
+        avg(kubernetes.pod.cpu.usage.limit.pct, as=kubernetes.pod.cpu.usage.limit.pct),
+        avg(kubernetes.pod.memory.usage.limit.pct, as=kubernetes.pod.memory.usage.limit.pct),
+        max(kubernetes.pod.network.rx.bytes, as=kubernetes.pod.network.rx.bytes),
+        max(kubernetes.pod.network.rx.errors, as=kubernetes.pod.network.rx.errors),
+        max(kubernetes.pod.network.tx.bytes, as=kubernetes.pod.network.tx.bytes),
+        max(kubernetes.pod.network.tx.errors, as=kubernetes.pod.network.tx.errors)
+      ])
+    pod-status: >-
+      groupby(kubernetes.pod.name, function=[
+        max(kubernetes.container.status.restarts, as=kubernetes.container.status.restarts),
+        collect(kubernetes.pod.status.phase),
+        collect(kubernetes.pod.status.ready)
+      ])
+    node-io: >-
+      event.dataset = system.diskio |
+      groupby(host.name, function=[
+        avg(system.diskio.io.time, as=system.diskio.io.time),
+        avg(system.diskio.iostat.await, as=system.diskio.iostat.await),
+        avg(system.diskio.iostat.busy, as=system.diskio.iostat.busy),
+        avg(system.diskio.iostat.queue.avg_size, as=system.diskio.iostat.queue.avg_size),
+        avg(system.diskio.iostat.read.await, as=system.diskio.iostat.read.await),
+        avg(system.diskio.iostat.read.per_sec.bytes, as=system.diskio.iostat.read.per_sec.bytes),
+        avg(system.diskio.iostat.read.request.merges_per_sec, as=system.diskio.iostat.read.request.merges_per_sec),
+        avg(system.diskio.iostat.read.request.per_sec, as=system.diskio.iostat.read.request.per_sec),
+        avg(system.diskio.iostat.request.avg_size, as=system.diskio.iostat.request.avg_size),
+        avg(system.diskio.iostat.service_time, as=system.diskio.iostat.service_time),
+        avg(system.diskio.iostat.write.await, as=system.diskio.iostat.write.await),
+        avg(system.diskio.iostat.write.per_sec.bytes, as=system.diskio.iostat.write.per_sec.bytes),
+        avg(system.diskio.iostat.write.request.merges_per_sec, as=system.diskio.iostat.write.request.merges_per_sec),
+        avg(system.diskio.iostat.write.request.per_sec, as=system.diskio.iostat.write.request.per_sec),
+        avg(system.diskio.name, as=system.diskio.name),
+        avg(system.diskio.read.bytes, as=system.diskio.read.bytes),
+        avg(system.diskio.read.count, as=system.diskio.read.count),
+        avg(system.diskio.read.time, as=system.diskio.read.time),
+        avg(system.diskio.write.bytes, as=system.diskio.write.bytes),
+        avg(system.diskio.write.count, as=system.diskio.write.count),
+        avg(system.diskio.write.time, as=system.diskio.write.time)
+      ])
+    node-load: >-
+      event.dataset = system.load |
+      groupby(host.name, function=[
+        avg(system.load.1, as=system.load.1),
+        avg(system.load.5, as=system.load.5),
+        avg(system.load.15, as=system.load.15),
+        avg(system.load.norm.1, as=system.load.norm.1),
+        avg(system.load.norm.5, as=system.load.norm.5),
+        avg(system.load.norm.15, as=system.load.norm.15),
+        max(system.load.cores, as=system.load.cores)
+      ])
+    node-core: >-
+      event.dataset = system.core |
+      groupby(host.name, function=[
+        avg(system.core.idle.pct, as=system.core.idle.pct),
+        avg(system.core.iowait.pct, as=system.core.iowait.pct),
+        avg(system.core.irq.pct, as=system.core.irq.pct),
+        avg(system.core.nice.pct, as=system.core.nice.pct),
+        avg(system.core.softirq.pct, as=system.core.softirq.pct),
+        avg(system.core.steal.pct, as=system.core.steal.pct),
+        avg(system.core.system.pct, as=system.core.system.pct),
+        avg(system.core.user.pct, as=system.core.user.pct)
+      ])
+    humio-ingest-errors: >-
+      #type=humio name=data-ingester-errors* |
+      regex(\"data-ingester-errors/(?<dataspace>\S+)\", field=name) |
+      groupby(dataspace, function={groupby(@host, function=sum(m1, as=errors))})
+    humio-event-latency: >-
+      #type=humio |
+      class = c.h.metrics |
+      event-latency |
+      p999:=p999/1000 |
+      groupby(@host, function=max(p999, as=p999))
+    humio-errors:
+      #type=humio loglevel=ERROR |
+      regex(\"(?<exception>[\\w\\.]+Exception)\", strict=false) |
+      groupby([@host, class, exception])
+    humio-ingest-bytes:
+      type=METER m1>1 |
+      regex(\"ingest-bytes/(?<dataspace>.*)\", field=name) |
+      groupby(dataspace, function={ groupby(@host, function=sum(m1, as=sum)) })
+    humio-ingest-events:
+      dataspace!=humio type=METER m1>0 |
+      regex(\"written-events/(?<dataspace>.*)\", field=name) |
+      groupby(dataspace, function={ groupby(@host, function=sum(m1, as=sum))})
+    humio-queue-length:
+      #type=humio segmentQueueLength=* |
+      groupby(@host, function=[avg(segmentQueueLength, as=avg)])
 
 global:
   sharedTokens:
