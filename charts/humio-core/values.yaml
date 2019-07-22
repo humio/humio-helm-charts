@@ -2,7 +2,7 @@
 
 # Humio Defaults
 replicas: 3
-image: humio/humio-core:1.5.9
+image: humio/humio-core:1.5.22
 
 # Warning: changing this from single-user mode will disable authentication.
 authenticationMethod: single-user
@@ -63,7 +63,13 @@ cp-helm-charts:
       enabled: true
       dataDirSize: 10Gi
       dataLogDirSize: 10Gi
-    resources: {}
+    resources:
+      requests:
+        cpu: 100m
+        memory: 768Mi
+      limits:
+        cpu: 500m
+        memory: 768Mi
   cp-kafka:
     brokers: 3
     image: confluentinc/cp-enterprise-kafka
@@ -73,7 +79,13 @@ cp-helm-charts:
       enabled: true
       size: 5Gi
       disksPerBroker: 1
-    resources: {}
+    resources:
+      requests:
+        cpu: 300m
+        memory: 768Mi
+      limits:
+        cpu: 1
+        memory: 768Mi
 
 # Ensure essential services are enabled
 cp-zookeeper:
