@@ -134,6 +134,9 @@ spec:
     spec:
       accessModes:
         - ReadWriteOnce
+    {{- if .Values.storageClassName }}
+      storageClassName: "{{ .Values.storageClassName }}"
+    {{- end }}
       resources:
         requests:
           storage: {{ .Values.storageVolume.size | default "10Gi" }}

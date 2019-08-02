@@ -50,6 +50,7 @@ affinity: {}
 livenessProbe: {}
 readinessProbe: {}
 storageVolume: {}
+# storageClassName: custom-storage-class-name
 
 # Dependencies
 cp-helm-charts:
