@@ -1,0 +1,13 @@
+---
+humio-core:
+  enabled: false
+
+humio-metrics:
+  enabled: true
+  humioHostname: HUMIO_HOSTNAME
+  es:
+    autodiscovery: false
+
+global:
+  sharedTokens:
+    metricbeat: {kubernetes: in-cluster}

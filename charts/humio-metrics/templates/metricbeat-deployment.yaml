@@ -17,6 +17,7 @@ spec:
 {{- if .Values.global -}}
   {{- if .Values.global.sharedTokens }}
     {{- if .Values.global.sharedTokens.metricbeat }}
+      {{- if .Values.es.autodiscovery }}
       initContainers:
         - name: wait-for-shared-tokens
           image: {{ .Values.initImage }}
@@ -29,6 +30,7 @@ spec:
           - "-n"
           - {{ .Release.Namespace }}
           - "--timeout=1500s"
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 {{- end  }}
