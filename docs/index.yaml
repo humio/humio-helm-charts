@@ -3,7 +3,16 @@ entries:
   humio-helm-charts:
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.231879-07:00"
+    created: "2019-08-02T15:17:13.555167-07:00"
+    description: A Helm chart for Humio Components
+    digest: 825afced1ff0df51879a1efac178558a805d6f5841497ca37d22368951eafa4e
+    name: humio-helm-charts
+    urls:
+    - humio-helm-charts-0.1.19.tgz
+    version: 0.1.19
+  - apiVersion: v1
+    appVersion: "1.1"
+    created: "2019-08-02T15:17:13.551962-07:00"
     description: A Helm chart for Humio Components
     digest: 6569efadb56c107ebd252f608b43b640a373425701cb9f3a3fb7f99e2456f85b
     name: humio-helm-charts
@@ -12,7 +21,7 @@ entries:
     version: 0.1.18
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.2288-07:00"
+    created: "2019-08-02T15:17:13.548114-07:00"
     description: A Helm chart for Humio Components
     digest: 469e1663d46541f68ad0c87b3d4c261ccd5d4cdd039cd41935d915397fcdb49f
     name: humio-helm-charts
@@ -21,7 +30,7 @@ entries:
     version: 0.1.17
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.225128-07:00"
+    created: "2019-08-02T15:17:13.544794-07:00"
     description: A Helm chart for Humio Components
     digest: 17e95cf072c6c01c112d450069a872262f2b24e99717f6b10400db5cce42bcf1
     name: humio-helm-charts
@@ -30,7 +39,7 @@ entries:
     version: 0.1.16
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.221164-07:00"
+    created: "2019-08-02T15:17:13.541095-07:00"
     description: A Helm chart for Humio Components
     digest: 8da6b350f8f92851bc4c64cfb4bf67a215a5e7e012cf38c309c8c1f7778f975f
     name: humio-helm-charts
@@ -39,7 +48,7 @@ entries:
     version: 0.1.15
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.217679-07:00"
+    created: "2019-08-02T15:17:13.537793-07:00"
     description: A Helm chart for Humio Components
     digest: b6d8a8f9112311fd5c788c417766bfa9c9a3cfa52b22f7a79ecbb1f02d408776
     name: humio-helm-charts
@@ -48,7 +57,7 @@ entries:
     version: 0.1.14
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.213319-07:00"
+    created: "2019-08-02T15:17:13.533667-07:00"
     description: A Helm chart for Humio Components
     digest: 17ecd433b2cdfc667658375b283732133f6cdf09214ed318c5ffbef3122542bb
     name: humio-helm-charts
@@ -57,7 +66,7 @@ entries:
     version: 0.1.13
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.20949-07:00"
+    created: "2019-08-02T15:17:13.53015-07:00"
     description: A Helm chart for Humio Components
     digest: 04beb3799322f04f360b3d5dc18fa02c9a7c1fccbd7f2fe78d84b58e916de637
     name: humio-helm-charts
@@ -66,7 +75,7 @@ entries:
     version: 0.1.12
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.205584-07:00"
+    created: "2019-08-02T15:17:13.526288-07:00"
     description: A Helm chart for Humio Components
     digest: b725566d5145c8938573aceba454b2843885d0a1041a78725569d42cd1bdeaea
     name: humio-helm-charts
@@ -75,7 +84,7 @@ entries:
     version: 0.1.11
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.202302-07:00"
+    created: "2019-08-02T15:17:13.522537-07:00"
     description: A Helm chart for Humio Components
     digest: e38c8c530839bb03f332af819cee1fad21302cc1acda1200a8132a049e11b37a
     name: humio-helm-charts
@@ -84,7 +93,7 @@ entries:
     version: 0.1.10
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.262876-07:00"
+    created: "2019-08-02T15:17:13.581962-07:00"
     description: A Helm chart for Humio Components
     digest: 75a82c4dd9cb682484c31d0179d680914274db3d9cecb587772834530b192dda
     name: humio-helm-charts
@@ -93,7 +102,7 @@ entries:
     version: 0.1.9
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.260152-07:00"
+    created: "2019-08-02T15:17:13.579616-07:00"
     description: A Helm chart for Humio Components
     digest: f1ea3dc74afb2703d9b6db33c75ebb465cedafc90406b940f6316225737b9bb8
     name: humio-helm-charts
@@ -102,7 +111,7 @@ entries:
     version: 0.1.8
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.249672-07:00"
+    created: "2019-08-02T15:17:13.57113-07:00"
     description: A Helm chart for Humio Components
     digest: 746813e02f9c23645bd8f70aa42aaccc9b6976898f40ce6f56d833df78d245da
     name: humio-helm-charts
@@ -111,7 +120,7 @@ entries:
     version: 0.1.7
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.243932-07:00"
+    created: "2019-08-02T15:17:13.565797-07:00"
     description: A Helm chart for Humio Components
     digest: 920186ce3fcd4759c0fa8b09d0ae50803e88406232f3d4777c2615e916297e38
     name: humio-helm-charts
@@ -120,7 +129,7 @@ entries:
     version: 0.1.6
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.238687-07:00"
+    created: "2019-08-02T15:17:13.561361-07:00"
     description: A Helm chart for Humio Components
     digest: 24bb80fd2e7cc2ce455e073cb42f650988ba69f56f81b68344a30eb79c4bd277
     name: humio-helm-charts
@@ -129,11 +138,11 @@ entries:
     version: 0.1.5
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2019-08-02T14:57:38.23484-07:00"
+    created: "2019-08-02T15:17:13.55821-07:00"
     description: A Helm chart for Humio Components
     digest: 8b70bd268fe1666cffde71569ca60e71c119c8a0e5654fe5b0ca43b98b31cc45
     name: humio-helm-charts
     urls:
     - humio-helm-charts-0.1.4.tgz
     version: 0.1.4
-generated: "2019-08-02T14:57:38.198606-07:00"
+generated: "2019-08-02T15:17:13.518539-07:00"

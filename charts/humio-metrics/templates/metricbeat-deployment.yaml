@@ -41,7 +41,11 @@ spec:
         ]
         env:
         - name: ELASTICSEARCH_HOST
+          {{- if .Values.es.autodiscovery }}
           value: "{{ .Release.Name }}-humio-core-es-lb.{{ .Release.Namespace }}"
+          {{- else }}
+          value: {{ default "cloud.humio.com" .Values.humioHostname | quote }}
+          {{- end }}
         - name: ELASTICSEARCH_PORT
           value: {{ default "9200" .Values.es.port | quote }}
         - name: ELASTICSEARCH_USERNAME

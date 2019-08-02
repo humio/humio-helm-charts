@@ -2,6 +2,8 @@
 es:
   autodiscovery: true
 
+# humioHostname: ""
+
 initImage: humio/strix:latest
 initImagePullPolicy: Always
 
