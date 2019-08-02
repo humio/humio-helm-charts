@@ -1,4 +1,4 @@
-{%- if .Values.es.autodiscovery -%}
+{{- if .Values.es.autodiscovery -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -59,4 +59,4 @@ spec:
             {{- else }}
               value: "http://{{ .Release.Name }}-humio-core-headless:8080"
             {{- end}}
-{%- end -%}
+{{- end -}}
