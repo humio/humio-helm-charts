@@ -72,7 +72,7 @@ spec:
           {{- end  }}
         {{- end  }}
         - name: ELASTICSEARCH_SSL
-          value: {{ default "false" .Values.es.tls }}
+          value: {{ default "false" .Values.es.tls | quote }}
         - name: NODE_NAME
           valueFrom:
             fieldRef:
