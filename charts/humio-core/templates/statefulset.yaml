@@ -134,7 +134,9 @@ spec:
     spec:
       accessModes:
         - ReadWriteOnce
-    {{- if .Values.storageClassName }}
+    {{- if .Values.storageClass }}
+      storageClassName: "custom-storage-class"
+    {{- else if .Values.storageClassName }}
       storageClassName: "{{ .Values.storageClassName }}"
     {{- end }}
       resources:

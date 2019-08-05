@@ -51,6 +51,7 @@ livenessProbe: {}
 readinessProbe: {}
 storageVolume: {}
 # storageClassName: custom-storage-class-name
+storageClass: {}
 
 # Dependencies
 cp-helm-charts:

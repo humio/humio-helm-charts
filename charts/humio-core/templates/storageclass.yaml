@@ -1,0 +1,9 @@
+{{- if .Values.storageClass -}}
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: custom-storage-class
+{{ with .Values.storageClass }}
+  {{- toYaml . }}
+{{- end }}
+{{- end -}}
