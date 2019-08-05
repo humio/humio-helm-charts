@@ -1,5 +1,7 @@
 ---
 es:
+  port: 9200
+  tls: false
   autodiscovery: true
 
 # humioHostname: ""

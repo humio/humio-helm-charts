@@ -71,6 +71,8 @@ spec:
             {{- end -}}
           {{- end  }}
         {{- end  }}
+        - name: ELASTICSEARCH_SSL
+          value: {{ default "false" .Values.es.tls }}
         - name: NODE_NAME
           valueFrom:
             fieldRef:
