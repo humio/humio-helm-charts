@@ -4,7 +4,7 @@ es:
   tls: false
   autodiscovery: true
 
-# humioHostname: ""
+humioHostname: "cloud.humio.com"
 
 initImage: humio/strix:latest
 initImagePullPolicy: Always

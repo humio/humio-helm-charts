@@ -43,11 +43,19 @@ spec:
         ]
         env:
         - name: ELASTICSEARCH_HOST
-          {{- if .Values.es.autodiscovery }}
+      {{- if .Values.es.autodiscovery }}
+        {{- if .Values.es.tls}}
+          value: "https://{{ .Release.Name }}-humio-core-es-lb.{{ .Release.Namespace }}"
+        {{- else }}
           value: "{{ .Release.Name }}-humio-core-es-lb.{{ .Release.Namespace }}"
-          {{- else }}
-          value: {{ default "cloud.humio.com" .Values.humioHostname | quote }}
-          {{- end }}
+        {{- end }}
+      {{- else }}
+        {{- if .Values.es.tls}}
+          value: "https://{{ .Values.humioHostname }}"
+        {{- else }}
+          value: "{{ .Values.humioHostname }}"
+        {{- end }}
+      {{- end }}
         - name: ELASTICSEARCH_PORT
           value: {{ default "9200" .Values.es.port | quote }}
         - name: ELASTICSEARCH_USERNAME
@@ -68,8 +76,6 @@ spec:
             {{- end -}}
           {{- end  }}
         {{- end  }}
-        - name: ELASTICSEARCH_SSL
-          value: {{ default "false" .Values.es.tls | quote }}
         - name: NODE_NAME
           valueFrom:
             fieldRef:
