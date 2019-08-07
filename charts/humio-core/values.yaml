@@ -25,6 +25,10 @@ defaultUserInputRegexEngine: HUMIO
 nameOverride: ""
 fullnameOverride: ""
 
+waitFor:
+  kafka:
+    enabled: true
+
 service:
   type: LoadBalancer
   http_port: 8080

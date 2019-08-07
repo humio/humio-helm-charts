@@ -32,6 +32,19 @@ spec:
       affinity:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+    {{- if .Values.waitFor.kafka.enabled }}
+      initContainers:
+        - name: wait-for-kafka
+          image: humio/strix
+          command:
+          - kubectl
+          - wait
+          - "--for=condition=Ready"
+          - "pod/{{ .Release.Name }}-cp-kafka-{{ sub .Values.kafka.brokers 1 }}"
+          - "-n"
+          - {{ .Release.Namespace }}
+          - "--timeout=1500s"
+    {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: {{ default "humio/humio-core:1.5.9" .Values.image }}
