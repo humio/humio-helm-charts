@@ -27,7 +27,7 @@ spec:
           - kubectl
           - wait
           - "--for=condition=Ready"
-          - "pod/{{ .Release.Name }}-humio-core-0"
+          - "pod/{{ .Release.Name }}-humio-core-{{ sub .Values.replicas 1 }}"
           - "-n"
           - {{ .Release.Namespace }}
           - "--timeout=1500s"
