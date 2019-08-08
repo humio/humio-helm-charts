@@ -1,0 +1,27 @@
+{{- if .Values.cache.localVolume.enabled -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: local-storage-provisioner-pv-binding
+subjects:
+- kind: ServiceAccount
+  name: local-storage-admin
+  namespace: logging
+roleRef:
+  kind: ClusterRole
+  name: system:persistent-volume-provisioner
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: local-storage-provisioner-node-binding
+subjects:
+- kind: ServiceAccount
+  name: local-storage-admin
+  namespace: logging
+roleRef:
+  kind: ClusterRole
+  name: local-storage-provisioner-node-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+{{- end -}}
