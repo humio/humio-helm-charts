@@ -79,7 +79,17 @@ spec:
           volumeMounts:
           - mountPath: /data/humio-data
             name: humio-data-vol
+        {{- if .Values.cache.localVolume.enabled }}
+          - name: local-vol
+            mountPath: /data-local
+        {{- end }}
           env:
+          {{- if .Values.cache.localVolume.enabled }}
+            - name: CACHE_STORAGE_DIRECTORY
+              value: "/data-local"
+            - name: CACHE_STORAGE_PERCENTAGE
+              value: "90"
+          {{- end }}
             - name: POD_NAME
               valueFrom:
                 fieldRef:
@@ -155,3 +165,13 @@ spec:
       resources:
         requests:
           storage: {{ .Values.storageVolume.size | default "10Gi" }}
+{{- if .Values.cache.localVolume.enabled }}
+  - metadata:
+      name: local-vol
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "local-storage"
+      resources:
+        requests:
+          storage: {{ .Values.cache.localVolume.storage.size }}
+{{- end }}

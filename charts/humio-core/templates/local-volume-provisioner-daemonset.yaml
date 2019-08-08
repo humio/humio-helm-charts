@@ -1,0 +1,56 @@
+{{- if .Values.cache.localVolume.enabled -}}
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: local-volume-provisioner
+  labels:
+    app: local-volume-provisioner
+    chart: {{ template "humio-core.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app: local-volume-provisioner
+  template:
+    metadata:
+      labels:
+        app: local-volume-provisioner
+    spec:
+      serviceAccountName: local-storage-admin
+      containers:
+        - image: "quay.io/external_storage/local-volume-provisioner:v2.3.2"
+          name: provisioner
+          securityContext:
+            privileged: true
+          env:
+          - name: MY_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MY_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: JOB_CONTAINER_IMAGE
+            value: "quay.io/external_storage/local-volume-provisioner:v2.3.2"
+          volumeMounts:
+            - mountPath: /etc/provisioner/config
+              name: provisioner-config
+              readOnly: true
+            - mountPath: /dev
+              name: provisioner-dev
+            - mountPath: {{ .Values.cache.localVolume.hostPath }}
+              name: local-storage
+              mountPropagation: "HostToContainer"
+      volumes:
+        - name: provisioner-config
+          configMap:
+            name: local-provisioner-config
+        - name: provisioner-dev
+          hostPath:
+            path: /dev
+        - name: local-storage
+          hostPath:
+            path: {{ .Values.cache.localVolume.hostPath }}
+{{- end -}}

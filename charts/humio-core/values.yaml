@@ -48,6 +48,13 @@ jvm:
   xms: 256m
   xmx: 1536m
 
+cache:
+  localVolume:
+    enabled: false
+    hostPath: /mnt/disks
+    storage:
+      size: 350Gi
+
 nodeSelector: {}
 tolerations: []
 affinity: {}
