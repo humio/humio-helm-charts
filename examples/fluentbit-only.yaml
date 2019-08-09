@@ -8,6 +8,11 @@ humio-fluentbit:
   es:
     tls: true
     autodiscovery: false
+  # Example of custom fluentbit config
+  customFluentBitConfig:
+    someconfig.conf: |-
+      [Some]
+      configuration
 
 global:
   sharedTokens:

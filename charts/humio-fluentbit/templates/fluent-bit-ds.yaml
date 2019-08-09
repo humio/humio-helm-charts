@@ -50,7 +50,7 @@ spec:
 {{- end }}
       containers:
       - name: {{ .Release.Name }}
-        image: {{ default "fluent/fluent-bit:0.13.2" .Values.image }}
+        image: {{ default "fluent/fluent-bit:1.2.2" .Values.image }}
         imagePullPolicy: {{ default "Always" .Values.imagePullPolicy }}
         ports:
           - containerPort: 2020
@@ -94,7 +94,7 @@ spec:
         - name: varlibdockercontainers
           mountPath: /var/lib/docker/containers
           readOnly: true
-        - name: {{ .Release.Name }}-config
+        - name: config
           mountPath: /fluent-bit/etc/
         {{- with .Values.resources }}
         resources:
@@ -108,9 +108,9 @@ spec:
       - name: varlibdockercontainers
         hostPath:
           path: /var/lib/docker/containers
-      - name: {{ .Release.Name }}-config
+      - name: config
         configMap:
-          name: {{ .Release.Name }}-config
+          name: {{ .Release.Name }}-fluent-bit-config
     {{- if .Values.es.autodiscovery }}
       serviceAccountName: {{ .Release.Name }}-fluentbit-read
     {{- end }}

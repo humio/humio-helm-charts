@@ -17,6 +17,9 @@ resources:
     cpu: 100m
     memory: 128Mi
 
+customFluentBitConfig:
+  custom.conf: |-
+
 nodeSelector: {}
 tolerations: []
 affinity: {}
