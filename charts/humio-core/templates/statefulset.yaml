@@ -109,7 +109,7 @@ spec:
             - name: COMPRESSION_TYPE
               value: {{ .Values.compression.type | quote }}
             - name: COMPRESSION_LEVEL
-              value: {{ .Values.compression.level }}
+              value: {{ .Values.compression.level | quote }}
             - name: HUMIO_PORT
               value: "8080"
             - name: ELASTIC_PORT
