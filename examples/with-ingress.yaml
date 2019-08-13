@@ -1,0 +1,25 @@
+---
+humio-core:
+  enabled: true
+  replicas: 3
+  imagePullSecrets: []
+  cp-helm-charts:
+    cp-zookeeper:
+      servers: 3
+    cp-kafka:
+      brokers: 3
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      kubernetes.io/tls-acme: "true"
+      kubernetes.io/ingress.global-static-ip-name: my-cluster
+      certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+      certmanager.k8s.io/acme-challenge-type: http01
+    hosts:
+      - host: my-cluster.example.com
+        paths: ["/"]
+    tls:
+      - secretName: my-cluster-crt
+        hosts:
+          - my-cluster.example.com

@@ -3,4 +3,4 @@ dependencies:
   repository: https://confluentinc.github.io/cp-helm-charts/
   version: 0.1.0
 digest: sha256:d62bfefa9cccdd97c3e82d97ac1461ec9608fd7f093a6cdcae418c4f5ad2749a
-generated: "2019-06-04T07:45:25.897192-07:00"
+generated: "2019-08-13T16:21:35.065571-07:00"

@@ -2,7 +2,6 @@ dependencies:
   - name: cp-helm-charts
     version: 0.1.0
     repository: https://confluentinc.github.io/cp-helm-charts/
-    #alias: kafka
     import-values:
       - child: cp-zookeeper
         parent: zookeeper
