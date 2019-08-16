@@ -111,9 +111,7 @@ spec:
       - name: {{ .Release.Name }}-config
         configMap:
           name: {{ .Release.Name }}-config
-    {{- if .Values.es.autodiscovery }}
       serviceAccountName: {{ .Release.Name }}-fluentbit-read
-    {{- end }}
       tolerations:
       - key: node-role.kubernetes.io/master
         operator: Exists
