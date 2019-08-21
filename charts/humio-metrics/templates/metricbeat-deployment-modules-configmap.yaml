@@ -19,4 +19,4 @@ data:
         - event
       period: 10s
       host: ${NODE_NAME}
-      hosts: ["kube-state-metrics.kube-system:8080"]
+      hosts: ["{{ .Release.Name }}-kube-state-metrics.{{ default "kube-system" .Release.Namespace }}:8080"]

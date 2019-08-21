@@ -107,6 +107,10 @@ spec:
               value: {{ mul .Values.replicas .Values.ingest.initialPartitionsPerNode | quote }}
             - name: DEFAULT_PARTITION_COUNT
               value: {{ mul .Values.replicas .Values.storage.initialPartitionsPerNode | quote }}
+            - name: COMPRESSION_TYPE
+              value: {{ .Values.compression.type | quote }}
+            - name: COMPRESSION_LEVEL
+              value: {{ .Values.compression.level | quote }}
             - name: HUMIO_PORT
               value: "8080"
             - name: ELASTIC_PORT
