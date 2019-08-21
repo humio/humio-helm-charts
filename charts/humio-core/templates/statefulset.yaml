@@ -22,6 +22,7 @@ spec:
       labels:
         app: {{ include "humio-core.name" . }}
         release: {{ .Release.Name }}
+        humio-parser: {{ default "kv" .Values.humioParser }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
