@@ -55,6 +55,10 @@ cache:
     storage:
       size: 350Gi
 
+compression:
+  type: fast
+  level: 3
+
 nodeSelector: {}
 tolerations: []
 affinity: {}
