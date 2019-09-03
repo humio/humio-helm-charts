@@ -59,6 +59,12 @@ compression:
   type: fast
   level: 3
 
+ingress:
+  enabled: false
+  annotations: {}
+  hosts: []
+  tls: []
+
 nodeSelector: {}
 tolerations: []
 affinity: {}
