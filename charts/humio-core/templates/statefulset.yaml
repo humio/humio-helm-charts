@@ -34,6 +34,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
     {{- if .Values.waitFor.kafka.enabled }}
+      {{- if eq .Values.external.kafkaBrokers "" }}
       initContainers:
         - name: wait-for-kafka
           image: humio/strix
@@ -45,6 +46,7 @@ spec:
           - "-n"
           - {{ .Release.Namespace }}
           - "--timeout=1500s"
+      {{- end }}
     {{- end }}
       containers:
         - name: {{ .Chart.Name }}

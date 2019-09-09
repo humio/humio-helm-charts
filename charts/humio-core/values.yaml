@@ -25,6 +25,10 @@ defaultUserInputRegexEngine: HUMIO
 nameOverride: ""
 fullnameOverride: ""
 
+external:
+  kafkaBrokers: ""
+  zookeeperServers: ""
+
 waitFor:
   kafka:
     enabled: true
