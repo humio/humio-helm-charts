@@ -1,0 +1,11 @@
+cp-zookeeper:
+  enabled: false
+cp-kafka:
+  enabled: false
+
+humio-core:
+  enabled: true
+  replicas: 3
+  external:
+    kafkaBrokers: 192.168.0.10:9092,192.168.1.10:9092,192.168.2.10:9092
+    zookeeperServers: 192.168.0.20:2181,192.168.1.20:2181,192.168.2.20:2181
