@@ -29,14 +29,14 @@ _Note: the base64 command may vary depending on OS and distribution._
 
 ## Subcharts
 
-### Humo Core
+### Humio Core
 
 Humio Core includes the [Confluent Helm Chart](https://github.com/confluentinc/cp-helm-charts) as a dependency for
 running Kafka and Zookeeper. It will start Zookeeper, Kafka, and Humio Core pods.
 
 See the file `examples/core-only.yaml`.
 
-### Humo Fluentbit
+### Humio Fluentbit
 
 Fluentbit is the recommended way to collect logs from a Kubernetes cluster. This chart can be installed standalone, but
 if it's installed along with the Humio Core chart, it will automatically discover the right endpoint and token.
