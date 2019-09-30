@@ -42,6 +42,7 @@ data:
         Host ${FLUENT_ELASTICSEARCH_HOST}
         Port ${FLUENT_ELASTICSEARCH_PORT}
         tls ${FLUENT_ELASTICSEARCH_TLS}
+        tls.verify ${FLUENT_ELASTICSEARCH_TLS_VERIFY}
         HTTP_User ${HUMIO_INGEST_TOKEN}
         Logstash_Format On
         Retry_Limit False

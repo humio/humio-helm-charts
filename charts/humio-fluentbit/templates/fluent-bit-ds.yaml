@@ -69,6 +69,12 @@ spec:
           {{- else }}
           value: "Off"
           {{- end }}
+        - name: FLUENT_ELASTICSEARCH_TLS_VERIFY
+          {{- if and .Values.es.tls .Values.es.tls_verify }}
+          value: "On"
+          {{- else }}
+          value: "Off"
+          {{- end }}
         {{- if .Values.token }}
         - name: HUMIO_INGEST_TOKEN
           valueFrom:
