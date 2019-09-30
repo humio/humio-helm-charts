@@ -80,14 +80,18 @@ spec:
             successThreshold: 1
             failureThreshold: 10
           volumeMounts:
-          - mountPath: /data/humio-data
+          - mountPath: {{ .Values.primaryStorage.mountPath }}
+        {{- if eq .Values.primaryStorage.type "remote" }}
             name: humio-data-vol
-        {{- if .Values.cache.localVolume.enabled }}
+        {{- else if eq .Values.primaryStorage.type "local" }}
+            name: local-primary-vol
+        {{- end }}
+        {{- if and .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "remote") }}
           - name: local-vol
             mountPath: /data-local
         {{- end }}
           env:
-          {{- if .Values.cache.localVolume.enabled }}
+          {{- if and .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "remote") }}
             - name: CACHE_STORAGE_DIRECTORY
               value: "/data-local"
             - name: CACHE_STORAGE_PERCENTAGE
@@ -159,6 +163,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
   volumeClaimTemplates:
+{{- if eq .Values.primaryStorage.type "remote" }}
   - metadata:
       name: humio-data-vol
     spec:
@@ -172,12 +177,23 @@ spec:
       resources:
         requests:
           storage: {{ .Values.storageVolume.size | default "10Gi" }}
-{{- if .Values.cache.localVolume.enabled }}
+{{- end }}
+{{- if eq .Values.primaryStorage.type "local" }}
+  - metadata:
+      name: local-primary-vol
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: {{ .Values.localVolume.name }}
+      resources:
+        requests:
+          storage: {{ .Values.localVolume.storage.size }}
+{{- end }}
+{{- if and .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "remote") }}
   - metadata:
       name: local-vol
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "local-storage"
+      storageClassName: {{ .Values.cache.localVolume.name }}
       resources:
         requests:
           storage: {{ .Values.cache.localVolume.storage.size }}

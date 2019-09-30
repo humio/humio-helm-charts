@@ -1,4 +1,4 @@
-{{- if .Values.cache.localVolume.enabled -}}
+{{- if or .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "local") -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -11,7 +11,13 @@ metadata:
 data:
   useNodeNameOnly: "true"
   storageClassMap: |
-    local-storage:
-       hostDir: {{ .Values.cache.localVolume.hostPath }}
-       mountDir: {{ .Values.cache.localVolume.hostPath }}
+  {{- if eq .Values.primaryStorage.type "local" }}
+    {{ .Values.localVolume.name }}:
+      hostDir: {{ .Values.localVolume.hostPath  }}
+      mountDir: {{ .Values.localVolume.hostPath }}
+  {{- else if .Values.cache.localVolume.enabled }}
+    {{ .Values.cache.localVolume.name }}:
+      hostDir: {{ .Values.cache.localVolume.hostPath }}
+      mountDir: {{ .Values.cache.localVolume.hostPath }}
+  {{- end }}
 {{- end -}}
