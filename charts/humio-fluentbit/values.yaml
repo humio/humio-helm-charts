@@ -3,6 +3,7 @@ imagePullPolicy: Always
 es:
   port: 9200
   tls: false
+  tls_verify: true
   autodiscovery: false
 
 nameOverride: ""

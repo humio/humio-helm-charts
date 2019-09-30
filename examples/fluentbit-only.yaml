@@ -6,7 +6,8 @@ humio-fluentbit:
   enabled: true
   humioHostname: HUMIO_HOSTNAME
   es:
-    tls: true
+    tls: true # TLS On. Set to false to turn it off.
+    tls_verify: true # TLS verify On. Set to false to turn it off.
     autodiscovery: false
   # Example of custom fluentbit config
   customFluentBitConfig:
