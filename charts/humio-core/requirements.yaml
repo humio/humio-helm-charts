@@ -1,7 +1,7 @@
 dependencies:
   - name: cp-helm-charts
-    version: 0.1.0
-    repository: https://confluentinc.github.io/cp-helm-charts/
+    version: 0.3.1
+    repository: https://humio.github.io/cp-helm-charts
     import-values:
       - child: cp-zookeeper
         parent: zookeeper
