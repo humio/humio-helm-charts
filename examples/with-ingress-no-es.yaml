@@ -16,25 +16,10 @@ humio-core:
       kubernetes.io/ingress.global-static-ip-name: my-cluster
       certmanager.k8s.io/cluster-issuer: letsencrypt-prod
       certmanager.k8s.io/acme-challenge-type: http01
+    hosts:
+      - host: my-cluster.example.com
+        paths: ["/"]
     tls:
       - secretName: my-cluster-crt
         hosts:
           - my-cluster.example.com
-      - secretName: my-cluster-es-crt
-        hosts:
-          - my-cluster-es.example.com
-    rules:
-      - host: my-cluster.example.com
-        http:
-          paths:
-          - path: /
-            backend:
-              serviceName: humio-humio-core-headless
-              servicePort: 8080
-      - host: my-cluster-es.example.com
-        http:
-          paths:
-          - path: /
-            backend:
-              serviceName: humio-humio-core-es-lb
-              servicePort: 9200

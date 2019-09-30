@@ -23,6 +23,12 @@ spec:
       secretName: {{ .secretName }}
   {{- end }}
 {{- end }}
+{{ if .Values.ingress.rules }}
+  {{ with .Values.ingress.rules }}
+  rules:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- else }}
   rules:
   {{- range .Values.ingress.hosts }}
     - host: {{ .host | quote }}
@@ -35,4 +41,5 @@ spec:
               servicePort: 8080
         {{- end }}
   {{- end }}
+{{- end -}}
 {{- end -}}
