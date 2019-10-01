@@ -54,10 +54,28 @@ jvm:
 
 cache:
   localVolume:
+    name: local-storage
     enabled: false
     hostPath: /mnt/disks
     storage:
       size: 350Gi
+
+# Warning: cannot use pimaryStorage.type == local along with cache.localVolume.enabled == true.
+primaryStorage:
+  # Type can be "remote" or "local". If "remote", then use "storageClass" to define settings of the remote storage. If local,
+  # use "localVolume" to define settings of the local storage.
+  type: remote
+  mountPath: /data/humio-data
+
+secondaryStorage:
+  type: remote
+  mountPath: /data/humio-data-secondary
+
+localVolume:
+  name: local-primary-storage
+  hostPath: /mnt/disks
+  storage:
+    size: 100Gi
 
 compression:
   type: fast

@@ -1,8 +1,12 @@
-{{- if .Values.cache.localVolume.enabled -}}
+{{- if or .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "local") -}}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: local-storage
+{{- if eq .Values.primaryStorage.type "local" }}
+  name: {{ .Values.localVolume.name }}
+{{- else if .Values.cache.localVolume.enabled }}
+  name: {{ .Values.cache.localVolume.name }}
+{{- end }}
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Delete

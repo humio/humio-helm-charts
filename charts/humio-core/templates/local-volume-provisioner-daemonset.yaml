@@ -1,4 +1,4 @@
-{{- if .Values.cache.localVolume.enabled -}}
+{{- if or .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "local") -}}
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -35,14 +35,18 @@ spec:
           - name: JOB_CONTAINER_IMAGE
             value: "quay.io/external_storage/local-volume-provisioner:v2.3.2"
           volumeMounts:
-            - mountPath: /etc/provisioner/config
-              name: provisioner-config
+            - name: provisioner-config
+              mountPath: /etc/provisioner/config
               readOnly: true
-            - mountPath: /dev
-              name: provisioner-dev
-            - mountPath: {{ .Values.cache.localVolume.hostPath }}
-              name: local-storage
+            - name: provisioner-dev
+              mountPath: /dev
+            - name: local-storage-mount
               mountPropagation: "HostToContainer"
+            {{- if eq .Values.primaryStorage.type "local" }}
+              mountPath: {{ .Values.localVolume.hostPath }}
+            {{- else if .Values.cache.localVolume.enabled }}
+              mountPath: {{ .Values.cache.localVolume.hostPath }}
+            {{- end }}
       volumes:
         - name: provisioner-config
           configMap:
@@ -50,7 +54,11 @@ spec:
         - name: provisioner-dev
           hostPath:
             path: /dev
-        - name: local-storage
+        - name: local-storage-mount
           hostPath:
+          {{- if eq .Values.primaryStorage.type "local" }}
+            path: {{ .Values.localVolume.hostPath }}
+          {{- else if .Values.cache.localVolume.enabled }}
             path: {{ .Values.cache.localVolume.hostPath }}
+          {{- end }}
 {{- end -}}
