@@ -4,8 +4,15 @@
 replicas: 3
 image: humio/humio-core:1.5.22
 
-# Warning: changing this from single-user mode will disable authentication.
+# Warning: changing this from single-user or saml mode will disable authentication. If set to "saml", use the samlConfig
+# to set the saml configuration.
 authenticationMethod: single-user
+
+samlConfig:
+  publicUrl: ""
+  idpSignOnUrl: ""
+  idpEntityId: ""
+  autoCreateUserOnSuccessfulLogin: true
 
 initImage: humio/strix:latest
 initImagePullPolicy: Always
