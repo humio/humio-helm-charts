@@ -90,6 +90,11 @@ spec:
           - name: local-vol
             mountPath: /data-local
         {{- end }}
+        {{- if eq .Values.authenticationMethod "saml" }}
+          - name: idp-cert-volume
+            mountPath: /var/lib/humio
+            readOnly: true
+        {{- end }}
           env:
           {{- if and .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "remote") }}
             - name: CACHE_STORAGE_DIRECTORY
@@ -141,11 +146,26 @@ spec:
             - name: AUTHENTICATION_METHOD
               value: {{ default "single-user" .Values.authenticationMethod | quote }}
             {{- end }}
+            {{- if eq .Values.authenticationMethod "single-user" }}
+            - name: AUTHENTICATION_METHOD
             - name: SINGLE_USER_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: developer-user-password
                   key: password
+            {{- end }}
+            {{- if eq .Values.authenticationMethod "saml" }}
+            - name: PUBLIC_URL
+              value: {{ .Values.samlConfig.publicUrl | quote }}
+            - name: SAML_IDP_SIGN_ON_URL
+              value: {{ .Values.samlConfig.idpSignOnUrl | quote }}
+            - name: SAML_IDP_ENTITY_ID
+              value: {{ .Values.samlConfig.idpEntityId | quote }}
+            - name: SAML_IDP_CERTIFICATE
+              value: "/var/lib/humio/idp-certificate"
+            - name: AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN
+              value: {{ .Values.samlConfig.autoCreateUserOnSuccessfulLogin | quote }}
+            {{- end }}
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
@@ -154,6 +174,12 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+    {{- if eq .Values.authenticationMethod "saml" }}
+      volumes:
+      - name: idp-cert-volume
+        secret:
+          secretName: idp-certificate
+    {{- end }}
     {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
