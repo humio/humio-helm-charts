@@ -56,7 +56,11 @@ data:
     @INCLUDE fluent-bit-input.conf
     @INCLUDE fluent-bit-filter.conf
     @INCLUDE fluent-bit-output.conf
-
+{{ if .Values.customFluentBitConfig -}}
+  {{- range $index, $filename := .Values.customFluentBitConfig }}
+    @INCLUDE {{ $index }}
+  {{- end }}
+{{- end }}
   parsers.conf: |-
     [PARSER]
         Name   apache
