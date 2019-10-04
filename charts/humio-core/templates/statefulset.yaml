@@ -147,7 +147,6 @@ spec:
               value: {{ default "single-user" .Values.authenticationMethod | quote }}
             {{- end }}
             {{- if eq .Values.authenticationMethod "single-user" }}
-            - name: AUTHENTICATION_METHOD
             - name: SINGLE_USER_PASSWORD
               valueFrom:
                 secretKeyRef:
