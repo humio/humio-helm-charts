@@ -94,6 +94,11 @@ ingress:
   hosts: []
   tls: []
 
+# Enables the testing integration with github. If enabled, a secret must be created named "github" with key
+# "credentials" in the format of user:password.
+github:
+  enabled: false
+
 nodeSelector: {}
 tolerations: []
 affinity: {}
