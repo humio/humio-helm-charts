@@ -98,6 +98,22 @@ spec:
             - name: PERF_USERS
               value: {{ default "3" .Values.simulationOptions.hecSimulation.users | quote }}
             {{- end }}
+            {{- if eq .Values.simulation "HECRandomnessSimulation" }}
+            - name: RANDOMNESS
+              value: {{ default "3" .Values.simulationOptions.hecRandomnessSimulation.randomness | quote }}
+            - name: PERF_BULK_SIZE
+              value: {{ default "100" .Values.simulationOptions.hecRandomnessSimulation.bulkSize | quote }}
+            - name: PERF_DATASPACES
+              value: {{ default "1" .Values.simulationOptions.hecRandomnessSimulation.dataspaces | quote }}
+            - name: PERF_EVENT_SIZE
+              value: {{ default "500" .Values.simulationOptions.hecRandomnessSimulation.eventSize | quote }}
+            - name: PERF_DATASOURCES
+              value: {{ default "20" .Values.simulationOptions.hecRandomnessSimulation.datasources | quote }}
+            - name: PERF_FIELDS
+              value: {{ default "10" .Values.simulationOptions.hecRandomnessSimulation.fields | quote }}
+            - name: PERF_USERS
+              value: {{ default "3" .Values.simulationOptions.hecRandomnessSimulation.users | quote }}
+            {{- end }}
             {{- if eq .Values.simulation "FilebeatSimulation" }}
             - name: PERF_BULK_SIZE
               value: {{ default "100" .Values.simulationOptions.filebeatSimulation.bulkSize | quote }}

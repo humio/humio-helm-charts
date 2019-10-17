@@ -15,6 +15,14 @@ simulationOptions:
     datasources: 20
     fields: 10
     users: 3
+  hecRandomnessSimulation:
+    randomness: 3
+    bulkSize: 100
+    dataspaces: 1
+    eventSize: 500
+    datasources: 20
+    fields: 10
+    users: 3
   filebeatSimulation:
     bulkSize: 100
     dataspaces: 1
