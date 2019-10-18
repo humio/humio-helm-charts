@@ -48,7 +48,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- if .Values.baseUrl -}}
 {{- .Values.baseUrl -}}
 {{- else -}}
-{{- if eq .Values.simulation "HECSimulation" -}}
+{{- if or (eq .Values.simulation "HECSimulation") (eq .Values.simulation "HECRandomnessSimulation") -}}
 {{- printf "http://%s-humio-core-headless:8080/api/v1/ingest/hec" .Release.Name -}}
 {{- else -}}
 {{- printf "http://%s-humio-core-headless:8080/api/v1/ingest/elastic-bulk" .Release.Name -}}
