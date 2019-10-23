@@ -51,6 +51,11 @@ spec:
       containers:
       - name: {{ .Release.Name }}
         image: {{ default "fluent/fluent-bit:1.2.2" .Values.image }}
+        command: ["/fluent-bit/bin/fluent-bit", "-c", "/fluent-bit/etc/fluent-bit.conf", "-H"]
+        livenessProbe:
+          httpGet:
+            path: /api/v1/metrics
+            port: 2020
         imagePullPolicy: {{ default "Always" .Values.imagePullPolicy }}
         ports:
           - containerPort: 2020
