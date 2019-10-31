@@ -8,7 +8,7 @@ humio-core:
       servers: 3
     cp-kafka:
       brokers: 3
-      authenticationMethod: oauth
+  authenticationMethod: oauth
   oauthConfig:
     autoCreateUserOnSuccessfulLogin: true
     publicUrl: https://my-cluster.example.com/
