@@ -165,6 +165,13 @@ spec:
             - name: AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN
               value: {{ .Values.samlConfig.autoCreateUserOnSuccessfulLogin | quote }}
             {{- end }}
+            {{- if .Values.github.enabled }}
+            - name: GITHUB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: github
+                  key: credentials
+            {{- end }}
             {{- if eq .Values.authenticationMethod "oauth" }}
             - name: PUBLIC_URL
               value: {{ .Values.oauthConfig.publicUrl | quote }}
