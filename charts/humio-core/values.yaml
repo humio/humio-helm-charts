@@ -67,6 +67,7 @@ cache:
   localVolume:
     name: local-storage
     enabled: false
+    createStorageClass: false
     hostPath: /mnt/disks
     storage:
       size: 350Gi
