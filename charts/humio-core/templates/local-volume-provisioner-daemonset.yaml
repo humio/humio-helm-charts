@@ -1,4 +1,4 @@
-{{- if and (or .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "local")) .Values.cache.localVolume.createStorageClass -}}
+{{- if and (or .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "local")) .Values.cache.localVolume.enableLocalVolumeProvisioner -}}
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
