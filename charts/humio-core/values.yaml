@@ -14,6 +14,10 @@ samlConfig:
   idpEntityId: ""
   autoCreateUserOnSuccessfulLogin: true
 
+oauthConfig:
+  publicUrl: ""
+  autoCreateUserOnSuccessfulLogin: true
+
 initImage: humio/strix:latest
 initImagePullPolicy: Always
 
@@ -63,6 +67,7 @@ cache:
   localVolume:
     name: local-storage
     enabled: false
+    enableLocalVolumeProvisioner: true
     hostPath: /mnt/disks
     storage:
       size: 350Gi

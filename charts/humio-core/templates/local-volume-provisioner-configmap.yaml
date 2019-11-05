@@ -1,4 +1,4 @@
-{{- if or .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "local") -}}
+{{- if and (or .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "local")) .Values.cache.localVolume.enableLocalVolumeProvisioner -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:

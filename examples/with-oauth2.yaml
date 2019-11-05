@@ -1,0 +1,22 @@
+---
+humio-core:
+  enabled: true
+  replicas: 3
+  imagePullSecrets: []
+  cp-helm-charts:
+    cp-zookeeper:
+      servers: 3
+    cp-kafka:
+      brokers: 3
+  authenticationMethod: oauth
+  oauthConfig:
+    autoCreateUserOnSuccessfulLogin: true
+    publicUrl: https://my-cluster.example.com/
+  env:
+    - name: GOOGLE_OAUTH_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: humio-google-oauth-secret
+          key: supersecretkey
+    - name: GOOGLE_OAUTH_CLIENT_ID
+      value: YOURCLIENTID
