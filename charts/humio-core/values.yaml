@@ -78,6 +78,7 @@ primaryStorage:
   # use "localVolume" to define settings of the local storage.
   type: remote
   mountPath: /data/humio-data
+  logsMountPath: /data/logs
 
 secondaryStorage:
   type: remote

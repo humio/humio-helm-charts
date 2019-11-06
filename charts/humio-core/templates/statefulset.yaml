@@ -80,11 +80,18 @@ spec:
             successThreshold: 1
             failureThreshold: 10
           volumeMounts:
-          - mountPath: {{ .Values.primaryStorage.mountPath }}
         {{- if eq .Values.primaryStorage.type "remote" }}
+          - mountPath: {{ .Values.primaryStorage.mountPath }}
             name: humio-data-vol
+          - mountPath: {{ .Values.primaryStorage.logsMountPath }}
+            name: humio-data-vol
+            subPath: logs
         {{- else if eq .Values.primaryStorage.type "local" }}
+          - mountPath: {{ .Values.primaryStorage.mountPath }}
             name: local-primary-vol
+          - mountPath: {{ .Values.primaryStorage.logsMountPath }}
+            name: humio-primary-vol
+            subPath: logs
         {{- end }}
         {{- if and .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "remote") }}
           - name: local-vol
