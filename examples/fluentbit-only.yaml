@@ -14,6 +14,17 @@ humio-fluentbit:
     someconfig.conf: |-
       [Some]
       configuration
+  # Example of custom memory buffer
+  defaulInputSettings:
+    memBufferLimit: 256MB
+  # Example of custom resources
+  resources:
+    limits:
+      cpu: 2
+      memory: 1024Mi
+    requests:
+      cpu: 1
+      memory: 512Mi
 
 global:
   sharedTokens:

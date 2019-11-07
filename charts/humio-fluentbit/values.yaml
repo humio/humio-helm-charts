@@ -9,6 +9,9 @@ es:
 nameOverride: ""
 fullnameOverride: ""
 
+defaulInputSettings:
+  memBufferLimit: 5MB
+
 resources:
   limits:
     cpu: 100m
