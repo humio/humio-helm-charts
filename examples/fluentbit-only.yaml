@@ -4,6 +4,7 @@ humio-core:
 
 humio-fluentbit:
   enabled: true
+  humioRepoName: myRepoName
   humioHostname: HUMIO_HOSTNAME
   es:
     tls: true # TLS On. Set to false to turn it off.
