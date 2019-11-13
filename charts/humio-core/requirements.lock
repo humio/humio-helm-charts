@@ -1,6 +1,6 @@
 dependencies:
 - name: cp-helm-charts
   repository: https://humio.github.io/cp-helm-charts
-  version: 0.3.1
-digest: sha256:37090a02906adb09eb02bd79e6404523681405661b1ec6e8516cb818b85af468
-generated: "2019-09-30T14:54:36.395322-07:00"
+  version: 0.3.2
+digest: sha256:6e4ec44a890ad975e4a00ac1d3d22b57ae7c5e7dc895451b2f99be3ca232143a
+generated: "2019-11-13T08:29:43.312253-08:00"
