@@ -27,7 +27,8 @@ spec:
       serviceAccountName: {{ .Release.Name }}-strix
       initContainers:
         - name: wait-for-humio
-          image: humio/strix
+          image: {{ default "humio/strix" .Values.strixImage }}
+          imagePullPolicy: {{ default "Always" .Values.strixImagePullPolicy }}
           command:
           - kubectl
           - wait
@@ -41,7 +42,8 @@ spec:
       {{- if .Values.global.sharedTokens.perf }}
       initContainers:
         - name: wait-for-shared-tokens
-          image: humio/strix
+          image: {{ default "humio/strix" .Values.strixImage }}
+          imagePullPolicy: {{ default "Always" .Values.strixImagePullPolicy }}
           command:
           - kubectl
           - wait
