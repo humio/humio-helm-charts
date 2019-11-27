@@ -47,8 +47,8 @@ spec:
           - "--timeout=1500s"
       containers:
         - name: humio-init
-          image: "{{ .Values.strixImage }}"
-          imagePullPolicy: {{ .Values.strixImagePullPolicy }}
+          image: "{{ .Values.initImage }}"
+          imagePullPolicy: {{ .Values.initImagePullPolicy }}
           command: ["/humio-init.sh"]
           env:
             - name: HUMIO_TOKEN
