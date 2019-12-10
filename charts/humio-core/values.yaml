@@ -18,6 +18,9 @@ oauthConfig:
   publicUrl: ""
   autoCreateUserOnSuccessfulLogin: true
 
+strixImage: humio/strix:latest
+strixImagePullPolicy: Always
+
 initImage: humio/strix:latest
 initImagePullPolicy: Always
 

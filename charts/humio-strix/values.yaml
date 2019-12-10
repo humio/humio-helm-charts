@@ -41,6 +41,12 @@ perfTime: ""
 image: humio/humio-ingest-load-test:latest
 imagePullPolicy: Always
 
+strixImage: humio/strix
+strixImagePullPolicy: Always
+
+initImage: humio/strix:latest
+initImagePullPolicy: Always
+
 nameOverride: "strix"
 fullnameOverride: "strix"
 

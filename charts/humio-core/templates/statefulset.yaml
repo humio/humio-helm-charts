@@ -37,7 +37,8 @@ spec:
       {{- if eq .Values.external.kafkaBrokers "" }}
       initContainers:
         - name: wait-for-kafka
-          image: humio/strix
+          image: "{{ default "humio/strix" .Values.strixImage }}"
+          imagePullPolicy: {{ .Values.strixImagePullPolicy }}
           command:
           - kubectl
           - wait

@@ -1,4 +1,8 @@
+image: fluent/fluent-bit:1.2.2
 imagePullPolicy: Always
+
+strixImage: humio/strix:latest
+strixImagePullPolicy: Always
 
 es:
   port: 9200

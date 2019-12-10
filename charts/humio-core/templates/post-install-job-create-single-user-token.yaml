@@ -22,7 +22,8 @@ spec:
       serviceAccountName: {{ .Release.Name }}-post-install
       initContainers:
         - name: wait-for-humio
-          image: humio/strix
+          image: "{{ default "humio/strix" .Values.strixImage }}"
+          imagePullPolicy: {{ .Values.strixImagePullPolicy }}
           command:
           - kubectl
           - wait
@@ -33,7 +34,7 @@ spec:
           - "--timeout=1500s"
       containers:
         - name: humio-init
-          image: "{{ .Values.initImage }}"
+          image: "{{ default "humio/strix" .Values.initImage }}"
           imagePullPolicy: {{ .Values.initImagePullPolicy }}
           command: ["/humio-store-developer-token.sh"]
           env:
