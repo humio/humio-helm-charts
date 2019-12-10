@@ -91,7 +91,7 @@ spec:
           - mountPath: {{ .Values.primaryStorage.mountPath }}
             name: local-primary-vol
           - mountPath: {{ .Values.primaryStorage.logsMountPath }}
-            name: humio-primary-vol
+            name: local-primary-vol
             subPath: logs
         {{- end }}
         {{- if and .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "remote") }}
