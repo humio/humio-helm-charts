@@ -1,5 +1,4 @@
 ---
-
 # Humio Defaults
 replicas: 3
 image: humio/humio-core:1.7.0
@@ -39,6 +38,10 @@ defaultUserInputRegexEngine: HUMIO
 nameOverride: ""
 fullnameOverride: ""
 
+# Cluster identify type can be either host or zookeeper. Setting host will start up the pod using BOOTSTRAP_HOST_ID, while setting zookeeper will start up the pod using ZOOKEEPER_PREFIX_FOR_NODE_UUID.
+clusterIdentity:
+  type: host
+
 external:
   kafkaBrokers: ""
   zookeeperServers: ""
@@ -77,8 +80,9 @@ cache:
 
 # Warning: cannot use pimaryStorage.type == local along with cache.localVolume.enabled == true.
 primaryStorage:
-  # Type can be "remote" or "local". If "remote", then use "storageClass" to define settings of the remote storage. If local,
-  # use "localVolume" to define settings of the local storage.
+  # Type can be "remote", "local" or "hostPath". If "remote", then use "storageClass" to define settings of the remote
+  # storage. If local, use "localVolume" to define settings of the local storage. This will also create local persistent
+  # volumes. If hostPath, define the hostPath as per the Kubernetes spec for hostPath.
   type: remote
   mountPath: /data/humio-data
   logsMountPath: /data/logs
@@ -121,6 +125,8 @@ readinessProbe: {}
 storageVolume: {}
 # storageClassName: custom-storage-class-name
 storageClass: {}
+# Follow https://kubernetes.io/docs/concepts/storage/volumes/#hostpath for defining hostPath.
+hostPath: {}
 
 # Dependencies
 cp-helm-charts:
