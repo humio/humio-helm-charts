@@ -52,6 +52,7 @@ service:
   http_port: 8080
   es_type: ClusterIP
   es_port: 9200
+  es_lb_enabled: true
 
 resources:
   limits:
