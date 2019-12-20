@@ -2,7 +2,7 @@
 
 # Humio Defaults
 replicas: 3
-image: humio/humio-core:1.5.22
+image: humio/humio-core:1.7.0
 
 # Warning: changing this from single-user or saml mode will disable authentication. If set to "saml", use the samlConfig
 # to set the saml configuration.
@@ -65,6 +65,7 @@ jvm:
   xss: 2m
   xms: 256m
   xmx: 1536m
+  maxDirectMemorySize: ""
 
 cache:
   localVolume:
