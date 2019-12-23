@@ -13,7 +13,7 @@ es:
 nameOverride: ""
 fullnameOverride: ""
 
-defaulInputSettings:
+defaultInputSettings:
   memBufferLimit: 5MB
 
 resources:

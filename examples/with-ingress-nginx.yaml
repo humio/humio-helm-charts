@@ -1,0 +1,155 @@
+---
+humio-core:
+  enabled: true
+  replicas: 3
+  cp-helm-charts:
+    cp-zookeeper:
+      servers: 3
+    cp-kafka:
+      brokers: 3
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: true
+    config:
+      - name: ingest-es
+        annotations:
+          certmanager.k8s.io/acme-challenge-type: http01
+          certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+          kubernetes.io/ingress.class: nginx
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/proxy-body-size: "512m"
+          nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "90"
+          nginx.ingress.kubernetes.io/use-regex: "true"
+          # We need to specify upstream-hash-by settings for all ingress objects due to a bug.
+          # https://github.com/kubernetes/ingress-nginx/issues/3891
+          nginx.ingress.kubernetes.io/upstream-hash-by: "$hashkey"
+          nginx.ingress.kubernetes.io/upstream-hash-by-subset: "false"
+        rules:
+          - host: my-cluster-es.example.com
+            http:
+              paths:
+                - path: /
+                  backend:
+                    serviceName: humio-humio-core-es
+                    servicePort: 9200
+        tls:
+          - secretName: my-cluster-es-crt
+            hosts:
+              - my-cluster-es.example.com
+      - name: streaming-query
+        annotations:
+          certmanager.k8s.io/acme-challenge-type: http01
+          certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+          kubernetes.io/ingress.class: nginx
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/proxy-body-size: "512m"
+          nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "4h"
+          nginx.ingress.kubernetes.io/use-regex: "true"
+          # Disable buffering of responses from the proxied server. We do this because we seem to hit the default max temp file size for certain streaming queries.
+          # For more information check out these links:
+          # https://stackoverflow.com/questions/33522615/curl-transfer-closed-with-outstanding-read-data-remaining
+          # http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_max_temp_file_size
+          nginx.ingress.kubernetes.io/proxy-buffering: "off"
+          # We need to specify upstream-hash-by settings for all ingress objects due to a bug.
+          # https://github.com/kubernetes/ingress-nginx/issues/3891
+          nginx.ingress.kubernetes.io/upstream-hash-by: "$hashkey"
+          nginx.ingress.kubernetes.io/upstream-hash-by-subset: "false"
+        hosts:
+          - host: my-cluster.example.com
+            paths:
+              - "/api/v./(dataspaces|repositories)/[^/]+/query$"
+        tls:
+          - secretName: my-cluster-crt
+            hosts:
+              - "my-cluster.example.com"
+      - name: ingest
+        annotations:
+          certmanager.k8s.io/acme-challenge-type: http01
+          certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+          kubernetes.io/ingress.class: nginx
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/proxy-body-size: "512m"
+          nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "90"
+          nginx.ingress.kubernetes.io/use-regex: "true"
+          # We need to specify upstream-hash-by settings for all ingress objects due to a bug.
+          # https://github.com/kubernetes/ingress-nginx/issues/3891
+          nginx.ingress.kubernetes.io/upstream-hash-by: "$hashkey"
+          nginx.ingress.kubernetes.io/upstream-hash-by-subset: "false"
+        hosts:
+          - host: my-cluster.example.com
+            paths:
+              - /api/v./(dataspaces|repositories)/[^/]+/(ingest|logplex)
+              - /api/v1/ingest
+              - /_bulk
+        tls:
+          - secretName: my-cluster-crt
+            hosts:
+              - my-cluster.example.com
+      - name: general
+        annotations:
+          certmanager.k8s.io/acme-challenge-type: http01
+          certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+          kubernetes.io/ingress.class: nginx
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/proxy-body-size: "512m"
+          nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "25"
+          nginx.ingress.kubernetes.io/server-snippet: |
+            set $hashkey $remote_addr;
+            if ($request_uri ~ "/api/v1/(dataspaces|repositories)/([^/]+)/" ) {
+              set $hashkey $2;
+            }
+            if ($http_humio_query_session ~ .) {
+              set $hashkey $http_humio_query_session;
+            }
+          # We need to specify upstream-hash-by settings for all ingress objects due to a bug.
+          # https://github.com/kubernetes/ingress-nginx/issues/3891
+          nginx.ingress.kubernetes.io/upstream-hash-by: "$hashkey"
+          nginx.ingress.kubernetes.io/upstream-hash-by-subset: "false"
+        hosts:
+          - host: my-cluster.example.com
+            paths:
+              - /
+        tls:
+          - secretName: my-cluster-crt
+            hosts:
+              - my-cluster.example.com
+
+humio-fluentbit:
+  enabled: true
+  humioHostname: HUMIO_HOSTNAME
+  es:
+    tls: true # TLS On. Set to false to turn it off.
+    tls_verify: true # TLS verify On. Set to false to turn it off.
+    autodiscovery: false
+  # Example of custom memory buffer
+  defaultInputSettings:
+    memBufferLimit: 256MB
+  # Example of custom resources
+  resources:
+    limits:
+      cpu: 2
+      memory: 1024Mi
+    requests:
+      cpu: 1
+      memory: 512Mi
+
+humio-metrics:
+  enabled: true
+  humioHostname: HUMIO_HOSTNAME
+  es:
+    tls: true # TLS On. Set to false to turn it off.
+    autodiscovery: false
+
+global:
+  sharedTokens:
+    fluentbit: {kubernetes: in-cluster}
+    metricbeat: {kubernetes: in-cluster}

@@ -48,9 +48,9 @@ spec:
         - name: ELASTICSEARCH_HOST
       {{- if .Values.es.autodiscovery }}
         {{- if .Values.es.tls}}
-          value: "https://{{ .Release.Name }}-humio-core-es-lb.{{ .Release.Namespace }}"
+          value: "https://{{ .Release.Name }}-humio-core-es.{{ .Release.Namespace }}"
         {{- else }}
-          value: "{{ .Release.Name }}-humio-core-es-lb.{{ .Release.Namespace }}"
+          value: "{{ .Release.Name }}-humio-core-es.{{ .Release.Namespace }}"
         {{- end }}
       {{- else }}
         {{- if .Values.es.tls}}

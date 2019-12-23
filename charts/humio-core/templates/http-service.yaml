@@ -7,10 +7,6 @@ metadata:
     chart: {{ template "humio-core.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    # app.kubernetes.io/name: {{ include "humio-core.name" . }}
-    # helm.sh/chart: {{ include "humio-core.chart" . }}
-    # app.kubernetes.io/instance: {{ .Release.Name }}
-    # app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
   ports:

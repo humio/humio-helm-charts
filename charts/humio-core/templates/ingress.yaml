@@ -1,21 +1,22 @@
 {{- if .Values.ingress.enabled -}}
+{{- range .Values.ingress.config -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: "{{ include "humio-core.fullname" . }}"
+  name: "{{ include "humio-core.fullname" $ }}-{{ .name }}"
   labels:
-    app: {{ template "humio-core.name" . }}
-    chart: {{ template "humio-core.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-  {{- with .Values.ingress.annotations }}
+    app: {{ template "humio-core.name" $ }}
+    chart: {{ template "humio-core.chart" $ }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+  {{- with .annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-{{- if .Values.ingress.tls }}
+{{- if .tls }}
   tls:
-  {{- range .Values.ingress.tls }}
+  {{- range .tls }}
     - hosts:
       {{- range .hosts }}
         - {{ . | quote }}
@@ -23,14 +24,14 @@ spec:
       secretName: {{ .secretName }}
   {{- end }}
 {{- end }}
-{{ if .Values.ingress.rules }}
-  {{ with .Values.ingress.rules }}
+{{ if .rules }}
+  {{ with .rules }}
   rules:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 {{- else }}
   rules:
-  {{- range .Values.ingress.hosts }}
+  {{- range .hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
@@ -41,5 +42,7 @@ spec:
               servicePort: 8080
         {{- end }}
   {{- end }}
+{{- end }}
+---
 {{- end -}}
 {{- end -}}
