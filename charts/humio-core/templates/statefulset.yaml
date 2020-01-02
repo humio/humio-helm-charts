@@ -51,7 +51,7 @@ spec:
     {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ default "humio/humio-core:1.6.0" .Values.image }}
+          image: {{ default "humio/humio-core:1.7.0" .Values.image }}
           command: ["/bin/sh"]
           args: ["-c", "export BOOTSTRAP_HOST_ID=$((${POD_NAME##*-} + 1)) && bash /app/humio/run.sh"]
           imagePullPolicy: Always

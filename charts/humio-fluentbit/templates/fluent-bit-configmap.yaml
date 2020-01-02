@@ -20,7 +20,7 @@ data:
         Parser           docker
         Tag              kube.*
         Refresh_Interval 5
-        Mem_Buf_Limit    {{ .Values.defaulInputSettings.memBufferLimit }}
+        Mem_Buf_Limit    {{ .Values.defaultInputSettings.memBufferLimit }}
         Skip_Long_Lines  On
 
   fluent-bit-filter.conf: |-

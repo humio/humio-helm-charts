@@ -9,6 +9,8 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   ports:
+    - port: 9200
+      name: humiointernales
     - port: 8080
       name: humiointernalhttp
     - port: 80

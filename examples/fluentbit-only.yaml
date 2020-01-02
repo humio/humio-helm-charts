@@ -15,7 +15,7 @@ humio-fluentbit:
       [Some]
       configuration
   # Example of custom memory buffer
-  defaulInputSettings:
+  defaultInputSettings:
     memBufferLimit: 256MB
   # Example of custom resources
   resources:

@@ -50,7 +50,6 @@ waitFor:
 service:
   type: LoadBalancer
   http_port: 8080
-  es_type: ClusterIP
   es_port: 9200
 
 resources:
@@ -107,9 +106,7 @@ compression:
 
 ingress:
   enabled: false
-  annotations: {}
-  hosts: []
-  tls: []
+  config: []
 
 # Enables the testing integration with github. If enabled, a secret must be created named "github" with key
 # "credentials" in the format of user:password.

@@ -1,0 +1,6 @@
+dependencies:
+- name: cp-helm-charts
+  repository: https://humio.github.io/cp-helm-charts
+  version: 0.3.2
+digest: sha256:12172c9932e70687fe8d54be7146c72c4f5f6f354e2f4366ec5c3be7574f31d2
+generated: "2020-01-02T09:56:06.231944+01:00"
