@@ -84,15 +84,25 @@ spec:
         {{- if eq .Values.primaryStorage.type "remote" }}
           - mountPath: {{ .Values.primaryStorage.mountPath }}
             name: humio-data-vol
+        {{- if eq .Values.logsStorage.type "primary" }}
           - mountPath: {{ .Values.primaryStorage.logsMountPath }}
             name: humio-data-vol
             subPath: logs
+        {{- else }}
+          - mountPath: {{ .Values.logsStorage.mountPath }}
+            name: humio-logs-vol
+        {{- end }}
         {{- else if eq .Values.primaryStorage.type "local" }}
           - mountPath: {{ .Values.primaryStorage.mountPath }}
             name: local-primary-vol
+        {{- if eq .Values.logsStorage.type "primary" }}
           - mountPath: {{ .Values.primaryStorage.logsMountPath }}
             name: local-primary-vol
             subPath: logs
+        {{- else }}
+          - mountPath: {{ .Values.logsStorage.mountPath }}
+            name: humio-logs-vol
+        {{- end }}
         {{- end }}
         {{- if and .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "remote") }}
           - name: local-vol
@@ -249,4 +259,17 @@ spec:
       resources:
         requests:
           storage: {{ .Values.cache.localVolume.storage.size }}
+{{- end }}
+{{- if eq .Values.logsStorage.type "remote" }}
+  - metadata:
+      name: humio-logs-vol
+    spec:
+      accessModes:
+        - ReadWriteOnce
+    {{- if .Values.logsStorage.storageClassName }}
+      storageClassName: "{{ .Values.logsStorage.storageClassName }}"
+    {{- end }}
+      resources:
+        requests:
+          storage: {{ .Values.logsStorage.size | default "50Gi" }}
 {{- end }}

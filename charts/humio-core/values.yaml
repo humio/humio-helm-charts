@@ -83,6 +83,13 @@ primaryStorage:
   mountPath: /data/humio-data
   logsMountPath: /data/logs
 
+logsStorage:
+  # Type can be "remote" or "primary". If primary, it will use the same storage that the primaryStorage uses.
+  type: primary
+  mountPath: /data/logs
+  size: 50Gi
+  #storageClassName: custom-logs-storage-class
+
 secondaryStorage:
   type: remote
   mountPath: /data/humio-data-secondary
