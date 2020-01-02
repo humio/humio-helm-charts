@@ -33,9 +33,10 @@ spec:
       affinity:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- if .Values.waitFor.kafka.enabled }}
-      {{- if eq .Values.external.kafkaBrokers "" }}
+    {{- if or (and .Values.waitFor.kafka.enabled (eq .Values.external.kafkaBrokers "")) (eq .Values.clusterIdentity.type "zookeeper") }}
       initContainers:
+    {{- end }}
+    {{- if and .Values.waitFor.kafka.enabled (eq .Values.external.kafkaBrokers "") }}
         - name: wait-for-kafka
           image: "{{ default "humio/strix" .Values.strixImage }}"
           imagePullPolicy: {{ .Values.strixImagePullPolicy }}
@@ -47,13 +48,32 @@ spec:
           - "-n"
           - {{ .Release.Namespace }}
           - "--timeout=1500s"
-      {{- end }}
+    {{- end }}
+    {{- if eq .Values.clusterIdentity.type "zookeeper" }}
+        - name: zookeeper-prefix
+          image: "{{ default "humio/strix" .Values.strixImage }}"
+          command:
+          - sh
+          - -c
+          - kubectl get node ${NODE_NAME} -o jsonpath={.metadata.labels."failure-domain\.beta\.kubernetes\.io\/zone"} > /shared/zookeeper-prefix
+          env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          volumeMounts:
+          - name: shared
+            mountPath: /shared
     {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: {{ default "humio/humio-core:1.7.0" .Values.image }}
           command: ["/bin/sh"]
+          {{- if eq .Values.clusterIdentity.type "zookeeper" }}
+          args: ["-c", "export ZOOKEEPER_PREFIX_FOR_NODE_UUID=/humio_$(cat /shared/zookeeper-prefix)_ && bash /app/humio/run.sh"]
+          {{- else }}
           args: ["-c", "export BOOTSTRAP_HOST_ID=$((${POD_NAME##*-} + 1)) && bash /app/humio/run.sh"]
+          {{- end }}
           imagePullPolicy: Always
           ports:
             - name: http
@@ -84,25 +104,36 @@ spec:
         {{- if eq .Values.primaryStorage.type "remote" }}
           - mountPath: {{ .Values.primaryStorage.mountPath }}
             name: humio-data-vol
-        {{- if eq .Values.logsStorage.type "primary" }}
+          {{- if eq .Values.logsStorage.type "primary" }}
           - mountPath: {{ .Values.primaryStorage.logsMountPath }}
             name: humio-data-vol
             subPath: logs
-        {{- else }}
+          {{- else }}
           - mountPath: {{ .Values.logsStorage.mountPath }}
             name: humio-logs-vol
-        {{- end }}
+          {{- end }}
         {{- else if eq .Values.primaryStorage.type "local" }}
           - mountPath: {{ .Values.primaryStorage.mountPath }}
             name: local-primary-vol
-        {{- if eq .Values.logsStorage.type "primary" }}
+          {{- if eq .Values.logsStorage.type "primary" }}
           - mountPath: {{ .Values.primaryStorage.logsMountPath }}
             name: local-primary-vol
             subPath: logs
-        {{- else }}
+          {{- else }}
           - mountPath: {{ .Values.logsStorage.mountPath }}
             name: humio-logs-vol
-        {{- end }}
+          {{- end }}
+        {{- else if eq .Values.primaryStorage.type "hostPath" }}
+          - mountPath: {{ .Values.primaryStorage.mountPath }}
+            name: host-vol
+          {{- if eq .Values.logsStorage.type "primary" }}
+          - mountPath: {{ .Values.primaryStorage.logsMountPath }}
+            name: host-vol
+            subPath: logs
+          {{- else }}
+          - mountPath: {{ .Values.logsStorage.mountPath }}
+            name: humio-logs-vol
+          {{- end }}
         {{- end }}
         {{- if and .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "remote") }}
           - name: local-vol
@@ -111,6 +142,11 @@ spec:
         {{- if eq .Values.authenticationMethod "saml" }}
           - name: idp-cert-volume
             mountPath: /var/lib/humio
+            readOnly: true
+        {{- end }}
+        {{- if eq .Values.clusterIdentity.type "zookeeper" }}
+          - name: shared
+            mountPath: /shared
             readOnly: true
         {{- end }}
           env:
@@ -199,9 +235,11 @@ spec:
             - name: AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN
               value: {{ .Values.oauthConfig.autoCreateUserOnSuccessfulLogin | quote }}
             {{- end }}
-{{- if .Values.env }}
-{{ toYaml .Values.env | indent 12 }}
-{{- end }}
+            {{- if .Values.env }}
+              {{- with .Values.env }}
+                {{- toYaml . | nindent 12 }}
+              {{- end }}
+            {{- end }}
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
@@ -210,11 +248,24 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-    {{- if eq .Values.authenticationMethod "saml" }}
+    {{- if or (eq .Values.authenticationMethod "saml") (eq .Values.primaryStorage.type "hostPath") (eq .Values.clusterIdentity.type "zookeeper") }}
       volumes:
+    {{- end }}
+    {{- if eq .Values.authenticationMethod "saml" }}
       - name: idp-cert-volume
         secret:
           secretName: idp-certificate
+    {{- end }}
+    {{- if eq .Values.primaryStorage.type "hostPath" }}
+      - name: host-vol
+      {{- with .Values.hostPath }}
+        hostPath: {{- toYaml . | nindent 10 }}
+      {{- end }}
+    {{- end }}
+    {{- if eq .Values.clusterIdentity.type "zookeeper" }}
+      - name: shared
+        mountPath: /shared
+        emptyDir: {}
     {{- end }}
     {{- with .Values.affinity }}
       affinity:
