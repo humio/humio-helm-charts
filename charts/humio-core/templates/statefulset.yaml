@@ -183,7 +183,7 @@ spec:
             - name: KAFKA_SERVERS
               value: {{ include "humio-core.kafka.brokers" . | quote }}
             - name: HUMIO_JVM_ARGS
-              value: "-Xss{{ default "2m" .Values.jvm.xss }} -Xms{{ default "256m" .Values.jvm.xms }} -Xmx{{ default "1536m" .Values.jvm.xmx }} -server -XX:+UseParallelOldGC -XX:+ScavengeBeforeFullGC -XX:+DisableExplicitGC
+              value: "-Xss{{ default "2m" .Values.jvm.xss }} -Xms{{ default "256m" .Values.jvm.xms }} -Xmx{{ default "1536m" .Values.jvm.xmx }} -server {{ .Values.jvm.extraArgs }}
               {{- if ne .Values.jvm.maxDirectMemorySize "" -}}
               {{ " -XX:MaxDirectMemorySize=" }}{{ .Values.jvm.maxDirectMemorySize }}
               {{- end -}}"
