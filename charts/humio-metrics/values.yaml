@@ -36,6 +36,11 @@ resources:
     cpu: 100m
     memory: 100Mi
 
+#customMetricbeatDaemonsetModules:
+#  custom.yml: |-
+#customMetricbeatDeploymentModules:
+#  custom.yml: |-
+
 nodeSelector: {}
 tolerations: []
 affinity: {}

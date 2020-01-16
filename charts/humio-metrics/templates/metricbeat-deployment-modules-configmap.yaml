@@ -20,3 +20,6 @@ data:
       period: 10s
       host: ${NODE_NAME}
       hosts: ["{{ .Release.Name }}-kube-state-metrics.{{ default "kube-system" .Release.Namespace }}:8080"]
+{{- with .Values.customMetricbeatDeploymentModules }}
+  {{- toYaml . | nindent 2 }}
+{{- end }}

@@ -57,3 +57,6 @@ data:
       ssl.verification_mode: none
       ssl.certificate_authorities:
         - /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+{{- with .Values.customMetricbeatDaemonsetModules }}
+  {{- toYaml . | nindent 2 }}
+{{- end }}
