@@ -222,6 +222,10 @@ spec:
             - name: AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN
               value: {{ .Values.samlConfig.autoCreateUserOnSuccessfulLogin | quote }}
             {{- end }}
+             {{- if eq .Values.authenticationMethod "byproxy" }}
+            - name: AUTH_BY_PROXY_HEADER_NAME
+              value: {{ .Values.authByProxyConfig.headerName | quote }}
+            {{- end }}
             {{- if .Values.github.enabled }}
             - name: GITHUB_USER
               valueFrom:
