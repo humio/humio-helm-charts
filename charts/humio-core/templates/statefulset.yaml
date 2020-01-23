@@ -19,6 +19,11 @@ spec:
       release: {{ .Release.Name }}
   template:
     metadata:
+      {{- if .Values.prometheus.enabled }}
+      annotations:
+        prometheus.io/port: {{ .Values.prometheus.port | quote }}
+        prometheus.io/scrape: "true"
+      {{- end }}
       labels:
         app: {{ include "humio-core.name" . }}
         release: {{ .Release.Name }}
@@ -238,6 +243,10 @@ spec:
               value: {{ .Values.oauthConfig.publicUrl | quote }}
             - name: AUTO_CREATE_USER_ON_SUCCESSFUL_LOGIN
               value: {{ .Values.oauthConfig.autoCreateUserOnSuccessfulLogin | quote }}
+            {{- end }}
+            {{- if .Values.prometheus.enabled }}
+            - name: PROMETHEUS_METRICS_PORT
+              value: {{ .Values.prometheus.port | quote }}
             {{- end }}
             {{- if .Values.env }}
               {{- with .Values.env }}

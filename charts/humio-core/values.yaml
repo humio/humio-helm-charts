@@ -114,6 +114,10 @@ compression:
   type: fast
   level: 3
 
+prometheus:
+  enabled: false
+  port: 8081
+
 ingress:
   enabled: false
   config: []
