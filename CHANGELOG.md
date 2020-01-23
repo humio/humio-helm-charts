@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.1
+
+# Changed
+
+- 457dce2 Use password field rather than user field for token
+
 ## 0.5.0
 
 # Added
