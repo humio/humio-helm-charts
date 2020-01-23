@@ -130,9 +130,18 @@ humio-fluentbit:
     tls: true # TLS On. Set to false to turn it off.
     tls_verify: true # TLS verify On. Set to false to turn it off.
     autodiscovery: false
-  # Example of custom memory buffer
-  defaultInputSettings:
-    memBufferLimit: 256MB
+
+  # Example of custom input config
+  inputConfig: |-
+    [INPUT]
+        Name             tail
+        Path             /var/log/containers/*.log
+        Parser           docker
+        Tag              kube.*
+        Refresh_Interval 5
+        Mem_Buf_Limit    256MB
+        Skip_Long_Lines  On
+
   # Example of custom resources
   resources:
     limits:
@@ -151,5 +160,5 @@ humio-metrics:
 
 global:
   sharedTokens:
-    fluentbit: {kubernetes: in-cluster}
-    metricbeat: {kubernetes: in-cluster}
+    fluentbit: { kubernetes: in-cluster }
+    metricbeat: { kubernetes: in-cluster }
