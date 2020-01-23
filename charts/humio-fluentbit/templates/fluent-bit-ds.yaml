@@ -83,6 +83,8 @@ spec:
           value: "Off"
           {{- end }}
         {{- if .Values.token }}
+        - name: HUMIO_REPO_NAME
+          value: {{ .Values.humioRepoName | quote }}
         - name: HUMIO_INGEST_TOKEN
           valueFrom:
             secretKeyRef:
