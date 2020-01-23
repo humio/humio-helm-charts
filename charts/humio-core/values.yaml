@@ -3,8 +3,10 @@
 replicas: 3
 image: humio/humio-core:1.7.0
 
-# Warning: changing this from single-user or saml mode will disable authentication. If set to "saml", use the samlConfig
-# to set the saml configuration.
+# Warning: changing this to a unsupported mode will disable authentation.
+# If set to "saml", use the samlConfig to set the saml configuration.
+# If set to "oauth", use the oauthConfig to set the oauth 2.0 configuration.
+# If set to "byproxy", use the authByProxyConfig to set the byproxy configuration.
 authenticationMethod: single-user
 
 samlConfig:
@@ -16,6 +18,9 @@ samlConfig:
 oauthConfig:
   publicUrl: ""
   autoCreateUserOnSuccessfulLogin: true
+
+authByProxyConfig:
+  headerName: ""
 
 strixImage: humio/strix:latest
 strixImagePullPolicy: Always
