@@ -89,7 +89,7 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /api/v1/status
               port: http
             initialDelaySeconds: {{ default 30 .Values.livenessProbe.initialDelaySeconds }}
             timeoutSeconds: 2
@@ -98,7 +98,7 @@ spec:
             failureThreshold: 10
           readinessProbe:
             httpGet:
-              path: /
+              path: /api/v1/status
               port: http
             initialDelaySeconds: {{ default 30 .Values.readinessProbe.initialDelaySeconds }}
             timeoutSeconds: 2
