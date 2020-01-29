@@ -154,6 +154,12 @@ spec:
             mountPath: /shared
             readOnly: true
         {{- end }}
+        {{- if ne .Values.extraKafkaConfigs "" }}
+          - name: extra-kafka-configs
+            mountPath: /var/lib/humio/extra_kafka_properties.properties
+            subPath: extra_kafka_properties.properties
+            readOnly: true
+        {{- end }}
           env:
           {{- if and .Values.cache.localVolume.enabled (eq .Values.primaryStorage.type "remote") }}
             - name: CACHE_STORAGE_DIRECTORY
@@ -185,6 +191,10 @@ spec:
               value: "8080"
             - name: ELASTIC_PORT
               value: "9200"
+          {{- if ne .Values.extraKafkaConfigs "" }}
+            - name: EXTRA_KAFKA_CONFIGS_FILE
+              value: /var/lib/humio/extra_kafka_properties.properties
+          {{- end }}
             - name: KAFKA_SERVERS
               value: {{ include "humio-core.kafka.brokers" . | quote }}
             - name: HUMIO_JVM_ARGS
@@ -261,7 +271,7 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-    {{- if or (eq .Values.authenticationMethod "saml") (eq .Values.primaryStorage.type "hostPath") (eq .Values.clusterIdentity.type "zookeeper") }}
+    {{- if or (eq .Values.authenticationMethod "saml") (eq .Values.primaryStorage.type "hostPath") (eq .Values.clusterIdentity.type "zookeeper") (ne .Values.extraKafkaConfigs "") }}
       volumes:
     {{- end }}
     {{- if eq .Values.authenticationMethod "saml" }}
@@ -279,6 +289,11 @@ spec:
       - name: shared
         mountPath: /shared
         emptyDir: {}
+    {{- end }}
+    {{- if ne .Values.extraKafkaConfigs "" }}
+      - name: extra-kafka-configs
+        configMap:
+          name: extra-kafka-configs
     {{- end }}
     {{- with .Values.affinity }}
       affinity:
