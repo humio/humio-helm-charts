@@ -22,6 +22,8 @@ oauthConfig:
 authByProxyConfig:
   headerName: ""
 
+extraKafkaConfigs: ""
+
 strixImage: humio/strix:latest
 strixImagePullPolicy: Always
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.6.0
+
+# Added
+
+- b399cd5 Allow configuring extra Kafka properties for Humio.
+
+# Changed
+
+- e834ae7 Update nginx example to better loadbalance ingest traffic
+- 0c2ca4a Use status endpoint to determine if Humio is healthy
+
 ## 0.5.1
 
 # Changed

@@ -1,0 +1,16 @@
+{{- if ne .Values.extraKafkaConfigs "" -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: extra-kafka-configs
+  labels:
+    app: {{ template "humio-core.name" . }}
+    chart: {{ template "humio-core.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  extra_kafka_properties.properties: |
+{{- with .Values.extraKafkaConfigs }}
+  {{- . | nindent 4 }}
+{{- end }}
+{{- end -}}
