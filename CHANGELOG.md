@@ -9,7 +9,6 @@
 # Changed
 
 - e834ae7 Update nginx example to better loadbalance ingest traffic
-- bcbd2a9 Stop using LoadBalancer type as default to prevent exposing Humio without TLS unless explicitly configured.
 - 0c2ca4a Use status endpoint to determine if Humio is healthy
 
 ## 0.5.1
