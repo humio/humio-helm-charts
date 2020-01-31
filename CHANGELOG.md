@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.1
+
+# Fixed
+
+- 6895108 Allow metricbeat to access apps/v1/replicasets
+
 ## 0.6.0
 
 # Added
