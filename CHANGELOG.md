@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.7.1
+
+# Fixed
+
+- a776035 Fix bug where fluentbit will not be able to connect to the es endpoint
+
+# Changed
+
+- 53dff9f  Allow metricbeat to reload its configuration at deploy time
+
 ## 0.7.0
 
 # Fixed
