@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.7.0
+
+# Fixed
+
+- 3534adf Fix issue with kafka properties mount when using saml
+
+# Changed
+
+- b62e1f0 Stop using LoadBalancer type as default to prevent exposing Humio without TLS unless explicitly configured.
+
+_Note: before updating, you must delete the services `humio-humio-core-http` and `humio-humio-core-es` as the default
+type has changed from `LoadBalancer` to type `ClusterIP`. If you have defined `service.type` then you don't need to
+change anything._
+
 ## 0.6.1
 
 # Fixed

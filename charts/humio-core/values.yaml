@@ -58,7 +58,7 @@ waitFor:
     enabled: true
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   http_port: 8080
   es_port: 9200
 
