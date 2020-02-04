@@ -146,7 +146,8 @@ spec:
         {{- end }}
         {{- if eq .Values.authenticationMethod "saml" }}
           - name: idp-cert-volume
-            mountPath: /var/lib/humio
+            mountPath: /var/lib/humio/idp-certificate
+            subPath: idp-certificate
             readOnly: true
         {{- end }}
         {{- if eq .Values.clusterIdentity.type "zookeeper" }}
