@@ -288,7 +288,6 @@ spec:
     {{- end }}
     {{- if eq .Values.clusterIdentity.type "zookeeper" }}
       - name: shared
-        mountPath: /shared
         emptyDir: {}
     {{- end }}
     {{- if ne .Values.extraKafkaConfigs "" }}
