@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.2
+
+# Fixed
+
+- a31fd49 Bugfix: mountPath doesn't belong on a volume
+
 ## 0.7.1
 
 # Fixed
@@ -8,7 +14,7 @@
 
 # Changed
 
-- 53dff9f  Allow metricbeat to reload its configuration at deploy time
+- 53dff9f Allow metricbeat to reload its configuration at deploy time
 
 ## 0.7.0
 
