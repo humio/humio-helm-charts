@@ -12,10 +12,10 @@ helm repo add humio https://humio.github.io/humio-helm-charts
 helm repo update
 ```
 
-And then install.
+And then install. We recommend installing Humio into its own namespace, in this example we're using the "logging" namespace:
 
 ```
-helm install humio humio/humio-helm-charts 
+helm install humio/humio-helm-charts --name humio --namespace logging
 ```
 
 ### Logging in
