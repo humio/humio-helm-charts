@@ -1,6 +1,6 @@
 # Humio Helm Charts
 
-This repo contains the Helm charts for running Humio on Kubernetes.
+This repo contains the Helm charts for running Humio on Kubernetes. This helm chart is written for helm2. 
 
 ## Installing
 
