@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.0
+
+# Fixed
+
+- ab4ad70 Support newer Kubernetes api versions
+
 ## 0.7.2
 
 # Fixed
