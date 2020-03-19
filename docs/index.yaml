@@ -3,7 +3,50 @@ entries:
   humio-helm-charts:
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.373203+01:00"
+    created: "2020-03-18T15:54:04.571721-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
+    description: A Helm chart for Humio Components
+    digest: 0ed076f39c0bc719d383992c39316dac51b79545eb8ef03cea7dfeee0b3e965d
+    name: humio-helm-charts
+    urls:
+    - humio-helm-charts-0.8.0.tgz
+    version: 0.8.0
+  - apiVersion: v1
+    appVersion: "1.1"
+    created: "2020-03-18T15:54:04.564079-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 5ed6a9ccea796800dc6e0c18a095a84574651f7c0f8bae64c4817ccbc40ad203
     name: humio-helm-charts
@@ -12,7 +55,24 @@ entries:
     version: 0.7.2
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.369912+01:00"
+    created: "2020-03-18T15:54:04.554383-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: c09464ef9edca842bf512d001e3e14178e002dabb82087a8498fa0afa83f7b22
     name: humio-helm-charts
@@ -21,7 +81,24 @@ entries:
     version: 0.7.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.366027+01:00"
+    created: "2020-03-18T15:54:04.545979-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: cb2594ea8d48dbb80b81b7922667561f6c14baee66cabe57b93885b50901aa1b
     name: humio-helm-charts
@@ -30,7 +107,24 @@ entries:
     version: 0.7.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.36264+01:00"
+    created: "2020-03-18T15:54:04.53735-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 852e93378739811389d9c2338d2fbfe404d8a883bc9eb4c58fdedcc3a5830b97
     name: humio-helm-charts
@@ -39,7 +133,24 @@ entries:
     version: 0.6.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.358106+01:00"
+    created: "2020-03-18T15:54:04.528985-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: a50ba469df2568906cf9db78a19593f2bc2d74507ef3321db1fd891591e2f533
     name: humio-helm-charts
@@ -48,7 +159,24 @@ entries:
     version: 0.6.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.354505+01:00"
+    created: "2020-03-18T15:54:04.518983-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 63fecab3889796bdc50325f2da1301c66d13209b0fe7b2b252613997fab74223
     name: humio-helm-charts
@@ -57,7 +185,24 @@ entries:
     version: 0.5.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.350183+01:00"
+    created: "2020-03-18T15:54:04.508404-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 5065f0f874bca397ce79df3ae59066a0c947fe5b55affb7b6d0a00589f431f44
     name: humio-helm-charts
@@ -66,7 +211,24 @@ entries:
     version: 0.5.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.345515+01:00"
+    created: "2020-03-18T15:54:04.496579-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 27b35ffda09945fedd7e079284876cb551c0fee6e35ff2946110696fa7d19019
     name: humio-helm-charts
@@ -75,7 +237,24 @@ entries:
     version: 0.4.3
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.341577+01:00"
+    created: "2020-03-18T15:54:04.487757-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: b7e09dec6a393af2d6d8754abada7717c3497405b230e8b7e1f496e63d4c75d6
     name: humio-helm-charts
@@ -84,7 +263,24 @@ entries:
     version: 0.4.2
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.337692+01:00"
+    created: "2020-03-18T15:54:04.47889-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 525eea38d1c508af87341f2fcf3176ed8bc7922afc97ca35d65c11467a8fe3f2
     name: humio-helm-charts
@@ -93,7 +289,24 @@ entries:
     version: 0.4.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.334262+01:00"
+    created: "2020-03-18T15:54:04.469236-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 84e7a140d253a1f336b9659cce6a2dcbf4218233608be19301743977b2e12de1
     name: humio-helm-charts
@@ -102,7 +315,24 @@ entries:
     version: 0.4.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.330305+01:00"
+    created: "2020-03-18T15:54:04.457983-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 3562c4200c2b99e911ddce6829df713797e5e9223648f12b6c7bc4bd5dca5a9e
     name: humio-helm-charts
@@ -111,7 +341,24 @@ entries:
     version: 0.3.2
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.326838+01:00"
+    created: "2020-03-18T15:54:04.449727-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 32a57a956e893998337d2a67375a3384b012908d61025cf854cf15d592bdd4a2
     name: humio-helm-charts
@@ -120,7 +367,24 @@ entries:
     version: 0.3.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.32239+01:00"
+    created: "2020-03-18T15:54:04.440564-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 2b5869bcd4f73b07e0b0f61b96787d256b8795e9151201360e55415dda4cd82b
     name: humio-helm-charts
@@ -129,7 +393,24 @@ entries:
     version: 0.3.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.289287+01:00"
+    created: "2020-03-18T15:54:04.358384-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 936afa48fac06fd69f39b73a850761f48fb4f136448025bfcd127aa5720cf19b
     name: humio-helm-charts
@@ -138,7 +419,24 @@ entries:
     version: 0.2.13
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.285994+01:00"
+    created: "2020-03-18T15:54:04.348947-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: f429dfe4d3ca6378c3e633c9dfaa5d0893c0e36c93bee92bc5c117bdfdbfc71e
     name: humio-helm-charts
@@ -147,7 +445,24 @@ entries:
     version: 0.2.12
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.282253+01:00"
+    created: "2020-03-18T15:54:04.340397-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 1cd8bad37597fdea75cdb682306084de34c50826e0af46d20aaa42fad7106677
     name: humio-helm-charts
@@ -156,7 +471,24 @@ entries:
     version: 0.2.11
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.278928+01:00"
+    created: "2020-03-18T15:54:04.331514-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: e098df294eca623fedf6749bb9213c1f0cc94fb77d3e7a1ddfa20c21f62e4710
     name: humio-helm-charts
@@ -165,7 +497,24 @@ entries:
     version: 0.2.10
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.318521+01:00"
+    created: "2020-03-18T15:54:04.431587-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 5dda13b8abc2407fc31a1c9f1b0cc5914d175f154aa9446c107d902bf7fc6a35
     name: humio-helm-charts
@@ -174,7 +523,24 @@ entries:
     version: 0.2.9
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.315115+01:00"
+    created: "2020-03-18T15:54:04.422469-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 68b66828cd8a8d52790b9f0bbc3799111ef45fe1c83039f7a48c73c94fd9a507
     name: humio-helm-charts
@@ -183,7 +549,24 @@ entries:
     version: 0.2.8
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.311337+01:00"
+    created: "2020-03-18T15:54:04.412624-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 5a82325b7c092e12d37e87c2136bea2a359fc23661a801b347598329bc9915cc
     name: humio-helm-charts
@@ -192,7 +575,24 @@ entries:
     version: 0.2.7
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.30713+01:00"
+    created: "2020-03-18T15:54:04.40446-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 7adce9672a3f798822c71b790ff60edde3464ec620ed57c9f74035a21a1c4cc0
     name: humio-helm-charts
@@ -201,7 +601,24 @@ entries:
     version: 0.2.6
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.303332+01:00"
+    created: "2020-03-18T15:54:04.394966-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: f6db7201e3df2751dc21b55be4f4c067f619c5cefc688f4824b88bcd515514e1
     name: humio-helm-charts
@@ -210,7 +627,24 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.300112+01:00"
+    created: "2020-03-18T15:54:04.385492-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 904bdf49d1fdf70821d36342261ee5921dec6b8b741daa1f379a555ef935e792
     name: humio-helm-charts
@@ -219,7 +653,24 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.296338+01:00"
+    created: "2020-03-18T15:54:04.376476-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: d1310068e11e1f4509328aaeca27cb064816d06079642b4821dc711afcf6914b
     name: humio-helm-charts
@@ -228,7 +679,24 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.293015+01:00"
+    created: "2020-03-18T15:54:04.368243-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 3d5f5432c99beaac043331b8fe1810a096003040cf99c30f5a99c47b8cf86388
     name: humio-helm-charts
@@ -237,7 +705,24 @@ entries:
     version: 0.2.2
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.274982+01:00"
+    created: "2020-03-18T15:54:04.323137-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: f516ea3b7d34a9a4c83e164e1b0a6523a1a24cb3674fdf5d368441fe8085c7fd
     name: humio-helm-charts
@@ -246,7 +731,24 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.271549+01:00"
+    created: "2020-03-18T15:54:04.312302-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 69d45723bd4df10fbb65b27f9650ab7fe8a021cd9dc11a8c27a31c09a42c3d9d
     name: humio-helm-charts
@@ -255,7 +757,24 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.245149+01:00"
+    created: "2020-03-18T15:54:04.249171-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 04ce82848998e049f62a7829f48dabfe37c805748ee1f934391a03421909cb16
     name: humio-helm-charts
@@ -264,7 +783,24 @@ entries:
     version: 0.1.41
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.241497+01:00"
+    created: "2020-03-18T15:54:04.241983-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: a04587f03a7f61ef4d51ff415e7d349f37d368834ce107af45c1933be4a26ad2
     name: humio-helm-charts
@@ -273,7 +809,24 @@ entries:
     version: 0.1.40
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.236152+01:00"
+    created: "2020-03-18T15:54:04.227548-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 6516d3cfa3f729911459728f64aa878087b651c516f57247c71e568db99e4d7d
     name: humio-helm-charts
@@ -282,7 +835,24 @@ entries:
     version: 0.1.39
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.232327+01:00"
+    created: "2020-03-18T15:54:04.220006-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 2cd2e35c2206f0a9ed491fd0afc116dbb0ea3eef5dee50e4680a7e256eeec041
     name: humio-helm-charts
@@ -291,7 +861,24 @@ entries:
     version: 0.1.38
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.229298+01:00"
+    created: "2020-03-18T15:54:04.209889-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 148ced332fa938a1106233b833480d28ea3165c70c0688f36af54783c307f4ce
     name: humio-helm-charts
@@ -300,7 +887,24 @@ entries:
     version: 0.1.37
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.22574+01:00"
+    created: "2020-03-18T15:54:04.202606-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: dde5f20c9a369a8175962ca6f6885927df46198e2fce253c730038541b90911d
     name: humio-helm-charts
@@ -309,7 +913,24 @@ entries:
     version: 0.1.36
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.222697+01:00"
+    created: "2020-03-18T15:54:04.195176-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 11df8e72f355812d95230ca4368946538e75977e3bf340fdfe07de32c47b2b95
     name: humio-helm-charts
@@ -318,7 +939,24 @@ entries:
     version: 0.1.35
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.218927+01:00"
+    created: "2020-03-18T15:54:04.18783-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 981ec582d3f31b08d39b93e06b24a4b6492526bd3b539c82e461ccbfce911dc1
     name: humio-helm-charts
@@ -327,7 +965,24 @@ entries:
     version: 0.1.34
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.215896+01:00"
+    created: "2020-03-18T15:54:04.178953-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 0bcd8c55478c763c34ee66477a852c4ece046ddd614ab905e316ad169942f3d1
     name: humio-helm-charts
@@ -336,7 +991,24 @@ entries:
     version: 0.1.33
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.212329+01:00"
+    created: "2020-03-18T15:54:04.171406-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: a0ba69d5f4a789fe97fdbc4ffb76ac571ad9d557265e91f25d96e90b78bebe21
     name: humio-helm-charts
@@ -345,7 +1017,24 @@ entries:
     version: 0.1.32
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.20927+01:00"
+    created: "2020-03-18T15:54:04.164013-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 997e62cea28675406d6b25ebd79e8e9dcaf0e8941b43465a7079096c3e2c9eb2
     name: humio-helm-charts
@@ -354,7 +1043,24 @@ entries:
     version: 0.1.31
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.205676+01:00"
+    created: "2020-03-18T15:54:04.15761-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 9b7a06dffa69f3c24082d43c8f488144a2f489da358b2e190531e70ffb5002c5
     name: humio-helm-charts
@@ -363,7 +1069,24 @@ entries:
     version: 0.1.30
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.202652+01:00"
+    created: "2020-03-18T15:54:04.150103-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: bcb911e18c14c2c1d818d9ec559860da2a63b486e390f23439eff3ebbf57aeb4
     name: humio-helm-charts
@@ -372,7 +1095,24 @@ entries:
     version: 0.1.29
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.198998+01:00"
+    created: "2020-03-18T15:54:04.142348-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 6840c374105b8afafd1fef8b5f3d4aa26bc19a17771309f0b6ed26fbe04a43b5
     name: humio-helm-charts
@@ -381,7 +1121,24 @@ entries:
     version: 0.1.28
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.195594+01:00"
+    created: "2020-03-18T15:54:04.135843-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 912403c9e1425f564e401944a8936aacabd9316ec32bb8b9e475d685cf7569ff
     name: humio-helm-charts
@@ -390,7 +1147,24 @@ entries:
     version: 0.1.27
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.19251+01:00"
+    created: "2020-03-18T15:54:04.129219-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 994edce2782fb29af807761d1fe58617f6106847d177b90bc844bcd93eeeee39
     name: humio-helm-charts
@@ -399,7 +1173,24 @@ entries:
     version: 0.1.26
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.189112+01:00"
+    created: "2020-03-18T15:54:04.121092-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 2c7427cc6016c227f8615e483cec45fba9fccdaa9df934bb1519dd435e11d40f
     name: humio-helm-charts
@@ -408,7 +1199,24 @@ entries:
     version: 0.1.25
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.186001+01:00"
+    created: "2020-03-18T15:54:04.113736-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 61c8de0d8a3421bc1c015537831134e9ee57d8004d72eaaa9cc4f3d39c6be3ca
     name: humio-helm-charts
@@ -417,7 +1225,24 @@ entries:
     version: 0.1.24
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.182483+01:00"
+    created: "2020-03-18T15:54:04.10619-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 1dfd1b647ea42f48afb29c1280b7d38762415db0bb2f57ef5a6df94cd51ee8a5
     name: humio-helm-charts
@@ -426,7 +1251,24 @@ entries:
     version: 0.1.23
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.179529+01:00"
+    created: "2020-03-18T15:54:04.099618-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 3c707314303083599e1ba76a8b4050a177fc0d6d34f382164ad6fb542287df98
     name: humio-helm-charts
@@ -435,7 +1277,24 @@ entries:
     version: 0.1.22
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.176089+01:00"
+    created: "2020-03-18T15:54:04.090656-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: fa68054192b499d0c696bc3d9e29fa93f20313028014404fc07057a2d47da554
     name: humio-helm-charts
@@ -444,7 +1303,24 @@ entries:
     version: 0.1.21
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.173187+01:00"
+    created: "2020-03-18T15:54:04.082258-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: e3aa4ad0fcb5846f9e52d7c1082967067574fdece7f0d2304a5df30b0423d376
     name: humio-helm-charts
@@ -453,7 +1329,24 @@ entries:
     version: 0.1.20
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.169751+01:00"
+    created: "2020-03-18T15:54:04.07417-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 825afced1ff0df51879a1efac178558a805d6f5841497ca37d22368951eafa4e
     name: humio-helm-charts
@@ -462,7 +1355,24 @@ entries:
     version: 0.1.19
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.166221+01:00"
+    created: "2020-03-18T15:54:04.067002-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 6569efadb56c107ebd252f608b43b640a373425701cb9f3a3fb7f99e2456f85b
     name: humio-helm-charts
@@ -471,7 +1381,24 @@ entries:
     version: 0.1.18
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.162895+01:00"
+    created: "2020-03-18T15:54:04.058187-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 469e1663d46541f68ad0c87b3d4c261ccd5d4cdd039cd41935d915397fcdb49f
     name: humio-helm-charts
@@ -480,7 +1407,24 @@ entries:
     version: 0.1.17
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.159945+01:00"
+    created: "2020-03-18T15:54:04.049925-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 17e95cf072c6c01c112d450069a872262f2b24e99717f6b10400db5cce42bcf1
     name: humio-helm-charts
@@ -489,7 +1433,24 @@ entries:
     version: 0.1.16
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.156432+01:00"
+    created: "2020-03-18T15:54:04.042924-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 8da6b350f8f92851bc4c64cfb4bf67a215a5e7e012cf38c309c8c1f7778f975f
     name: humio-helm-charts
@@ -498,7 +1459,24 @@ entries:
     version: 0.1.15
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.153096+01:00"
+    created: "2020-03-18T15:54:04.033415-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: b6d8a8f9112311fd5c788c417766bfa9c9a3cfa52b22f7a79ecbb1f02d408776
     name: humio-helm-charts
@@ -507,7 +1485,24 @@ entries:
     version: 0.1.14
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.1499+01:00"
+    created: "2020-03-18T15:54:04.025011-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 17ecd433b2cdfc667658375b283732133f6cdf09214ed318c5ffbef3122542bb
     name: humio-helm-charts
@@ -516,7 +1511,16 @@ entries:
     version: 0.1.13
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.146725+01:00"
+    created: "2020-03-18T15:54:04.017611-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 04beb3799322f04f360b3d5dc18fa02c9a7c1fccbd7f2fe78d84b58e916de637
     name: humio-helm-charts
@@ -525,7 +1529,16 @@ entries:
     version: 0.1.12
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.143469+01:00"
+    created: "2020-03-18T15:54:04.009979-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: b725566d5145c8938573aceba454b2843885d0a1041a78725569d42cd1bdeaea
     name: humio-helm-charts
@@ -534,7 +1547,16 @@ entries:
     version: 0.1.11
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.140766+01:00"
+    created: "2020-03-18T15:54:04.002016-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: e38c8c530839bb03f332af819cee1fad21302cc1acda1200a8132a049e11b37a
     name: humio-helm-charts
@@ -543,7 +1565,16 @@ entries:
     version: 0.1.10
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.268083+01:00"
+    created: "2020-03-18T15:54:04.301063-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 75a82c4dd9cb682484c31d0179d680914274db3d9cecb587772834530b192dda
     name: humio-helm-charts
@@ -552,7 +1583,16 @@ entries:
     version: 0.1.9
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.265613+01:00"
+    created: "2020-03-18T15:54:04.290276-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: f1ea3dc74afb2703d9b6db33c75ebb465cedafc90406b940f6316225737b9bb8
     name: humio-helm-charts
@@ -561,7 +1601,16 @@ entries:
     version: 0.1.8
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.257171+01:00"
+    created: "2020-03-18T15:54:04.2736-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 746813e02f9c23645bd8f70aa42aaccc9b6976898f40ce6f56d833df78d245da
     name: humio-helm-charts
@@ -570,7 +1619,16 @@ entries:
     version: 0.1.7
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.252117+01:00"
+    created: "2020-03-18T15:54:04.264863-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 920186ce3fcd4759c0fa8b09d0ae50803e88406232f3d4777c2615e916297e38
     name: humio-helm-charts
@@ -579,7 +1637,16 @@ entries:
     version: 0.1.6
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.248558+01:00"
+    created: "2020-03-18T15:54:04.256293-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 24bb80fd2e7cc2ce455e073cb42f650988ba69f56f81b68344a30eb79c4bd277
     name: humio-helm-charts
@@ -588,11 +1655,20 @@ entries:
     version: 0.1.5
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-02-07T10:19:57.238461+01:00"
+    created: "2020-03-18T15:54:04.234095-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
     description: A Helm chart for Humio Components
     digest: 8b70bd268fe1666cffde71569ca60e71c119c8a0e5654fe5b0ca43b98b31cc45
     name: humio-helm-charts
     urls:
     - humio-helm-charts-0.1.4.tgz
     version: 0.1.4
-generated: "2020-02-07T10:19:57.13667+01:00"
+generated: "2020-03-18T15:54:03.994261-07:00"

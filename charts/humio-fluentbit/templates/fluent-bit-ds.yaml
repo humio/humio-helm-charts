@@ -1,4 +1,8 @@
+{{- if .Capabilities.APIVersions.Has "apps/v1" }}
+apiVersion: apps/v1
+{{- else }}
 apiVersion: extensions/v1beta1
+{{- end }}
 kind: DaemonSet
 metadata:
   name: {{ .Release.Name }}-fluentbit
@@ -8,6 +12,9 @@ metadata:
     version: v1
     kubernetes.io/cluster-service: "true"
 spec:
+  selector:
+    matchLabels:
+      k8s-app: {{ .Release.Name }}
   template:
     metadata:
       labels:
