@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.2
+
+- 1f217c9 Fix ingress api version
+
 ## 0.8.1
 
 # Fixed
