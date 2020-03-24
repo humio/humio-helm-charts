@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.1
+
+# Fixed
+
+- 1db468c Add grace period to humio pods
+
 ## 0.8.0
 
 # Fixed
