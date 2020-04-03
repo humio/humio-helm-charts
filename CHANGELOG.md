@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.4
+- 744954e Allow specifying securityContext for humio-core
+
 ## 0.8.3
 
 - 798bf11 Run java process as pid 1
