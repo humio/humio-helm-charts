@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.5
+- 2adaca4 Bump kube-state-metrics dependency.
+
 ## 0.8.4
 - 744954e Allow specifying securityContext for humio-core
 
