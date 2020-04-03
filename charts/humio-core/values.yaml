@@ -132,6 +132,10 @@ github:
 
 nodeSelector: {}
 tolerations: []
+containerSecurityContext:
+  capabilities:
+    add: ["SYS_NICE"]
+podSecurityContext: {}
 affinity: {}
 livenessProbe: {}
 readinessProbe: {}
