@@ -1,7 +1,7 @@
 ---
 # Humio Defaults
 replicas: 3
-image: humio/humio-core:1.7.0
+image: humio/humio-core:1.8.9
 terminationGracePeriodSeconds: 300
 
 # Warning: changing this to a unsupported mode will disable authentation.
