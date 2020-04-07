@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.6
+- bec775e Bump versions Humio 1.8.9, Fluent bit 1.4.2 & Metricbeat 7.6.2
+
 ## 0.8.5
 - 2adaca4 Bump kube-state-metrics dependency.
 
