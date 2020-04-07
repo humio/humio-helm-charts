@@ -81,7 +81,7 @@ spec:
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ default "humio/humio-core:1.7.0" .Values.image }}
+          image: {{ default "humio/humio-core:1.8.9" .Values.image }}
           command: ["/bin/sh"]
           {{- if eq .Values.clusterIdentity.type "zookeeper" }}
           args: ["-c", "export ZOOKEEPER_PREFIX_FOR_NODE_UUID=/humio_$(cat /shared/zookeeper-prefix)_ && exec bash /app/humio/run.sh"]

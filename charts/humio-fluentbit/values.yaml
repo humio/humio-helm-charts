@@ -1,4 +1,4 @@
-image: fluent/fluent-bit:1.2.2
+image: fluent/fluent-bit:1.4.2
 imagePullPolicy: Always
 
 strixImage: humio/strix:latest
