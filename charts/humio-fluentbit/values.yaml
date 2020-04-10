@@ -15,6 +15,9 @@ es:
 nameOverride: ""
 fullnameOverride: ""
 
+tokenSecretName: ""
+tokenSecretKeyName: token
+
 resources:
   limits:
     cpu: 100m

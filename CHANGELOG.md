@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.7
+- 3c401f6 Expose property for setting the fluentbit token secret name
+
 ## 0.8.6
 - bec775e Bump versions Humio 1.8.9, Fluent bit 1.4.2 & Metricbeat 7.6.2
 
