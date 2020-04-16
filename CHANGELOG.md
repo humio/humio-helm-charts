@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.8
+- 509d1c6 Fluentbit: Use `/var/log/flb_kube.db` as default path for tracking monitored log files.
+_Note: If you already use this path elsewhere on our hosts, you must update your values file to override inputConfig for fluent bit to refer to a different path._
+
 ## 0.8.7
 - 3c401f6 Expose property for setting the fluentbit token secret name
 
