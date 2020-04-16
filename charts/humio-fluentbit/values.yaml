@@ -38,6 +38,7 @@ inputConfig: |-
       Name             tail
       Path             /var/log/containers/*.log
       Parser           docker
+      DB               /var/log/flb_kube.db
       Tag              kube.*
       Refresh_Interval 5
       Mem_Buf_Limit    5MB
