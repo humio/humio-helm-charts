@@ -3,7 +3,33 @@ entries:
   humio-helm-charts:
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:50.000964-07:00"
+    created: "2020-04-22T14:40:36.234046-07:00"
+    dependencies:
+    - condition: humio-core.enabled
+      name: humio-core
+      repository: file://./charts/humio-core
+      version: 0.1.2
+    - condition: humio-strix.enabled
+      name: humio-strix
+      repository: file://./charts/humio-strix
+      version: 0.1.0
+    - condition: humio-fluentbit.enabled
+      name: humio-fluentbit
+      repository: file://./charts/humio-fluentbit
+      version: 0.1.0
+    - condition: humio-metrics.enabled
+      name: humio-metrics
+      repository: file://./charts/humio-metrics
+      version: 0.1.0
+    description: A Helm chart for Humio Components
+    digest: fe370bf29767a4b4eb92ecbb12b53a86239da36faff17504e3b66e8be5cb51ed
+    name: humio-helm-charts
+    urls:
+    - humio-helm-charts-0.8.8.tgz
+    version: 0.8.8
+  - apiVersion: v1
+    appVersion: "1.1"
+    created: "2020-04-22T14:40:36.227502-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -29,7 +55,7 @@ entries:
     version: 0.8.7
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.993957-07:00"
+    created: "2020-04-22T14:40:36.218364-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -55,7 +81,7 @@ entries:
     version: 0.8.6
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.987053-07:00"
+    created: "2020-04-22T14:40:36.209986-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -81,7 +107,7 @@ entries:
     version: 0.8.5
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.9802-07:00"
+    created: "2020-04-22T14:40:36.200989-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -107,7 +133,7 @@ entries:
     version: 0.8.4
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.972739-07:00"
+    created: "2020-04-22T14:40:36.193451-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -133,7 +159,7 @@ entries:
     version: 0.8.3
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.963651-07:00"
+    created: "2020-04-22T14:40:36.186269-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -159,7 +185,7 @@ entries:
     version: 0.8.2
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.956681-07:00"
+    created: "2020-04-22T14:40:36.178056-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -185,7 +211,7 @@ entries:
     version: 0.8.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.94957-07:00"
+    created: "2020-04-22T14:40:36.169843-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -211,7 +237,7 @@ entries:
     version: 0.8.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.942574-07:00"
+    created: "2020-04-22T14:40:36.162332-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -237,7 +263,7 @@ entries:
     version: 0.7.2
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.935566-07:00"
+    created: "2020-04-22T14:40:36.155389-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -263,7 +289,7 @@ entries:
     version: 0.7.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.928583-07:00"
+    created: "2020-04-22T14:40:36.14779-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -289,7 +315,7 @@ entries:
     version: 0.7.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.921958-07:00"
+    created: "2020-04-22T14:40:36.140426-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -315,7 +341,7 @@ entries:
     version: 0.6.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.914794-07:00"
+    created: "2020-04-22T14:40:36.132558-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -341,7 +367,7 @@ entries:
     version: 0.6.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.907714-07:00"
+    created: "2020-04-22T14:40:36.12519-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -367,7 +393,7 @@ entries:
     version: 0.5.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.900626-07:00"
+    created: "2020-04-22T14:40:36.118517-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -393,7 +419,7 @@ entries:
     version: 0.5.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.893679-07:00"
+    created: "2020-04-22T14:40:36.109965-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -419,7 +445,7 @@ entries:
     version: 0.4.3
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.883799-07:00"
+    created: "2020-04-22T14:40:36.102848-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -445,7 +471,7 @@ entries:
     version: 0.4.2
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.876257-07:00"
+    created: "2020-04-22T14:40:36.096072-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -471,7 +497,7 @@ entries:
     version: 0.4.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.869058-07:00"
+    created: "2020-04-22T14:40:36.08924-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -497,7 +523,7 @@ entries:
     version: 0.4.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.86103-07:00"
+    created: "2020-04-22T14:40:36.080734-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -523,7 +549,7 @@ entries:
     version: 0.3.2
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.854232-07:00"
+    created: "2020-04-22T14:40:36.074635-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -549,7 +575,7 @@ entries:
     version: 0.3.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.846675-07:00"
+    created: "2020-04-22T14:40:36.067942-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -575,7 +601,7 @@ entries:
     version: 0.3.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.781419-07:00"
+    created: "2020-04-22T14:40:36.010556-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -601,7 +627,7 @@ entries:
     version: 0.2.13
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.774305-07:00"
+    created: "2020-04-22T14:40:36.003922-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -627,7 +653,7 @@ entries:
     version: 0.2.12
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.767641-07:00"
+    created: "2020-04-22T14:40:35.997722-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -653,7 +679,7 @@ entries:
     version: 0.2.11
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.761196-07:00"
+    created: "2020-04-22T14:40:35.991267-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -679,7 +705,7 @@ entries:
     version: 0.2.10
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.837043-07:00"
+    created: "2020-04-22T14:40:36.061332-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -705,7 +731,7 @@ entries:
     version: 0.2.9
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.829543-07:00"
+    created: "2020-04-22T14:40:36.054592-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -731,7 +757,7 @@ entries:
     version: 0.2.8
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.822573-07:00"
+    created: "2020-04-22T14:40:36.048289-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -757,7 +783,7 @@ entries:
     version: 0.2.7
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.815661-07:00"
+    created: "2020-04-22T14:40:36.042355-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -783,7 +809,7 @@ entries:
     version: 0.2.6
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.809357-07:00"
+    created: "2020-04-22T14:40:36.035776-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -809,7 +835,7 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.802669-07:00"
+    created: "2020-04-22T14:40:36.029457-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -835,7 +861,7 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.795142-07:00"
+    created: "2020-04-22T14:40:36.022866-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -861,7 +887,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.788195-07:00"
+    created: "2020-04-22T14:40:36.017033-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -887,7 +913,7 @@ entries:
     version: 0.2.2
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.753997-07:00"
+    created: "2020-04-22T14:40:35.98497-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -913,7 +939,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.747425-07:00"
+    created: "2020-04-22T14:40:35.978541-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -939,7 +965,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.706298-07:00"
+    created: "2020-04-22T14:40:35.938881-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -965,7 +991,7 @@ entries:
     version: 0.1.41
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.700547-07:00"
+    created: "2020-04-22T14:40:35.93298-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -991,7 +1017,7 @@ entries:
     version: 0.1.40
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.689149-07:00"
+    created: "2020-04-22T14:40:35.92305-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1017,7 +1043,7 @@ entries:
     version: 0.1.39
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.683005-07:00"
+    created: "2020-04-22T14:40:35.917251-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1043,7 +1069,7 @@ entries:
     version: 0.1.38
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.676879-07:00"
+    created: "2020-04-22T14:40:35.911305-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1069,7 +1095,7 @@ entries:
     version: 0.1.37
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.670055-07:00"
+    created: "2020-04-22T14:40:35.905958-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1095,7 +1121,7 @@ entries:
     version: 0.1.36
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.663917-07:00"
+    created: "2020-04-22T14:40:35.899891-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1121,7 +1147,7 @@ entries:
     version: 0.1.35
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.658301-07:00"
+    created: "2020-04-22T14:40:35.893915-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1147,7 +1173,7 @@ entries:
     version: 0.1.34
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.652284-07:00"
+    created: "2020-04-22T14:40:35.888269-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1173,7 +1199,7 @@ entries:
     version: 0.1.33
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.645969-07:00"
+    created: "2020-04-22T14:40:35.882886-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1199,7 +1225,7 @@ entries:
     version: 0.1.32
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.640662-07:00"
+    created: "2020-04-22T14:40:35.87707-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1225,7 +1251,7 @@ entries:
     version: 0.1.31
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.634786-07:00"
+    created: "2020-04-22T14:40:35.871357-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1251,7 +1277,7 @@ entries:
     version: 0.1.30
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.628874-07:00"
+    created: "2020-04-22T14:40:35.866047-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1277,7 +1303,7 @@ entries:
     version: 0.1.29
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.622972-07:00"
+    created: "2020-04-22T14:40:35.860133-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1303,7 +1329,7 @@ entries:
     version: 0.1.28
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.616918-07:00"
+    created: "2020-04-22T14:40:35.854276-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1329,7 +1355,7 @@ entries:
     version: 0.1.27
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.610989-07:00"
+    created: "2020-04-22T14:40:35.848981-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1355,7 +1381,7 @@ entries:
     version: 0.1.26
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.604517-07:00"
+    created: "2020-04-22T14:40:35.843144-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1381,7 +1407,7 @@ entries:
     version: 0.1.25
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.598125-07:00"
+    created: "2020-04-22T14:40:35.837412-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1407,7 +1433,7 @@ entries:
     version: 0.1.24
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.592708-07:00"
+    created: "2020-04-22T14:40:35.831683-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1433,7 +1459,7 @@ entries:
     version: 0.1.23
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.586566-07:00"
+    created: "2020-04-22T14:40:35.826208-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1459,7 +1485,7 @@ entries:
     version: 0.1.22
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.58021-07:00"
+    created: "2020-04-22T14:40:35.820399-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1485,7 +1511,7 @@ entries:
     version: 0.1.21
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.573737-07:00"
+    created: "2020-04-22T14:40:35.814728-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1511,7 +1537,7 @@ entries:
     version: 0.1.20
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.567661-07:00"
+    created: "2020-04-22T14:40:35.80952-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1537,7 +1563,7 @@ entries:
     version: 0.1.19
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.560808-07:00"
+    created: "2020-04-22T14:40:35.803584-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1563,7 +1589,7 @@ entries:
     version: 0.1.18
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.554242-07:00"
+    created: "2020-04-22T14:40:35.797797-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1589,7 +1615,7 @@ entries:
     version: 0.1.17
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.545769-07:00"
+    created: "2020-04-22T14:40:35.792098-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1615,7 +1641,7 @@ entries:
     version: 0.1.16
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.538362-07:00"
+    created: "2020-04-22T14:40:35.786849-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1641,7 +1667,7 @@ entries:
     version: 0.1.15
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.532283-07:00"
+    created: "2020-04-22T14:40:35.780057-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1667,7 +1693,7 @@ entries:
     version: 0.1.14
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.52595-07:00"
+    created: "2020-04-22T14:40:35.772558-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1693,7 +1719,7 @@ entries:
     version: 0.1.13
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.51953-07:00"
+    created: "2020-04-22T14:40:35.766903-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1711,7 +1737,7 @@ entries:
     version: 0.1.12
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.513154-07:00"
+    created: "2020-04-22T14:40:35.762124-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1729,7 +1755,7 @@ entries:
     version: 0.1.11
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.505638-07:00"
+    created: "2020-04-22T14:40:35.755328-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1747,7 +1773,7 @@ entries:
     version: 0.1.10
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.740507-07:00"
+    created: "2020-04-22T14:40:35.971991-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1765,7 +1791,7 @@ entries:
     version: 0.1.9
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.735889-07:00"
+    created: "2020-04-22T14:40:35.967674-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1783,7 +1809,7 @@ entries:
     version: 0.1.8
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.724817-07:00"
+    created: "2020-04-22T14:40:35.957254-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1801,7 +1827,7 @@ entries:
     version: 0.1.7
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.718012-07:00"
+    created: "2020-04-22T14:40:35.950447-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1819,7 +1845,7 @@ entries:
     version: 0.1.6
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.711674-07:00"
+    created: "2020-04-22T14:40:35.944395-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1837,7 +1863,7 @@ entries:
     version: 0.1.5
   - apiVersion: v1
     appVersion: "1.1"
-    created: "2020-04-09T09:47:49.694181-07:00"
+    created: "2020-04-22T14:40:35.927224-07:00"
     dependencies:
     - condition: humio-core.enabled
       name: humio-core
@@ -1853,4 +1879,4 @@ entries:
     urls:
     - humio-helm-charts-0.1.4.tgz
     version: 0.1.4
-generated: "2020-04-09T09:47:49.498582-07:00"
+generated: "2020-04-22T14:40:35.749014-07:00"

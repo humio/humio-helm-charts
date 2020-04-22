@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.8
+
+# Changed
+
+- 1a07b55 Remove fluentbit Merge_Log from default configuration
+
+ _Note: the default behavior of fluentbit changes with this version_
+
 ## 0.8.7
 - 3c401f6 Expose property for setting the fluentbit token secret name
 
