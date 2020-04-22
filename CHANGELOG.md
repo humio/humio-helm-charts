@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.9
+
+- 105cfc3 Reverts Merge_Log change in favor of enable Merge_Log_Key
+
 ## 0.8.8
 
 # Changed
