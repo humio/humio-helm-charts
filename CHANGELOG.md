@@ -1,12 +1,18 @@
 # Changelog
 
+## 0.8.10
+
+### Changed
+
+- 1ed7ff7 Update compression level to reflect Humio's defaults
+
 ## 0.8.9
 
 - 105cfc3 Reverts Merge_Log change in favor of enable Merge_Log_Key
 
 ## 0.8.8
 
-# Changed
+### Changed
 
 - 1a07b55 Remove fluentbit Merge_Log from default configuration
 
@@ -34,39 +40,39 @@
 
 ## 0.8.1
 
-# Fixed
+### Fixed
 
 - 1db468c Add grace period to humio pods
 
 ## 0.8.0
 
-# Fixed
+### Fixed
 
 - ab4ad70 Support newer Kubernetes api versions
 
 ## 0.7.2
 
-# Fixed
+### Fixed
 
 - a31fd49 Bugfix: mountPath doesn't belong on a volume
 
 ## 0.7.1
 
-# Fixed
+### Fixed
 
 - a776035 Fix bug where fluentbit will not be able to connect to the es endpoint
 
-# Changed
+### Changed
 
 - 53dff9f Allow metricbeat to reload its configuration at deploy time
 
 ## 0.7.0
 
-# Fixed
+### Fixed
 
 - 3534adf Fix issue with kafka properties mount when using saml
 
-# Changed
+### Changed
 
 - b62e1f0 Stop using LoadBalancer type as default to prevent exposing Humio without TLS unless explicitly configured.
 
@@ -76,39 +82,39 @@ change anything._
 
 ## 0.6.1
 
-# Fixed
+### Fixed
 
 - 6895108 Allow metricbeat to access apps/v1/replicasets
 
 ## 0.6.0
 
-# Added
+### Added
 
 - b399cd5 Allow configuring extra Kafka properties for Humio.
 
-# Changed
+### Changed
 
 - e834ae7 Update nginx example to better loadbalance ingest traffic
 - 0c2ca4a Use status endpoint to determine if Humio is healthy
 
 ## 0.5.1
 
-# Changed
+### Changed
 
 - 457dce2 Use password field rather than user field for token
 
 ## 0.5.0
 
-# Added
+### Added
 
 - be7bfc7 Added functionality to scrape humio-core statefulset with prometheus
 
-# Changed
+### Changed
 
 - 185253f Made fluentbit configs customizable
 - e2d6202 Added support for 'byproxy' as auth-method
 
-# Removed
+### Removed
 
 - 185253f removed the parameter `humio-fluentbit.defaultInputSettings.memBufferLimit`. Use `humio-fluentbit.inputConfig`
  instead.
