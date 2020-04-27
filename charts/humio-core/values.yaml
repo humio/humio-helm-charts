@@ -114,8 +114,8 @@ localVolume:
     size: 100Gi
 
 compression:
-  type: fast
-  level: 3
+  type: high
+  level: 9
 
 prometheus:
   enabled: false
