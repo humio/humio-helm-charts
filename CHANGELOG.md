@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.11
+
+- 17d96e0 humio-metrics: Mount configuration with expected gid for metricbeat deployment, instead of using uid 0 for reading it.
+
 ## 0.8.10
 
 ### Changed
