@@ -80,8 +80,6 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        securityContext:
-          runAsUser: 0
         {{- with .Values.resources }}
         resources:
           {{- toYaml . | nindent 10 }}
@@ -94,6 +92,8 @@ spec:
         - name: modules
           mountPath: /usr/share/metricbeat/modules.d
           readOnly: true
+      securityContext:
+        fsGroup: 1000
       volumes:
       - name: config
         configMap:
