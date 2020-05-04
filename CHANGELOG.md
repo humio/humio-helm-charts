@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.13
+
+- e9d07b0 Use apps/v1 for metricbeat deployment
+
 ## 0.8.12
 
 - 04d3f63 Use apiVersion apps/v1 for DaemonSet's if available
