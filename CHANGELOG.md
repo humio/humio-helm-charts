@@ -4,9 +4,15 @@
 
 - e9d07b0 Use apps/v1 for metricbeat deployment
 
+_Note: before updating, you must delete the deploment `metricbeat` as the API version has changed
+to support Kubernetes v1.16+._
+
 ## 0.8.12
 
 - 04d3f63 Use apiVersion apps/v1 for DaemonSet's if available
+
+_Note: before updating, you must delete the daemonsets `local-volume-provisioner` and `metricbeat`
+as the API version has changed to support Kubernetes v1.16+._
 
 ## 0.8.11
 
