@@ -57,7 +57,7 @@ spec:
           - kubectl
           - wait
           - "--for=condition=Ready"
-          - "pod/{{ .Release.Name }}-cp-kafka-{{ sub .Values.kafka.brokers 1 }}"
+          - "pod/{{ .Release.Name }}-cp-kafka-{{ include "humio-core.kafka.lastBroker" . }}"
           - "-n"
           - {{ .Release.Namespace }}
           - "--timeout=1500s"
