@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.14
+
+- 57100ef feat: Allow specifying service account annotations for Humio
+
 ## 0.8.13
 
 - e9d07b0 Use apps/v1 for metricbeat deployment
