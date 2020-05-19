@@ -144,6 +144,7 @@ storageVolume: {}
 storageClass: {}
 # Follow https://kubernetes.io/docs/concepts/storage/volumes/#hostpath for defining hostPath.
 hostPath: {}
+serviceAccountAnnotations: {}
 
 # Dependencies
 cp-helm-charts:
