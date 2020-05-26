@@ -72,6 +72,7 @@ outputConfig: |-
       Time_Key @timestamp
       Replace_Dots On
       Logstash_Prefix FluentBitHelmChart
+      Buffer_Size 5MB
 
 parserConfig: |-
   [PARSER]

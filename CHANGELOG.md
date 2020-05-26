@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.8.15
+
+### Fixed
+
+- 3ed80f6 Increase fluentbit es output Buffer_Size
+
+_Note: It is recommended to upgrade to this version when sending logs to Humio Cloud or using Humio verion 1.11.1 or
+greater._
+
 ## 0.8.14
 
 - 57100ef feat: Allow specifying service account annotations for Humio
