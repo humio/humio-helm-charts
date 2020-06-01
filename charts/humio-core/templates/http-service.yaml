@@ -7,6 +7,15 @@ metadata:
     chart: {{ template "humio-core.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+{{ if .Values.openshift.host }}
+    inmenu: "true"
+    target: "Humio"
+  annotations:
+    name: "Humio"
+    id: "administer-mcm"
+    roles: "ClusterAdministrator,Administrator,Operator,Viewer"
+    url: http://{{ include "routepath" (list . ) }}
+{{ end }}
 spec:
   type: {{ .Values.service.type }}
   ports:

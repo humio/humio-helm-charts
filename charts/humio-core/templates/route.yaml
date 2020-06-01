@@ -1,0 +1,25 @@
+{{ if .Values.openshift.host }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: "{{ include "humio-core.fullname" $ }}"
+  labels:
+    app: {{ template "humio-core.name" $ }}
+    chart: {{ template "humio-core.chart" $ }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+  {{- with .annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  host: {{ include "routepath" (list . ) }}
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: {{ include "humio-core.fullname" . }}-http
+    weight: 100
+  wildcardPolicy: None
+{{ end }}
+
