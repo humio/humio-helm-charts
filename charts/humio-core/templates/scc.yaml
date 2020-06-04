@@ -1,0 +1,42 @@
+{{ if .Values.openshift.host }}
+allowHostDirVolumePlugin: false
+allowHostIPC: false
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: false
+apiVersion: security.openshift.io/v1
+defaultAddCapabilities: null
+fsGroup:
+  type: RunAsAny
+groups: []
+kind: SecurityContextConstraints
+metadata:
+  name: {{ .Release.Name }}
+priority: 0
+readOnlyRootFilesystem: false
+defaultAddCapabilities: []
+allowedCapabilities: 
+- SYS_NICE
+requiredDropCapabilities:
+- KILL
+- MKNOD
+- SETUID
+- SETGID
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: MustRunAs
+supplementalGroups:
+  type: RunAsAny
+users: 
+- system:serviceaccount:{{ default "default" .Release.Namespace }}:{{ .Release.Name }}
+volumes:
+- configMap
+- downwardAPI
+- emptyDir
+- persistentVolumeClaim
+- projected
+- secret
+{{ end }}
