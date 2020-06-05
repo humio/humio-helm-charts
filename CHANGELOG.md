@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.16
+
+- 13d100d cp4mcm and openshift compatability update
+
 ## 0.8.15
 
 ### Fixed
