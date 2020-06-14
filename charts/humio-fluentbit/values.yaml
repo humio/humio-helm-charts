@@ -19,7 +19,7 @@ tokenSecretName: ""
 tokenSecretKeyName: token
 
 metrics:
-  enabled: true
+  enabled: false
   service:
     # labels:
     #   key: value
@@ -31,7 +31,7 @@ metrics:
     port: 2020
     type: ClusterIP
   serviceMonitor:
-    enabled: true
+    enabled: false
     additionalLabels: {}
     # namespace: monitoring
     # interval: 30s
