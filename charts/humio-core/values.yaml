@@ -1,7 +1,7 @@
 ---
 # Humio Defaults
 replicas: 3
-image: humio/humio-core:1.10.1
+image: humio/humio-core:1.10.5
 terminationGracePeriodSeconds: 300
 
 # Warning: changing this to a unsupported mode will disable authentation.
@@ -129,6 +129,10 @@ ingress:
 # "credentials" in the format of user:password.
 github:
   enabled: false
+
+#bucket storage setup
+bucketStorage:
+  backend: ""
 
 nodeSelector: {}
 tolerations: []
