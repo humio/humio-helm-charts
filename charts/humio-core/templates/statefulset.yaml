@@ -170,7 +170,7 @@ spec:
             subPath: extra_kafka_properties.properties
             readOnly: true
         {{- end }}
-        {{- if eq .Values.bucketStorage.backend "gcs" }}
+        {{- if eq .Values.bucketStorage.backend "gcp" }}
           - name: gcp-storage-account-json-file
             mountPath: /var/lib/humio/gcp-storage-account-json-file
             subPath: gcp-storage-account-json-file 
