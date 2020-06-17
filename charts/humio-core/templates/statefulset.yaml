@@ -274,6 +274,10 @@ spec:
             - name: PROMETHEUS_METRICS_PORT
               value: {{ .Values.prometheus.port | quote }}
             {{- end }}
+            {{- if ne .Values.bucketStorage.backed "gcp" }}
+            - name: GCP_STORAGE_ACCOUNT_JSON_FILE
+              value: "/var/lib/humio/gcp-storage-account-json-file"
+            {{- end }}
             {{- if .Values.env }}
               {{- with .Values.env }}
                 {{- toYaml . | nindent 12 }}
@@ -308,6 +312,11 @@ spec:
     {{- if eq .Values.clusterIdentity.type "zookeeper" }}
       - name: shared
         emptyDir: {}
+    {{- end }}
+    {{- if eq .Values.bucketStorage.backed "gcp" }}
+      - name: gcp-storage-account-json-file
+        secret:
+          secretName: gcp-storage-account-json-file
     {{- end }}
     {{- if ne .Values.extraKafkaConfigs "" }}
       - name: extra-kafka-configs

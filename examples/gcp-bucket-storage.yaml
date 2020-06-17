@@ -12,8 +12,6 @@ humio-core:
   bucketStorage:
     backend: gcp
   env:
-    - name: GCP_STORAGE_ACCOUNT_JSON_FILE
-      value: "/var/lib/humio/gcp-storage-account-json-file"
     - name: GCP_STORAGE_BUCKET
       value: "example-cluster-storage"
     - name: GCP_STORAGE_ENCRYPTION_KEY
