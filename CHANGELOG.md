@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.17
+
+- c162b84 Add support for GCP bucket storage credentials
+
 ## 0.8.16
 
 - 13d100d cp4mcm and openshift compatability update
