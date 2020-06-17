@@ -47,6 +47,20 @@ can be done by connecting to one of the humio core pods and following
 https://docs.humio.com/cluster-management/security/root-access, or it may be done ahead of time while single-user mode
  is enabled.
 
+#### Configuring Bucket Storage
+
+### S3 Bucket Storage
+
+See the file `examples/s3-bucket-storage.yaml`.
+
+### GCP Bucket Storage
+If you are using a service account to authenticate GCS requests add the your service account json to your Kubernetes secrets:
+```
+kubectl create secret generic gcp-storage-account-json-file --from-file=gcp-storage-account-json-file=./my-gcp-storage-account.json -n logging
+```
+
+See the file `examples/gcp-bucket-storage.yaml`.
+
 ## Subcharts
 
 ### Humio Core
@@ -55,6 +69,8 @@ Humio Core includes the [Confluent Helm Chart](https://github.com/confluentinc/c
 running Kafka and Zookeeper. It will start Zookeeper, Kafka, and Humio Core pods.
 
 See the file `examples/core-only.yaml`.
+
+
 
 ### Humio Fluentbit
 
