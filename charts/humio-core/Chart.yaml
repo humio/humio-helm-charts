@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: "1.1"
 description: A Helm chart for Humio Core
 name: humio-core
-version: 0.2.0
+version: 0.2.1
