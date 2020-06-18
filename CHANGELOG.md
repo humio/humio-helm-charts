@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.18
+- The release of 0.8.17 contains bugs with packaging, this is fixed in this release.
+
 ## 0.8.17
 
 - c162b84 Add support for GCP bucket storage credentials
