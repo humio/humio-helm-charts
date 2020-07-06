@@ -18,7 +18,7 @@ humio-core:
       value: "example-random-encryption-string"
     - name: ZOOKEEPER_URL_FOR_NODE_UUID
       value: "$(ZOOKEEPER_URL)"
-    - name: BETATESTING_LOCAL_STORAGE_PERCENTAGE
+    - name: LOCAL_STORAGE_PERCENTAGE
       value: "80"
     - name: LOCAL_STORAGE_MIN_AGE_DAYS
       value: "7"
