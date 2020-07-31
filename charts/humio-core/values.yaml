@@ -37,10 +37,6 @@ ingest:
 storage:
   initialPartitionsPerNode: 4
 
-bloomfilter:
-  enabled: false
-  backfillingEnabled: false
-
 defaultUserInputRegexEngine: HUMIO
 
 nameOverride: ""
