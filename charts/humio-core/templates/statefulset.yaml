@@ -173,7 +173,7 @@ spec:
         {{- if eq .Values.bucketStorage.backend "gcp" }}
           - name: gcp-storage-account-json-file
             mountPath: /var/lib/humio/gcp-storage-account-json-file
-            subPath: gcp-storage-account-json-file 
+            subPath: gcp-storage-account-json-file
             readOnly: true
         {{- end }}
           env:
@@ -224,10 +224,6 @@ spec:
               value: "true"
             - name: DEFAULT_USER_INPUT_REGEX_ENGINE
               value: {{ .Values.defaultUserInputRegexEngine | quote }}
-            - name: BLOOMFILTER_BACKFILLING_ENABLED
-              value: {{ .Values.bloomfilter.backfillingEnabled | quote }}
-            - name: BLOOMFILTER_ENABLED
-              value: {{ .Values.bloomfilter.enabled | quote }}
             - name: EXTERNAL_URL
               value: "http://$(POD_NAME).{{ .Release.Name }}-humio-core-headless.$(POD_NAMESPACE).svc.cluster.local:8080"
             {{- if ne .Values.authenticationMethod "" }}
