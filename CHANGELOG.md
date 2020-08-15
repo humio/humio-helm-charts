@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.19
+- 236d4b6 Upgrade to latest stable
+- 69556ad Remove obsolete options
+- a311573 Add option to mount IBM-specific path into fluentbit container
+- 1ab4127 Update examples to reflect feature is out of beta
+
 ## 0.8.18
 - The release of 0.8.17 contains bugs with packaging, this is fixed in this release.
 
