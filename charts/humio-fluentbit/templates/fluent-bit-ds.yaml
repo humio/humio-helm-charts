@@ -153,3 +153,7 @@ spec:
         effect: NoSchedule
         {{- toYaml . | nindent 6 }}
       {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
