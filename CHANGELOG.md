@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.20
+- 4a72438 added node selector for daemon set on helm-fluentbit
+- 67b61c3 allow tolerations on fluent bit daemonset
+
 ## 0.8.19
 - 236d4b6 Upgrade to latest stable
 - 69556ad Remove obsolete options
