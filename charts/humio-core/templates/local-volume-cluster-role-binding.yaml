@@ -6,7 +6,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: local-storage-admin
-  namespace: logging
+  namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
   name: system:persistent-volume-provisioner
@@ -19,7 +19,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: local-storage-admin
-  namespace: logging
+  namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
   name: local-storage-provisioner-node-clusterrole
