@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.21
+- b9fb046 Fix RBAC for local-storage provisioner
+
 ## 0.8.20
 - 4a72438 added node selector for daemon set on helm-fluentbit
 - 67b61c3 allow tolerations on fluent bit daemonset
