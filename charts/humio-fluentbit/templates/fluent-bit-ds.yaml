@@ -31,6 +31,10 @@ spec:
         - name: wait-for-humio
           image: {{ default "humio/strix" .Values.strixImage }}
           imagePullPolicy: {{ default "Always" .Values.strixImagePullPolicy }}
+          {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           command:
           - kubectl
           - wait

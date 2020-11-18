@@ -1,5 +1,6 @@
 image: fluent/fluent-bit:1.4.2
 imagePullPolicy: Always
+imagePullSecrets: []
 
 strixImage: humio/strix:latest
 strixImagePullPolicy: Always

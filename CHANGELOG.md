@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.22
+- afee5cf Update fluentbit and metricbeat to allow imagePullSecrets
+
 ## 0.8.21
 - b9fb046 Fix RBAC for local-storage provisioner
 
