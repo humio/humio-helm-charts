@@ -31,6 +31,10 @@ spec:
         - name: wait-for-shared-tokens
           image: {{ .Values.initImage }}
           imagePullPolicy: {{ .Values.initImagePullPolicy }}
+          {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           command:
           - kubectl
           - wait
@@ -45,6 +49,10 @@ spec:
 {{- end  }}
       containers:
       - name: metricbeat
+        {{- with .Values.imagePullSecrets }}
+        imagePullSecrets:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         image: {{ .Values.image }}
         args: [
           "-c", "/etc/metricbeat.yml",
