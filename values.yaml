@@ -1,4 +1,5 @@
 ---
+# Running humio-core using this helm chart is DEPRECATED. Use https://github.com/humio/humio-operator instead.
 humio-core:
   enabled: false
   replicas: 3
