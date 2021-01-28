@@ -49,8 +49,10 @@ spec:
         - name: wait-for-shared-tokens
           image: {{ default "humio/strix" .Values.strixImage }}
           imagePullPolicy: {{ default "Always" .Values.strixImagePullPolicy }}
+          {{- with .Values.imagePullSecrets }}
           imagePullSecrets:
             {{- toYaml . | nindent 12 }}
+          {{- end }}
           command:
           - kubectl
           - wait
@@ -72,8 +74,10 @@ spec:
             path: /api/v1/metrics
             port: 2020
         imagePullPolicy: {{ default "Always" .Values.imagePullPolicy }}
+        {{- with .Values.imagePullSecrets }}
         imagePullSecrets:
           {{- toYaml . | nindent 12 }}
+        {{- end }}
         ports:
           - containerPort: 2020
         env:
