@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.23
+- 37ad474 Fix bug with image pull secrets in metrics chart.
+- 88cd0bd feature(fluent-bit): allow imagePullSecrets to be overriden
+- 063d049 Add LICENSE
+- c603e2b Deprecate humio-core
+
 ## 0.8.22
 - afee5cf Update fluentbit and metricbeat to allow imagePullSecrets
 

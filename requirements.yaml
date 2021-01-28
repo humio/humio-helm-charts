@@ -8,10 +8,10 @@ dependencies:
     repository: file://./charts/humio-strix
     condition: humio-strix.enabled
   - name: humio-fluentbit
-    version: 0.1.0
+    version: 0.1.1
     repository: file://./charts/humio-fluentbit
     condition: humio-fluentbit.enabled
   - name: humio-metrics
-    version: 0.1.0
+    version: 0.1.1
     repository: file://./charts/humio-metrics
     condition: humio-metrics.enabled
