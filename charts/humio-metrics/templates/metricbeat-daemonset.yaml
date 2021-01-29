@@ -19,6 +19,10 @@ spec:
       labels:
         k8s-app: metricbeat
     spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
       serviceAccountName: metricbeat
       terminationGracePeriodSeconds: 30
       hostNetwork: true
@@ -31,10 +35,6 @@ spec:
         - name: wait-for-shared-tokens
           image: {{ .Values.initImage }}
           imagePullPolicy: {{ .Values.initImagePullPolicy }}
-          {{- with .Values.imagePullSecrets }}
-          imagePullSecrets:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
           command:
           - kubectl
           - wait
@@ -49,10 +49,6 @@ spec:
 {{- end  }}
       containers:
       - name: metricbeat
-        {{- with .Values.imagePullSecrets }}
-        imagePullSecrets:
-          {{- toYaml . | nindent 10 }}
-        {{- end }}
         image: {{ .Values.image }}
         args: [
           "-c", "/etc/metricbeat.yml",
