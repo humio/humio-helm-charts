@@ -65,6 +65,12 @@ spec:
       - name: {{ .Release.Name }}
         image: {{ default "fluent/fluent-bit:1.4.2" .Values.image }}
         command: ["/fluent-bit/bin/fluent-bit", "-c", "/fluent-bit/etc/fluent-bit.conf", "-H"]
+    {{- if .Values.securityContext }}
+      {{- with .Values.securityContext }}
+        securityContext:
+          {{- toYaml . | nindent 10 }}
+      {{- end }}
+    {{- end }}
         livenessProbe:
           httpGet:
             path: /api/v1/metrics
