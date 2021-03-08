@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.24
+- f975459 Expose container securityContext
+
 ## 0.8.23
 - 37ad474 Fix bug with image pull secrets in metrics chart.
 - 88cd0bd feature(fluent-bit): allow imagePullSecrets to be overriden
