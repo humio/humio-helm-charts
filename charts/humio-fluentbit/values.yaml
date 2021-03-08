@@ -130,3 +130,4 @@ customFluentBitConfig:
 nodeSelector: {}
 tolerations: []
 affinity: {}
+securityContext: {}
