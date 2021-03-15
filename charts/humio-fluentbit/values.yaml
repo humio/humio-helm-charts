@@ -131,3 +131,5 @@ nodeSelector: {}
 tolerations: []
 affinity: {}
 securityContext: {}
+scc:
+  enabled: false
