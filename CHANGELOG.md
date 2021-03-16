@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.25
+- 323fe46 Add option to create scc and attach to the fluent-bit service account
+
 ## 0.8.24
 - f975459 Expose container securityContext
 
