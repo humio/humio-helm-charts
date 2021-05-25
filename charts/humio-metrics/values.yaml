@@ -15,7 +15,7 @@ jobImagePullPolicy: Always
 strixImage: humio/strix:latest
 strixImagePullPolicy: Always
 
-image: "docker.elastic.co/beats/metricbeat-oss:7.6.2"
+image: "docker.elastic.co/beats/metricbeat-oss:7.12.1"
 imagePullSecrets: []
 
 publish:
