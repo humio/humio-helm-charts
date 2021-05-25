@@ -1,7 +1,7 @@
 # Changelog
 
 ## 0.8.26
-- 1a46787 Add HEC configuration to fluentbit, update fluent-bit and metricbeat dependencies
+- 1a46787 Add HEC configuration to fluent-bit, update fluent-bit and metricbeat dependencies
 
 ## 0.8.25
 - 323fe46 Add option to create scc and attach to the fluent-bit service account
