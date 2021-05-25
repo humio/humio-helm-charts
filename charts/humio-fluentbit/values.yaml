@@ -13,6 +13,11 @@ es:
   tls_verify: true
   autodiscovery: false
 
+hec:
+  port: 443
+  tls: false
+  tls_verify: true
+
 nameOverride: ""
 fullnameOverride: ""
 
@@ -20,6 +25,8 @@ kubernetesType: ""
 
 tokenSecretName: ""
 tokenSecretKeyName: token
+hecTokenSecretName: ""
+hecTokenSecretKeyName: token
 
 resources:
   limits:

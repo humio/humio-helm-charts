@@ -120,6 +120,41 @@ spec:
             {{- end -}}
           {{- end -}}
         {{- end  }}
+        - name: FLUENT_HEC_HOST
+          value: {{ default "cloud.humio.com" .Values.humioHecHostname | quote }}
+        - name: FLUENT_HEC_PORT
+          value: {{ default "443" .Values.hec.port | quote }}
+        - name: FLUENT_HEC_TLS
+          {{- if .Values.hec.tls }}
+          value: "On"
+          {{- else }}
+          value: "Off"
+          {{- end }}
+        - name: FLUENT_HEC_TLS_VERIFY
+          {{- if and .Values.hec.tls .Values.hec.tls_verify }}
+          value: "On"
+          {{- else }}
+          value: "Off"
+          {{- end }}
+        {{- if or .Values.hecToken .Values.hecTokenSecretName }}
+        - name: HUMIO_HEC_INGEST_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.hecTokenSecretName | default "fluentbit-custom-hec-token" }}
+              key: {{ .Values.hecTokenSecretKeyName }}
+        {{- else -}}
+          {{- if .Values.global -}}
+            {{- if .Values.global.sharedTokens }}
+              {{- if .Values.global.sharedTokens.fluentbit_hec }}
+        - name: HUMIO_HEC_INGEST_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: fluentbit-hec-shared-token
+              key: {{ .Values.hecTokenSecretKeyName }}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end  }}
         volumeMounts:
         - name: varlog
           mountPath: /var/log
