@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.27
+- 5d88b00 downgrade fluentbit to 1.6.10 due to bugs
+
 ## 0.8.26
 - 1a46787 Add HEC configuration to fluent-bit, update fluent-bit and metricbeat dependencies
 
