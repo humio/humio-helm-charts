@@ -7,6 +7,11 @@ metadata:
     k8s-app: {{ .Release.Name }}
 data:
   fluent-bit-service.conf: {{- toYaml .Values.serviceConfig | indent 2 }}
+{{- if .Values.metrics.enabled }}
+        HTTP_Server  On
+        HTTP_Listen  0.0.0.0
+        HTTP_Port    2020
+{{- end }}
 
   fluent-bit-input.conf: {{- toYaml .Values.inputConfig | indent 2 }}
 
