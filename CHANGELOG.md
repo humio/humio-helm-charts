@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.28
+- be02d71 Use stable k8s authorization api
+- 85db353 Bump metricbeat to 7.13.0
+
 ## 0.8.27
 - 5d88b00 downgrade fluentbit to 1.6.10 due to bugs
 
