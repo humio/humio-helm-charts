@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.29
+- be02d71 Add extraVolumes and extraVolumeMounts to fluent-bit
+
 ## 0.8.28
 - be02d71 Use stable k8s authorization api
 - 85db353 Bump metricbeat to 7.13.0
