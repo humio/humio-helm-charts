@@ -28,6 +28,9 @@ tokenSecretKeyName: token
 hecTokenSecretName: ""
 hecTokenSecretKeyName: token
 
+extraVolumes: {}
+extraVolumeMounts: {}
+
 resources:
   limits:
     cpu: 100m
