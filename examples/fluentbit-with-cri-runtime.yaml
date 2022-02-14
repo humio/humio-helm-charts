@@ -1,0 +1,50 @@
+---
+humio-core:
+  enabled: false
+
+humio-fluentbit:
+  enabled: true
+  humioRepoName: myRepoName
+  humioHostname: HUMIO_HOSTNAME
+  es:
+    tls: true # TLS On. Set to false to turn it off.
+    tls_verify: true # TLS verify On. Set to false to turn it off.
+    autodiscovery: false
+  # Example of custom fluentbit config
+  customFluentBitConfig:
+    someconfig.conf: |-
+      [Some]
+      configuration
+
+  # Example using cri parser
+ parserConfig: |-
+   [PARSER]
+     Name cri
+     Format regex
+     Regex ^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>[^ ]*) (?<log>.*)$
+     Time_Key time
+     Time_Format %Y-%m-%dT%H:%M:%S.%L%z
+
+  # Example using cri parser
+ inputConfig: |-
+   [INPUT]
+     Name             tail
+     Path             /var/log/containers/*.log
+     Parser           cri
+     Tag              kube.*
+     Refresh_Interval 5
+     Mem_Buf_Limit    256MB
+     Skip_Long_Lines  On
+
+  # Example of custom resources
+  resources:
+    limits:
+      cpu: 2
+      memory: 1024Mi
+    requests:
+      cpu: 1
+      memory: 512Mi
+
+global:
+  sharedTokens:
+    fluentbit: { kubernetes: in-cluster }
