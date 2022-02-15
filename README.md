@@ -7,7 +7,7 @@ the [Humio Operator](https://github.com/humio/humio-operator).
 
 ## Installing
 
-See the [Kubernetes Integration](https://docs.humio.com/integrations/ingest-logs-from-a-specific-system/kubernetes/)
+See the [Kubernetes Integration](https://library.humio.com/integrations/ingest-logs-from-a-specific-system/kubernetes/)
 docs which walk through how to install and use this chart to run fluentbit.
 
 ## Packaging
