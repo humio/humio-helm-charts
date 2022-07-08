@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.0
+- cd980e2 Add containerd changes & update versions for fluentbit & metricbeat (moved to non-oss image) 
+
 ## 0.8.29
 - be02d71 Add extraVolumes and extraVolumeMounts to fluent-bit
 
