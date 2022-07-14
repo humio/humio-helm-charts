@@ -1,4 +1,4 @@
-image: fluent/fluent-bit:1.6.10
+image: fluent/fluent-bit:1.9.4
 imagePullPolicy: Always
 imagePullSecrets: []
 
@@ -50,7 +50,7 @@ inputConfig: |-
   [INPUT]
       Name             tail
       Path             /var/log/containers/*.log
-      Parser           docker
+      Parser           cri
       Tag              kube.*
       Refresh_Interval 5
       Mem_Buf_Limit    5MB
@@ -68,6 +68,7 @@ filterConfig: |-
       Merge_Log_Key       log_processed
       K8S-Logging.Parser  On
       K8S-Logging.Exclude On
+      Cache_Use_Docker_Id On
 
 outputConfig: |-
   [OUTPUT]
@@ -126,6 +127,13 @@ parserConfig: |-
       Time_Key    time
       Time_Format %Y-%m-%dT%H:%M:%S.%L
       Time_Keep   On
+
+  [PARSER]
+        Name cri
+        Format regex
+        Regex ^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>[^ ]*) (?<message>.*)$
+        Time_Key    time
+        Time_Format %Y-%m-%dT%H:%M:%S.%L%z
 
   [PARSER]
       Name        syslog
