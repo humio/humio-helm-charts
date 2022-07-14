@@ -62,7 +62,7 @@ spec:
   {{- end  }}
 {{- end }}
       containers:
-      - name: {{ .Release.Name }}
+      - name: fluentbit
         image: {{ default "fluent/fluent-bit:1.6.10" .Values.image }}
         command: ["/fluent-bit/bin/fluent-bit", "-c", "/fluent-bit/etc/fluent-bit.conf", "-H"]
     {{- if .Values.securityContext }}

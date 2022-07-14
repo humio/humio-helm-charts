@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.30
+- 6c76c08 Hardcode fluentbit container name
+
 ## 0.8.29
 - be02d71 Add extraVolumes and extraVolumeMounts to fluent-bit
 
