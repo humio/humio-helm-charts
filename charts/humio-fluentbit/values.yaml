@@ -131,9 +131,10 @@ parserConfig: |-
   [PARSER]
         Name cri
         Format regex
-        Regex ^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>[^ ]*) (?<message>.*)$
+        Regex ^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>[^ ]*) (?<log>.*)$
         Time_Key    time
         Time_Format %Y-%m-%dT%H:%M:%S.%L%z
+        Time_Keep   On
 
   [PARSER]
       Name        syslog

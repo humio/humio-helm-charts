@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.1
+- aea134d Adjust fluentbit cri parser
+
 ## 0.9.0
 - cd980e2 Add containerd changes & update versions for fluentbit & metricbeat (moved to non-oss image) 
 
