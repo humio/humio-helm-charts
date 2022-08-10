@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.2
+- 2ecd34d Update metricbeat deployment configmap with containerd changes
+
 ## 0.9.1
 - 4477828 Adjust fluentbit cri parser
 
