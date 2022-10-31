@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.3
+- f0beb24 Bump fluentbit and enable gzip compression when shipping
+
 ## 0.9.2
 - 2ecd34d Update metricbeat deployment configmap with containerd changes
 
@@ -7,7 +10,7 @@
 - 4477828 Adjust fluentbit cri parser
 
 ## 0.9.0
-- cd980e2 Add containerd changes & update versions for fluentbit & metricbeat (moved to non-oss image) 
+- cd980e2 Add containerd changes & update versions for fluentbit & metricbeat (moved to non-oss image)
 
 ## 0.8.29
 - be02d71 Add extraVolumes and extraVolumeMounts to fluent-bit

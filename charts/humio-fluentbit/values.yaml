@@ -1,4 +1,4 @@
-image: fluent/fluent-bit:1.9.4
+image: fluent/fluent-bit:2.0.3
 imagePullPolicy: Always
 imagePullSecrets: []
 
@@ -87,6 +87,7 @@ outputConfig: |-
       Replace_Dots On
       Logstash_Prefix FluentBitHelmChart
       Buffer_Size 5MB
+      compress gzip
 
 parserConfig: |-
   [PARSER]
