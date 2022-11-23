@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.4
+- ce6aefd Enable metricbeat compression
+
 ## 0.9.3
 - f0beb24 Bump fluentbit and enable gzip compression when shipping
 
