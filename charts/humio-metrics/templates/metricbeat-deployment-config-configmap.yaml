@@ -16,6 +16,7 @@ data:
       hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
       username: ${ELASTICSEARCH_USERNAME}
       password: ${ELASTICSEARCH_PASSWORD}
-      allow_older_versions: true  
-      
+      allow_older_versions: true
+      compression_level: 6
+
     setup.ilm.enabled: false
