@@ -31,6 +31,25 @@ hecTokenSecretKeyName: token
 extraVolumes: {}
 extraVolumeMounts: {}
 
+metrics:
+  enabled: false
+  service:
+    # labels:
+    #   key: value
+    annotations: {}
+    # In order for Prometheus to consume metrics automatically use the following annotations:
+    # prometheus.io/path: "/api/v1/metrics/prometheus"
+    # prometheus.io/port: "2020"
+    # prometheus.io/scrape: "true"
+    port: 2020
+    type: ClusterIP
+  serviceMonitor:
+    enabled: false
+    additionalLabels: {}
+    # namespace: monitoring
+    # interval: 30s
+    # scrapeTimeout: 10s
+
 resources:
   limits:
     cpu: 100m
