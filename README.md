@@ -1,6 +1,6 @@
 > **Warning**
-> This repo has been **deprecated**, and is no longer maintained, and may not be compatable with future versions of Humio.  
-> We strongly recommend migrating to the [Humio Operator](https://github.com/humio/humio-operator).
+> This repo has been **deprecated**. It is no longer maintained, and is not compatible with any supported versions of Humio / LogScale.
+> [Humio Operator](https://github.com/humio/humio-operator) is the current Kubernetes operator.
 
 # Humio Helm Charts
 
