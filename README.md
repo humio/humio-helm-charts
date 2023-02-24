@@ -1,3 +1,7 @@
+> **Warning**
+> This repo has been **deprecated**, and is no longer maintained, and may not be compatable with future versions of Humio.  
+> We strongly recommend migrating to the [Humio Operator](https://github.com/humio/humio-operator).
+
 # Humio Helm Charts
 
 This repo contains the Helm charts for running Fluentbit and Metricbeat on Kubernetes for use as a client to Humio.
