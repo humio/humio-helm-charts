@@ -51,7 +51,7 @@ inputConfig: |-
       Name             tail
       Path             /var/log/containers/*.log
       Parser           cri
-      Tag              kube.*
+      Tag              humio.kube*
       Refresh_Interval 5
       Mem_Buf_Limit    5MB
       Skip_Long_Lines  On
@@ -59,7 +59,7 @@ inputConfig: |-
 filterConfig: |-
   [FILTER]
       Name                kubernetes
-      Match               kube.*
+      Match               humio.kube*
       Kube_Tag_Prefix     kube.var.log.containers.
       Kube_URL            https://kubernetes.default.svc:443
       Kube_CA_File        /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
