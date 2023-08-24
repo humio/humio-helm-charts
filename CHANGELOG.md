@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.5
+- edd7232 Update fluentbit config to be compatible with cri parser
+
 ## 0.9.4
 - ce6aefd Enable metricbeat compression
 
