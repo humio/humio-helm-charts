@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.5
+- 2f2cdc9 Fix spacing in CRI parser causing it to not be registered
+
 ## 0.9.4
 - ce6aefd Enable metricbeat compression
 
