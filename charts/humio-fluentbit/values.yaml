@@ -1,4 +1,4 @@
-image: fluent/fluent-bit:2.0.3
+image: fluent/fluent-bit:3.0.4
 imagePullPolicy: Always
 imagePullSecrets: []
 
