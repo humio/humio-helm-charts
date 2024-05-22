@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.6
+- 6b7a8e8 Bump fluentbit to 3.0.4
+
 ## 0.9.5
 - 2f2cdc9 Fix spacing in CRI parser causing it to not be registered
 
