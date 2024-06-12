@@ -1,3 +1,7 @@
+> **Warning**
+> This repo has been **deprecated**. It is no longer maintained, and is not compatible with any supported versions of Humio / LogScale.
+> [Humio Operator](https://github.com/humio/humio-operator) is the current Kubernetes operator.
+
 # Humio Helm Charts
 
 This repo contains the Helm charts for running Fluentbit and Metricbeat on Kubernetes for use as a client to Humio.
