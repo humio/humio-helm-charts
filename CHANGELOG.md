@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.9.7
+- 7e402aa Bump kube-state-metrics to 5.18.0
+
 ## 0.9.6
 - 6b7a8e8 Bump fluentbit to 3.0.4
 
