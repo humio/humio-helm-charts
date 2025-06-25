@@ -1,4 +1,6 @@
 # Changelog
+## 0.9.7 
+- 5d05b8 Bump metrics-server to 5.18.0
 
 ## 0.9.6
 - 6b7a8e8 Bump fluentbit to 3.0.4
@@ -39,7 +41,7 @@
 
 ## 0.8.24
 - f975459 Expose container securityContext
-
+;:
 ## 0.8.23
 - 37ad474 Fix bug with image pull secrets in metrics chart.
 - 88cd0bd feature(fluent-bit): allow imagePullSecrets to be overriden
