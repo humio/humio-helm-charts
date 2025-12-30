@@ -6,7 +6,8 @@ metadata:
   labels:
     k8s-app: metricbeat
 data:
-  # This module requires `kube-state-metrics` up and running under `kube-system` namespace
+  # This module requires `kube-state-metrics` to be deployed and accessible
+  # Configure the location via .Values.kubeStateMetrics
   kubernetes.yml: |-
     - module: kubernetes
       metricsets:
@@ -19,7 +20,7 @@ data:
         - event
       period: 10s
       host: ${NODE_NAME}
-      hosts: ["{{ .Release.Name }}-kube-state-metrics.{{ default "kube-system" .Release.Namespace }}:8080"]
+      hosts: ["{{ .Values.kubeStateMetrics.serviceName }}.{{ .Values.kubeStateMetrics.namespace | default .Release.Namespace }}:{{ .Values.kubeStateMetrics.port }}"]
 {{- with .Values.customMetricbeatDeploymentModules }}
   {{- toYaml . | nindent 2 }}
 {{- end }}

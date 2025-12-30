@@ -6,6 +6,17 @@ es:
 
 humioHostname: "cloud.humio.com"
 
+# kube-state-metrics configuration
+# Configure where metricbeat should find kube-state-metrics
+kubeStateMetrics:
+  # Service name for kube-state-metrics (without namespace)
+  serviceName: "kube-state-metrics"
+  # Namespace where kube-state-metrics is deployed
+  # If empty, defaults to the same namespace as this chart
+  namespace: ""
+  # Port that kube-state-metrics listens on
+  port: 8080
+
 initImage: humio/strix:latest
 initImagePullPolicy: Always
 
