@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.10.1
+- bd783f9 Removed kube-state-metrics as a hardcoded dependency for humio-metrics
+
 ## 0.9.7
 - 7e402aa Bump kube-state-metrics to 5.18.0
 
