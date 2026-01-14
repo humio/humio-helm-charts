@@ -1,7 +1,7 @@
 # Changelog
 
 ## 0.10.3
--  Added dynamic securityContext template and value to allow more capabilities for metricbeat metrics collection
+- 99f7e7d Added dynamic securityContext template and value to allow more capabilities for metricbeat metrics collection
 
 ## 0.10.2
 - 0ffa34f Added dynamic args to the humio-metrics chart to pass to metrics server in newer version and updated the version
