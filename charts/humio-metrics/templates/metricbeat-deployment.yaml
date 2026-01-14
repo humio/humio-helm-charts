@@ -91,6 +91,21 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        securityContext:
+          runAsUser: 0
+          {{- if .Values.securityContext }}
+          {{- if .Values.securityContext.capabilities }}
+          capabilities:
+            {{- if .Values.securityContext.capabilities.add }}
+            add:
+              {{- toYaml .Values.securityContext.capabilities.add | nindent 14 }}
+            {{- end }}
+            {{- if .Values.securityContext.capabilities.drop }}
+            drop:
+              {{- toYaml .Values.securityContext.capabilities.drop | nindent 14 }}
+            {{- end }}
+          {{- end }}
+          {{- end }}
         {{- with .Values.resources }}
         resources:
           {{- toYaml . | nindent 10 }}
