@@ -50,11 +50,10 @@ spec:
       containers:
       - name: metricbeat
         image: {{ .Values.image }}
-        args: [
-          "-c", "/etc/metricbeat.yml",
-          "-e",
-          "-system.hostfs=/hostfs",
-        ]
+        {{- with .Values.containerArgs.daemonset }}
+        args:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         env:
         - name: ELASTICSEARCH_HOST
       {{- if .Values.es.autodiscovery }}

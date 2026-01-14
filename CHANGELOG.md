@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.10.2
+- 0ffa34f Added dynamic args to the humio-metrics chart to pass to metrics server in newer version and updated the version
+
 ## 0.10.1
 - bd783f9 Removed kube-state-metrics as a hardcoded dependency for humio-metrics
 

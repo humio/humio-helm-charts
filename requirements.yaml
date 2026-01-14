@@ -1,6 +1,6 @@
 dependencies:
   - name: humio-core
-    version: 0.1.2
+    version: 0.2.1
     repository: file://./charts/humio-core
     condition: humio-core.enabled
   - name: humio-strix
@@ -12,6 +12,6 @@ dependencies:
     repository: file://./charts/humio-fluentbit
     condition: humio-fluentbit.enabled
   - name: humio-metrics
-    version: 0.1.1
+    version: 0.3.2
     repository: file://./charts/humio-metrics
     condition: humio-metrics.enabled
