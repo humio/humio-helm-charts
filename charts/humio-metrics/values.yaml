@@ -70,3 +70,14 @@ resources:
 nodeSelector: {}
 tolerations: []
 affinity: {}
+
+# Security context for metricbeat daemonset container
+# Default is runAsUser: 0 (hardcoded in template)
+# Additional capabilities can be added for specific monitoring needs
+securityContext: {}
+  # capabilities:
+  #   add:
+  #     - SYS_PTRACE      # Required for process monitoring
+  #     - DAC_READ_SEARCH # Required for reading process info
+  #     - SYS_ADMIN       # Required for system-level monitoring
+  #     - AUDIT_READ      # Required for audit log access
