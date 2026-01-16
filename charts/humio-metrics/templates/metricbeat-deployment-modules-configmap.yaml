@@ -18,6 +18,9 @@ data:
         - state_pod
         - state_container
         - event
+        {{- range .Values.additionMetricbeatMetricsets }}
+        - {{ .name }}
+        {{- end }}
       period: 10s
       host: ${NODE_NAME}
       hosts: ["{{ .Values.kubeStateMetrics.serviceName }}.{{ .Values.kubeStateMetrics.namespace | default .Release.Namespace }}:{{ .Values.kubeStateMetrics.port }}"]
